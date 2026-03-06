@@ -1,30 +1,30 @@
 @import url("https://fonts.googleapis.com/css");
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html, body {
+    height: 100%;
 }
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: white;
     color: #111;
-
+    display: flex;
+    flex-direction: column;
 }
 
 header {
-    height: 8vh;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    width: 100%;
+    margin-top: 2vw;
 }
 
 .menu {
     display: flex;
-    gap: 3vh;
-    font-size: 1.6vh;
+    gap: 3vw;
+    font-size: 1.3vw;
 }
 
 .menu a {
@@ -36,88 +36,71 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex: 1;
 }
 
 .section1 {
-    width: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-bottom: 8vh;
+    flex-direction: column;
 }
 
 .texto-principal {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 5.5vh;
     font-weight: 500;
-    line-height: 6vh;
-    margin-top: 2vh;
-    margin-bottom: 3vh;
+    font-size: 3vw;
+    width: 40%;
+    margin-top: 4vw;
 }
 
-.container-imagem {
-    height: 26vh;
-    width: 85vh;
+.imagem-predios {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 3vh;
 }
 
-.bloco-esquerdo,
-.bloco-direito {
-    height: 17vh;
-    width: 15vh;
-    background: #6E8757;
-    border-radius: 1vh;
+.imagem-predios img {
+    border-radius: 2vw;
     position: absolute;
-    top: 4.5vh;
+    left: -21.5vw;
+    top: 2vw;
+    width: 42.96vw;
+    height: 28.64vw;
+    border-radius: 2vw;
 }
 
-.bloco-esquerdo {
-    left: 10vh;
-}
-
-.bloco-direito {
-    right: 10vh;
-}
-
-.imagem-principal {
-    height: 26vh;
-    width: 52vh;
-    border-radius: 2vh;
-    overflow: hidden;
-    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.15);
-    position: relative;
-    z-index: 1;
-}
-
-.imagem-principal img {
-    height: 26vh;
-    width: 52vh;
+.container {
+    width: 62.5vw;
+    height: 23.02vw;
+    background-color: #768859;
+    border-radius: 2vw;
+    margin-top: 10vw;
 }
 
 .descricao {
-    font-size: 1.8vh;
+    font-size: 2.1vw;
     color: #666;
-    width: 60vh;
-    margin: 0 auto;
-    line-height: 2.4vh;
-    margin-bottom: 3vh;
+    width: 55%;
+    margin: 3vw auto;
+    margin-bottom: 3vw;     
 }
 
 .btn-saibamais {
-    height: 4vh;
-    width: 14vh;
+    height: 3vw;
+    width: 10vw;
     background: #0A1F44;
-    color: white;
+    color: #ffffff;
     border: none;
     border-radius: 0.8vh;
-    font-size: 1.4vh;
-    font-weight: bold;
+    font-size: 1.2vw;
+    font-weight: 600;
     cursor: pointer;
 }
 
-
+.btn-saibamais:hover {
+    color: #eaeae6;
+    transition: 0.3s ease-in-out;
+    box-shadow: 1px 1px 10px #666;
+}
 
 .section2 {
     width: 85vh;
@@ -167,64 +150,16 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: 0.3s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .foto-membro img {
     height: 100%;
     width: 100%;
-
-
 }
 
 .foto-membro:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
-
-/* inicio footer */
-
-footer {
-    height: 30vh;
-    background: #0A1F44;
-    color: white;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 15vh;
-}
-
-.redes-footer .logo {
-    width: 10vh;
-    height: auto;
-}
-
-.redes-footer .icons {
-    width: 6vh;
-    height: auto;
-
-}
-
-footer section {
-    width: 26vh;
-}
-
-footer h3 {
-    font-size: 1.7vh;
-    margin-bottom: 2vh;
-}
-
-footer ul {
-    list-style: none;
-}
-
-
-footer li,
-footer p {
-    font-size: 1.6vh;
-    line-height: 2vh;
-    opacity: 0.9;
-}
-
-/*Fim footer */
