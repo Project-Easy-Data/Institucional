@@ -57,5 +57,7 @@ footer .terceiraColuna .mediasSociais {
 }
 
 footer .terceiraColuna .mediasSociais .fa-envelope:hover, .fa-instagram:hover, .fa-linkedin:hover, .fa-phone:hover {
-    color: #646262;
+    color: #afacac;
+    transform: translateY(-3px);
+    transition: 0.4s ease-in-out;
 }
