@@ -61,6 +61,7 @@ main {
     background-color: #768859;
     justify-content: center;
     align-items: center;
+    border-radius: 0 0.6vw 0.6vw 0;
 }
 
 .form-cadastro {
@@ -70,21 +71,22 @@ main {
 
 .tituloCampo {
     color: #ffffff;
-    font-size: 2vw;
+    font-size: 1.6vw;
     font-weight: 800;
     margin-bottom: 0.3vw;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
 }
 
 .campoInput {
-    width: 20vw;
-    height: 2vw;
+    width: 30vw;
+    height: 3vw;
     background-color: #d9d9d9;
-    border-radius: 1vw;
+    border-radius: 1.5vw;
     display: flex;
     align-items: center;
     padding: 0 0.6vw;
     margin-bottom: 0.8vw;
+    box-shadow: 1px 1px 5px #000000;
 }
 
 .campoInput input {
@@ -94,13 +96,32 @@ main {
     background: transparent;
     font-family: "Poppins", sans-serif;
     font-size: 1vw;
-    color: #7c7c7c;
+    color: #000000;
+    margin-left: 1vw;
+}
+
+#gerarSenha {
+    width: 80%;
+    height: 80%;
+    border: none;
+    outline: none;
+    background: #002645;
+    font-family: "Poppins", sans-serif;
+    font-size: 1vw;
+    color: #ffffff;
+    border-radius: 1vw;
+    cursor: pointer;
+}
+
+#gerarSenha:hover {
+    transition: 0.4s ease-in-out;
+    color: #768859;
 }
 
 .botaoCadastro {
     justify-items: center;
-    width: auto;
-    height: 2vw;
+    width: 50%;
+    height: 2.8vw;
     border: none;
     border-radius: 1vw;
     background-color: #002b57;
@@ -109,10 +130,18 @@ main {
     font-size: 1vw;
     font-weight: 700;
     cursor: pointer;
-    margin-top: 0.2vw;
+    margin-top: 3vw;
     margin-bottom: 0.4vw;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    justify-content: center;
 }
 
+.botaoCadastro:hover {
+    box-shadow: 1px 1px 20px #494848;
+    transition: 0.4s ease-in-out;
+}
 
 .cadastroTexto {
     text-align: center;
@@ -143,10 +172,11 @@ main {
     width: 35vw;
 }
 
-footer {
-    height: 4vw;
-    display: flex;
-    align-items: center;
-    padding: 0 2vw;
-    background-color: #002645;
+#msgCorretoNome, #msgCorretoEmail, #msgCorretoCnpj, #msgCorretoSenha {
+    color: #c11616;
+    font-size: 0.6;
+    margin: 0;
+    padding: 0;
+    margin-left: 1vw;
+    margin-top: -0.5vw;
 }

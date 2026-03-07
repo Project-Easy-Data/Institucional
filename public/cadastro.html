@@ -35,31 +35,33 @@
                 <label class="tituloCampo">Empresa:</label>
                 <div class="campoInput">
                     <input type="text" id="empresa" placeholder="Digite o nome da empresa">
-
                 </div>
+                <div id="msgCorretoNome"></div>
                 <label class="tituloCampo">Email:</label>
                 <div class="campoInput">
                     <input type="email" id="email" placeholder="Digite o email">
-
                 </div>
+                <div id="msgCorretoEmail"></div>
 
                 <label class="tituloCampo">CNPJ:</label>
                 <div class="campoInput">
-                    <input type="text" id="cnpj" placeholder="Digite o CNPJ">
-
+                    <input type="number" maxlength="14" id="cnpj" placeholder="Digite o CNPJ">
                 </div>
+                <div id="msgCorretoCnpj"></div>
                 <label class="tituloCampo">Senha:</label>
                 <div class="campoInput">
-                    <input type="password" id="senha" placeholder="Digite sua senha">
-
+                    <input type="email" id="senha" placeholder="" disabled>
+                    <button id="gerarSenha" onclick="gerarSenha()">Gerar Senha</button>
                 </div>
-                <button class="botaoCadastro">Cadastrar</button>
+                <div id="msgCorretoSenha"></div>
+                <button class="botaoCadastro" onclick="cadastrar()">Cadastrar</button>
             </div>
         </section>
         <section class="bannerLogo">
             <img src="logos/Logo_EasyData_V01.png">
         </section>
     </main>
-    <footer>
 
-    </footer>
+    <script src="/js/cadastro.js"></script>
+</body>
+</html>
