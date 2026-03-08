@@ -15,6 +15,7 @@ body {
     color: #111;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 header {
@@ -67,11 +68,12 @@ main {
     display: flex;
     flex-direction: column;
     width: 36vw;
+    gap: 2vw;
 }
 
 .tituloContato {
     color: white;
-    font-size: 2.1vw;
+    font-size: 1.8vw;
     font-weight: 700;
     text-align: center;
     margin-bottom: 0.5vw;
@@ -79,29 +81,28 @@ main {
 
 .subtituloContato {
     color: #f1f1f1;
-    font-size: 1vw;
+    font-size: 1.4vw;
     text-align: center;
 }
 
 
 .tituloCampo {
     color: white;
-    font-size: 2vw;
+    font-size: 1.4vw;
     font-weight: 800;
     margin-bottom: 0.4vw;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
 }
 
 .campoInput {
     width: 100%;
-    height: 3.2vw;
+    height: 2.8vw;
     background-color: white;
     border-radius: 0.6vw;
     border: 0.1vw solid #d9d9d9;
     display: flex;
     align-items: center;
     padding: 0 1vw;
-    margin-bottom: 1.4vw;
     transition: 0.3s;
 }
 
@@ -128,15 +129,13 @@ main {
     color: #999;
 }
 
-
 .campoMensagem {
     width: 100%;
     height: 10vw;
     background-color: white;
     border-radius: 0.6vw;
     border: 0.1vw solid #d9d9d9;
-    padding: 1vw;
-    margin-bottom: 1.8vw;
+    padding: 1vw
     transition: 0.3s;
 }
 
@@ -180,4 +179,18 @@ main {
 
 .botaoContato:hover {
     background-color: #001e3d;
+}
+
+#msgCorretoNome, #msgCorretoEmail, #msgCorretoMensagem {
+    font-size: 1vw;
+    outline: none;
+    font-weight: 200;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+#enviadoSucesso {
+    font-size: 1.2vw;
+    font-weight: 700;
+    text-align: center;
 }

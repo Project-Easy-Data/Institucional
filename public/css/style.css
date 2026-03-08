@@ -124,7 +124,7 @@ main {
 
 .btn-saibamais {
     height: 3vw;
-    width: 10vw;
+    width: 11vw;
     background: #0A1F44;
     color: #ffffff;
     border: none;
@@ -138,6 +138,12 @@ main {
     color: #eaeae6;
     transition: 0.3s ease-in-out;
     box-shadow: 1px 1px 10px #666;
+}
+
+.btn-saibamais:active {
+    color: #eaeae6;
+    transition: 0.3s ease-in-out;
+    background-color: hsl(0, 0%, 50%);
 }
 
 .section2 {
