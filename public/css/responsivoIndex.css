@@ -10,7 +10,7 @@
         font-size: 5vw;
         width: 100%;
         background-color: #002645;
-        justify-content: end;
+        justify-content: space-between;
     }
 
     .menu {
@@ -34,10 +34,13 @@
         align-items: center;
     }
 
+    .section1 {
+        gap: 6vw;
+    }
+
     .texto-principal {
         font-size: 5vw;
-        width: 85%;
-        margin-bottom: 10vw;
+        width: 85%; 
     }
 
     .container {
@@ -49,6 +52,7 @@
         width: 70vw;
         height: 30vw;
         left: -35vw;
+        top: 11vw;
     }
 
     .descricao {
@@ -57,8 +61,8 @@
     }
 
     .btn-saibamais {
-        height: 7vw;
-        width: 25vw;
+        height: 9vw;
+        width: 27vw;
         font-size: 3vw;
         padding: 3vw;
         display: flex;
@@ -96,6 +100,7 @@
         height: 100vh;
         background-color: #002645;
         z-index: 99;
+        position: fixed;
     }
 
     .menu.aberto a {
@@ -110,5 +115,25 @@
 
     #login {
         display: block;
+    }
+
+    #fecharMenu {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 5vw;
+        color: #f1f1f1;
+        position: absolute;
+        top: 4vw;
+        right: 5vw;
+    }
+
+    #logo {
+        display: block;
+        width: 30%;
+    }
+
+    #logo {
+        margin-left: 5vw;
     }
 } 

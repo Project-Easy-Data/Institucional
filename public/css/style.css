@@ -11,6 +11,12 @@ body {
     color: #111;
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;    
+}
+
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
 }
 
 header {
@@ -250,7 +256,7 @@ main {
 }
 
 .menu-hamburguer {
-  display: none; /* Escondido no desktop */
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   gap: 5px;
@@ -273,4 +279,12 @@ main {
 
 #login {
     display: none;
+}
+
+#logo {
+    display: none;
+}
+
+#fecharMenu {
+ display: none;
 }

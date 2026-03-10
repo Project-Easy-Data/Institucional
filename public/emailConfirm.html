@@ -23,10 +23,17 @@
         <section class="logoLogin">
             <a href="index.html"> <img src="logos/Logo_EasyData_V02.png" alt=""></a>
         </section>
-        <nav class="menu">
-            <a class="ativo" href="index.html"><b>Início</b></a>
-            <a class="ativo" href="quemSomos.html"><b>Quem Somos</b></a>
-            <a class="ativo" href="contato.html"><b>Contato</b></a>
+        <button class="menu-hamburguer" id="menuBtn" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="menu" id="menuNav">
+            <button id="fecharMenu">✕</button>
+            <a href="index.html"><b>Início</b></a>
+            <a href="quemSomos.html"><b>Quem Somos</b></a>
+            <a href="contato.html"><b>Contato</b></a>
+            <a href="login.html"><b>Login</b></a>
         </nav>
     </header>
 
@@ -52,6 +59,8 @@
     <footer>
 
     </footer>
+
+    <script src="js/menu.js"></script>
 </body>
 
 </html>

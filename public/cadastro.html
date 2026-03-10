@@ -23,7 +23,13 @@
         <section class="logoLogin">
             <a href="index.html"> <img src="logos/Logo_EasyData_V02.png" alt=""></a>
         </section>
-        <nav class="menu">
+        <button class="menu-hamburguer" id="menuBtn" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="menu" id="menuNav">
+            <button id="fecharMenu">✕</button>
             <a href="index.html"><b>Início</b></a>
             <a href="quemSomos.html"><b>Quem Somos</b></a>
             <a href="contato.html"><b>Contato</b></a>
@@ -36,28 +42,28 @@
                     <div class="campoInput">
                         <input type="text" id="empresa" placeholder="Digite o nome da empresa">
                     </div>
-                </label>
                 <div id="msgCorretoNome"></div>
+                </label>
                 <label class="tituloCampo">Email
                     <div class="campoInput">
                         <input type="email" id="email" placeholder="Digite o email">
                     </div>
+                    <div id="msgCorretoEmail"></div>
                 </label>
-                <div id="msgCorretoEmail"></div>
 
                 <label class="tituloCampo">CNPJ
                     <div class="campoInput">
                         <input type="text" maxlength="18" id="cnpj" placeholder="Digite o CNPJ">
                     </div>
+                    <div id="msgCorretoCnpj"></div>
                 </label>
-                <div id="msgCorretoCnpj"></div>
                 <label class="tituloCampo">Senha
                     <div class="campoInput">
                         <input type="email" id="senha" placeholder="" disabled>
                         <button id="gerarSenha" onclick="gerarSenha()">Gerar Senha</button>
                     </div>
+                    <div id="msgCorretoSenha"></div>
                 </label>
-                <div id="msgCorretoSenha"></div>
                 <button class="botaoCadastro" onclick="cadastrar()">Cadastrar</button>
             </div>
         </section>
@@ -65,6 +71,12 @@
             <img src="logos/Logo_EasyData_V01.png">
         </section>
     </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="js/menu.js"></script>
     <script src="js/cadastro.js"></script>
 </body>
 

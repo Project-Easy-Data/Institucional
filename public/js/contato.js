@@ -21,7 +21,7 @@ nome.addEventListener('input', () => {
         }, 3000);
     } else {
         msgCorretoNome.textContent = "O campo deve ser preenchido corretamente!";
-        msgCorretoNome.style.color = "#8B0000";
+        msgCorretoNome.style.color = "#ff4444";
     }
 });
 
@@ -43,7 +43,7 @@ email.addEventListener('input', () => {
 
     if ((!dominioValido || !tipoValido) || email.value.includes(" ")) {
         msgCorretoEmail.textContent = "O campo deve ser preenchido corretamente!";
-        msgCorretoEmail.style.color = "#8B0000";
+        msgCorretoEmail.style.color = "#ff4444";
     } else {
         msgCorretoEmail.textContent = "Campo preenchido com sucesso!";
         msgCorretoEmail.style.color = "#90EE90";
@@ -74,9 +74,21 @@ mensagem.addEventListener('input', () => {
         }, 3000);
     } else {
         msgCorretoMensagem.textContent = "O campo deve ser preenchido corretamente!";
-        msgCorretoMensagem.style.color = "#8B0000";
+        msgCorretoMensagem.style.color = "#ff4444";
     }
 });
+
+function mostrarPopup(msg) {
+    const popup = document.getElementById("popup");
+    const popupMensagem = document.getElementById("popupMensagem");
+
+    popupMensagem.textContent = msg;
+    popup.classList.add("visivel");
+
+    setTimeout(() => {
+        popup.classList.remove("visivel");
+    }, 3000);
+}
 
 function enviar() {
     if (
@@ -85,22 +97,14 @@ function enviar() {
         (email.value.includes(".com") || email.value.includes(".br") || email.value.includes(".net") || email.value.includes(".org")) &&
         mensagem.value.length >= 20
     ) {
-        enviadoSucesso.textContent = "Mensagem enviada com sucesso!";
-        enviadoSucesso.style.color = "#90EE90";
+        mostrarPopup("Mensagem enviada com sucesso!");
+        document.getElementById("popup").style.backgroundColor = "#4CAF50";
 
-        setTimeout(() => {
-            enviadoSucesso.style.opacity = "0";
-        }, 2500);
-
-        setTimeout(() => {
-            enviadoSucesso.style.opacity = "1";
-            enviadoSucesso.textContent = "";
-        }, 3000);
+        mensagem.value = "";
+        email.value = "";
+        nome.value = "";
+    } else {
+        document.getElementById("popup").style.backgroundColor = "#ff4444";
+        mostrarPopup("Preencha todos os campos corretamente antes de enviar!");
     }
-
-    mensagem.value = "";
-    email.value = "";
-    nome.value = "";
 }
-
-

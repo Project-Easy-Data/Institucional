@@ -82,7 +82,7 @@ function validarCampos (input, msg, tamanho) {
 
         if ((!dominioValido || !tipoValido) || input.value.includes(" ")) {
             msg.textContent = "O campo deve ser preenchido corretamente!";
-            msg.style.color = "#8B0000";
+            msg.style.color = "#ff4444";
             return;
         }
 
@@ -92,7 +92,7 @@ function validarCampos (input, msg, tamanho) {
 
         if (input.value.length < tamanho) {
             msg.textContent = "O campo deve ser preenchido corretamente!";
-            msg.style.color = "#8B0000";
+            msg.style.color = "#ff4444";
         } else {
             msg.style.color = "#90EE90";
             msg.textContent = "Campo preenchido com sucesso!";

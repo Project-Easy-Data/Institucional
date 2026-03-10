@@ -23,10 +23,15 @@
                 <img src="logos/Logo_EasyData_V02.png">
             </a>
         </section>
-
-        <nav class="menu">
-            <a  href="index.html"><b>Início</b></a>
-            <a  href="quemSomos.html"><b>Quem Somos</b></a>
+        <button class="menu-hamburguer" id="menuBtn" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="menu" id="menuNav">
+            <button id="fecharMenu">✕</button>
+            <a href="index.html"><b>Início</b></a>
+            <a href="quemSomos.html"><b>Quem Somos</b></a>
             <a class="ativo" href="contato.html"><b>Contato</b></a>
         </nav>
     </header>
@@ -35,7 +40,7 @@
         <section class="section-contato">
             <div class="form-contato">
 
-                <p class="subtituloContato">Entre em contato com a nossa equipe</p>
+                <p class="subtituloContato">Fale conosco</p>
 
                 <label class="tituloCampo">Nome
                     <div class="campoInput">
@@ -66,6 +71,12 @@
         </section>
     </main>
     <script src="js/contato.js"></script>
+
+    <div id="popup" class="popup">
+        <span id="popupMensagem"></span>
+    </div>
+
+    <script src="js/menu.js"></script>
 
 </body>
 

@@ -22,8 +22,14 @@
 
 <body>
   <header>
-    <nav class="menu">
-      <a  href="index.html"><b>Início</b></a>
+    <button class="menu-hamburguer" id="menuBtn" aria-label="Abrir menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav class="menu" id="menuNav">
+      <button id="fecharMenu">✕</button>
+      <a href="index.html"><b>Início</b></a>
       <a class="ativo" href="quemSomos.html"><b>Quem Somos</b></a>
       <a  href="contato.html"><b>Contato</b></a>
     </nav>
@@ -123,6 +129,6 @@
         <a href="index.html"><img src="logos/Logo_EasyData_V02.png" alt="logo"></a>
       </div>
     </footer>
+    <script src="js/menu.js"></script>
 </body>
-
 </html>

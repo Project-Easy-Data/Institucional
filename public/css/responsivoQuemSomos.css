@@ -1,20 +1,15 @@
 @media (max-width: 480px) {
 
     header {
-        height: 14vw;
-        padding: 0 4vw;
-        justify-content: center;
+        height: 80px;
+        padding: 0 1vw;
+        justify-content: end;
         position: relative;
+        margin-top: 5vw;
     }
 
     .menu {
-        gap: 6vw;
-        font-size: 3.8vw;
-        justify-content: center; 
-    }
-
-    .menu a {
-        margin-top: 0;
+        display: none;
     }
 
     .loginCadastro {
@@ -79,6 +74,59 @@
     .nome-membro {
         margin-top: 1.5vw;
         font-size: 3.8vw;
+    }
+
+    .menu-hamburguer {
+        display: flex;
+        margin-right: 4vw;
+    }
+
+    .menu.aberto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #002645;
+        z-index: 99;
+    }
+
+    .menu.aberto a {
+        color: #000000;
+        font-size: 6vw;
+        text-decoration: none;
+    }
+
+    #login {
+        display: block;
+    }
+
+    .menu-hamburguer span {
+        background: #111111;
+    }
+
+    .menu.aberto a {
+        color: #f1f1f1;
+    }
+
+    .menu.aberto a.ativo {
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    #fecharMenu {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 5vw;
+        color: #f1f1f1;
+        position: absolute;
+        top: 4vw;
+        right: 5vw;
     }
 
     footer {

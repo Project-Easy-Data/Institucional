@@ -32,7 +32,7 @@ email.addEventListener("input", () => {
         }, 3000);
     } else {
         msgCorretoEmail.textContent = "O campo deve ser preenchido corretamente!";
-        msgCorretoEmail.style.color = "#8B0000";
+        msgCorretoEmail.style.color = "#ff4444";
     }
 });
 
@@ -51,6 +51,6 @@ senha.addEventListener("input", () => {
         }, 3000);
     } else {
         msgCorretoSenha.textContent = "O campo deve ser preenchido corretamente!";
-        msgCorretoSenha.style.color = "#8B0000";
+        msgCorretoSenha.style.color = "#ff4444";
     }
 });

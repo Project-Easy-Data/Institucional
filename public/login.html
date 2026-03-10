@@ -23,7 +23,12 @@
         <section class="logoLogin">
             <a href="index.html"> <img src="logos/Logo_EasyData_V02.png" alt=""></a>
         </section>
-        <nav class="menu">
+        <button class="menu-hamburguer" id="menuBtn" aria-label="Abrir menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav class="menu" id="menuNav">
             <a class="ativo" href="index.html"><b>Início</b></a>
             <a class="ativo" href="quemSomos.html"><b>Quem Somos</b></a>
             <a class="ativo" href="contato.html"><b>Contato</b></a>
@@ -33,25 +38,28 @@
     <main>
         <section class="section-login">
             <div class="form-login">
-                <label class="tituloCampo">
-                    Email
-                    <div class="campoInput">
-                        <input type="email" id="email" placeholder="Digite o Email">
-                    </div>
-                </label>
-                <div id="msgCorretoEmail"></div>
 
+                <h2></h2>
 
-                <label class="tituloCampo">
-                    Senha
-                    <div class="campoInput">
-                        <input type="password" id="senha" placeholder="Digite a senha">
-                        <i id="olhoAberto" class="fa-regular fa-eye"></i>
-                        <i id="olhoFechado" class="fa-regular fa-eye-slash"></i>
-                    </div>
-                </label>
-                <div id="msgCorretoSenha"></div>
+                <div class="inputs">
+                    <label class="tituloCampo">
+                        Email
+                        <div class="campoInput">
+                            <input type="email" id="email" placeholder="Digite o Email">
+                        </div>
+                        <div id="msgCorretoEmail"></div>
+                    </label>
 
+                    <label class="tituloCampo">
+                        Senha
+                        <div class="campoInput">
+                            <input type="password" id="senha" placeholder="Digite a senha">
+                            <i id="olhoAberto" class="fa-regular fa-eye"></i>
+                            <i id="olhoFechado" class="fa-regular fa-eye-slash"></i>
+                        </div>
+                        <div id="msgCorretoSenha"></div>
+                    </label>
+                </div>
                 <button class="botaoLogin">Login</button>
 
                 <p class="RedefinirTexto">
@@ -65,6 +73,7 @@
             <img src="logos/Logo_EasyData_V01.png">
         </section>
     </main>
+    <script src="js/menu.js"></script>
     <script src="js/login.js"></script>
 </body>
 

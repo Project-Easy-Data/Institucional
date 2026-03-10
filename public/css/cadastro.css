@@ -73,9 +73,8 @@ main {
 .tituloCampo {
     color: #ffffff;
     font-size: 1.6vw;
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 0.3vw;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
 }
 
 .campoInput {
@@ -177,30 +176,93 @@ main {
 #msgCorretoCnpj,
 #msgCorretoSenha {
     color: #c11616;
-    font-size: 0.6;
+    font-size: 0.9vw;
     margin: 0;
     padding: 0;
-    margin-left: 1vw;
     margin-top: -0.5vw;
+}
+
+.menu-hamburguer {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-hamburguer span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #f1f1f1;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+#fecharMenu {
+    display: none;
 }
 
 @media screen and (max-width: 480px) {
 
     header {
         height: 80px;
-        text-align: center;
+        padding: 0 4vw;
+        position: relative;
+    }
+
+    .logoLogin img {
+        width: 28vw;
+        display: block;
     }
 
     .menu {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        gap: 10vw
+        display: none;
     }
 
-    .menu a {
-        font-size: 4vw;
+    .menu-hamburguer {
+        display: flex;
+        position: absolute;
+        right: 4vw;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .menu.aberto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #002645;
+    }
+
+    .menu.aberto a {
+        color: #f1f1f1;
+        font-size: 6vw;
+        text-decoration: none;
+    }
+
+    #fecharMenu {
+        display: block;
+        position: absolute;
+        top: 4vw;
+        right: 5vw;
+        background: none;
+        border: none;
+        color: #f1f1f1;
+        font-size: 7vw;
+        cursor: pointer;
     }
 
     .form-cadastro {
@@ -220,23 +282,16 @@ main {
 
     .section-cadastro {
         width: 100%;
-        background-color: #ffffff;
+        background-color: #023966;
     }
 
     img {
         display: none;
     }
 
-    .logoLogin {
-        display: block;
-        position: absolute;
-        top: 50vw;
-        left: 24vw;
-    }
-
     .logoLogin img {
         display: block;
-        width: 50vw;
+        width: 30vw;
     }
 
     .tituloCampo {
@@ -291,5 +346,10 @@ main {
     #msgCorretoCnpj,
     #msgCorretoSenha {
         font-size: 3vw;
+    }
+
+    footer {
+        background-color: #002645;
+        height: 80px;   
     }
 }

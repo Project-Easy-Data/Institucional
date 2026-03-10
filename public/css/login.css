@@ -51,8 +51,6 @@ header {
     color: #768859;
 }
 
-
-
 main {
     display: flex;
     flex: 1;
@@ -72,13 +70,17 @@ main {
     flex-direction: column;
 }
 
+.inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
 .tituloCampo {
     color: white;
     font-size: 2vw;
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 0.3vw;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-
 }
 
 .campoInput {
@@ -89,7 +91,6 @@ main {
     display: flex;
     align-items: center;
     padding: 0 0.6vw;
-    margin-bottom: 0.8vw;
     box-shadow: 1px 1px 10px #494848;
 }
 
@@ -187,10 +188,37 @@ main {
     display: none;
 }
 
-#msgCorretoEmail {
+#msgCorretoEmail, 
+#msgCorretoSenha {
     color: #90EE90;
     font-size: 1vw;
-    margin-top: 0vw;
+    margin-top: 0.3vw;
+}
+
+.menu-hamburguer {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-hamburguer span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #f1f1f1;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+#fecharMenu {
+    display: none;
 }
 
 @media screen and (max-width: 480px) {
@@ -198,18 +226,61 @@ main {
     header {
         height: 80px;
         text-align: center;
+        position: relative;
     }
 
     .menu {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        gap: 10vw
+        display: none;
     }
 
-    .menu a {
-        font-size: 4vw;
+    .menu-hamburguer {
+        display: flex;
+        position: absolute;
+        right: 4vw;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .menu.aberto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #002645;
+    }
+
+    .menu.aberto a {
+        color: #f1f1f1;
+        font-size: 6vw;
+        text-decoration: none;
+    }
+
+    #fecharMenu {
+        display: block;
+        position: absolute;
+        top: 4vw;
+        right: 5vw;
+        background: none;
+        border: none;
+        color: #f1f1f1;
+        font-size: 7vw;
+        cursor: pointer;
+    }
+
+    .inputs {
+        gap: 6vw;
+    }
+
+    .logoLogin img {
+        display: block;
+        width: 30%;
+        margin-left: 4vw;
     }
 
     .form-login {
@@ -234,25 +305,14 @@ main {
         display: none;
     }
 
-    .logoLogin {
-        display: block;
-        position: absolute;
-        top: 50vw;
-        left: 24vw;
-    }
-
-    .logoLogin img {
-        display: block;
-        width: 50vw;
-    }
-
     .tituloCampo {
         font-size: 4vw;
     }
 
     .campoInput {
         width: 80vw;
-        height: 6vw;
+        height: 8vw;
+        border-radius: 2vw;
     }
 
     .campoInput input {
@@ -264,6 +324,7 @@ main {
         width: 80vw;
         height: 6vw;
         font-size: 3vw;
+        margin-top: 13vw;
     }
 
     .cadastroTexto {
