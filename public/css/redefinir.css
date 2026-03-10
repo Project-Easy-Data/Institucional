@@ -74,8 +74,6 @@ main {
     font-size: 2vw;
     font-weight: 800;
     margin-bottom: 0.3vw;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 1);
-
 }
 
 .campoInput {
@@ -163,10 +161,94 @@ main {
     margin-top: -0.5vw;
 }
 
-footer {
-    height: 4vw;
-    display: flex;
-    align-items: center;
-    padding: 0 2vw;
-    background-color: #002645;
+@media (max-width: 480px) {
+    header {
+        height: 80px;
+        padding: 0 4vw;
+    }
+
+    .logoLogin img {
+        width: 28vw;
+    }
+
+    .menu {
+        gap: 4vw;
+        font-size: 3.2vw;
+    }
+
+    main {
+        flex-direction: column;
+        display: flex;
+        justify-content: center;
+    }
+
+    .section-redefinir {
+        width: 100%;
+        padding: 10vw 0;
+        border-radius: 0 0 3vw 3vw;
+        order: 1;
+        background-color: #ffffff;
+    }
+
+    .tituloCampo {
+        font-size: 5.5vw;
+        margin-bottom: 1.5vw;
+        color: #002b57;
+    }
+
+    .campoInput {
+        width: 72vw;
+        height: 11vw;
+        border-radius: 3vw;
+        padding: 0 3vw;
+        margin-bottom: 3vw;
+    }
+
+    .campoInput input {
+        font-size: 3.8vw;
+    }
+
+    .botaoRedefinir {
+        width: 55%;
+        height: 11vw;
+        border-radius: 3vw;
+        font-size: 3.8vw;
+        margin-top: 6vw;
+        margin-bottom: 2vw;
+    }
+
+    .RedefinirTexto {
+        font-size: 3.2vw;
+    }
+
+    .bannerLogo {
+        width: 100%;
+        padding: 8vw 0;
+        order: 0;
+    }
+
+    .bannerLogo img {
+        width: 60vw;
+    }
+
+    #msgCorretoNome,
+    #msgCorretoEmail,
+    #msgCorretoCnpj,
+    #msgCorretoSenha {
+        font-size: 2.8vw;
+        margin-left: 3vw;
+        margin-top: -1.5vw;
+    }
+
+    footer {
+        height: 80px;
+        font-size: 3.2vw;
+        gap: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 5vw;
+        background-color: #002645;
+    }
 }

@@ -1,0 +1,94 @@
+@media (max-width: 480px) {
+
+    header {
+        height: 14vw;
+        padding: 0 4vw;
+        justify-content: center;
+        position: relative;
+    }
+
+    .menu {
+        gap: 6vw;
+        font-size: 3.8vw;
+        justify-content: center;
+    }
+
+    .menu a {
+        margin-top: 0;
+    }
+
+    .loginCadastro {
+        display: none;
+    }
+
+    .section2 {
+        margin-top: 8vw;
+        margin-bottom: 8vw;
+    }
+
+    .sobre {
+        height: auto;
+        gap: 3vw;
+        padding: 6vw 0;
+    }
+
+    .titulo-secao {
+        font-size: 7vw;
+        margin-bottom: 2vw;
+    }
+
+    .texto-secao {
+        font-size: 4vw;
+        width: 85%;
+        margin-bottom: 4vw;
+    }
+
+    .servico {
+        height: auto;
+        padding: 8vw 0;
+        gap: 4vw;
+        margin-bottom: 6vw;
+    }
+
+    .servico h2 {
+        font-size: 7vw;
+    }
+
+    .servico p {
+        font-size: 4vw;
+        width: 85%;
+    }
+
+    .titulo-secao-membros {
+        font-size: 6vw;
+        margin-bottom: 4vw;
+    }
+
+    .membros {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6vw;
+        padding: 0 6vw;
+        font-size: 3.8vw;
+    }
+
+    .foto-membro {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    .nome-membro {
+        margin-top: 1.5vw;
+        font-size: 3.8vw;
+    }
+
+    footer {
+        height: 14vw;
+        font-size: 3.8vw;
+        gap: 0;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 6vw;
+    }
+}
