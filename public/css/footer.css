@@ -55,3 +55,40 @@ footer .terceiraColuna {
 footer .terceiraColuna img{
     width: 10vw;
 }
+
+@media screen and (max-width: 481px) {
+    footer {
+        height: 220px;
+        font-size: 3.8vw;
+        gap: 0;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        text-align: center;
+        margin-top: 6vw;
+    }
+
+    footer .coluna span {
+        font-style: italic;
+        font-size: 3.8vw;
+    }
+
+    footer .primeiraColuna ul li {
+        list-style: disc;
+        text-align: center;
+        list-style-position: inside;
+        font-size: 2.5vw;
+    }
+
+    footer .segundaColuna {
+        display: flex;
+        flex-direction: column;
+        gap: 1vw;
+        align-items: center;
+        font-size: 2.5vw;
+    }
+
+    footer .terceiraColuna img{
+        width: 20vw;
+    }
+}
