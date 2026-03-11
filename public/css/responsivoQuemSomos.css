@@ -71,6 +71,11 @@
         width: 20vw;
     }
 
+    .logoQuemSomos {
+        display: block;
+        width: 20%;
+    }
+
     .nome-membro {
         margin-top: 1.5vw;
         font-size: 3.8vw;

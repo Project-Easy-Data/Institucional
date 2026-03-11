@@ -11,13 +11,14 @@ let emailSalvo = sessionStorage.getItem("email");
 
 function validarEmail () {
     if (email.value == emailSalvo) {
-        alert('Email correto');
+        msgCorreto.textContent = "Email enviado com sucesso!";
 
         setInterval(() => {
             location.href = "login.html";
         }, 2500);
     } else {
-        alert("Email não encontrado");
+        msgCorreto.textContent = "Email não encontrado no nosso sistema";
+        msgCorreto.style.color = "#ff4444";
     }
 }
 

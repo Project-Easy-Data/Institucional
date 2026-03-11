@@ -72,7 +72,7 @@ main {
 .tituloCampo {
     color: white;
     font-size: 2vw;
-    font-weight: 800;
+    font-weight: 600;
     margin-bottom: 0.3vw;
 }
 
@@ -199,7 +199,7 @@ main {
     display: none;
 }
 
-.msgCorreto {
+#msgCorreto {
     font-size: 1vw;
     color: #90ee90;
 }
