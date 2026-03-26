@@ -50,15 +50,18 @@ header {
 
 .menu {
     display: flex;
+    justify-content: center;
+    align-items: center;
     gap: 5vw;
     font-size: 1.3vw;
 }
 
 .menu a {
+     margin-top: 0;
     color: #0D1B3E;
     text-decoration: none;
-    margin-top: 1.5vw;
-    font-size: 1.9vw;
+    font-size: 1.3vw;
+   
 }
 
 .menu a:hover {
@@ -82,22 +85,16 @@ nav a.ativo {
 }
 
 .loginCadastro a {
+    color: #0D1B3E;
     text-decoration: none;
-    background-color: #4CAF7D;
-    color: #ffffff;
-    padding: 8px 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    transition: 0.3s ease;
-    border-color: #ffffff;
+    font-size: 1.3vw;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .loginCadastro a:hover {
-    background-color: #4CAF7D;
-    color: #ffffff;
-    transition: 0.4s ease-in-out;
+    transform: translateY(-2px);
+    color: #4CAF7D;
 }
-
 
 
 main {
@@ -338,7 +335,7 @@ main {
 }
 
 .quem-somos-wrapper p {
-    font-size: 1.4rem;
+    font-size: 1.17vw;
 }
 
 .container2 {
