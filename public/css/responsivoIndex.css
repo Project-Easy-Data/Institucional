@@ -1,5 +1,9 @@
 @media screen and (max-width: 480px) {
 
+     .logo {
+        display: none;
+    }
+
     body {
         overflow-x: hidden;
         overflow-y: scroll;
@@ -7,6 +11,8 @@
 
 
     header {
+        display: flex;  
+    align-items: center;
         font-size: 5vw;
         width: 100%;
         background-color: #002645;
@@ -15,30 +21,16 @@
         height: 70px;
         min-height: 70px;
         max-height: 70px;
-        display: flex;
+        
     }
 
-    .imagem-logo {
-        display: none;
-    }
-
-    .logo img:not(.logo-mobile) {
-        display: none;
-    }
 
     .logo-mobile {
         display: block;
-        width: 100px;
-        height: 50px;
-        background-color: red;
         position: absolute;
-        right: 3vw;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 999;
+        left: 50%;
+        transform: translateX(-50%);
     }
-
-
 
     .menu {
         display: none;
@@ -178,6 +170,10 @@
         padding: 0 5vw;
     }
 
+     .quem-somos-wrapper p {
+        font-size: 3.5vw;
+    }
+
     .container2 {
         width: 85%;
         padding: 6vw;
@@ -238,10 +234,15 @@
         width: 100%;
     }
 
-    .servico-card svg {
-        width: 36px;
-        height: 36px;
-    }
+
+
+    .icone1 img,
+.icone2 img,
+.icone3 img {
+    width: 80px;
+    height: 170px;
+    object-fit: contain;
+}
 
     .titulo-secao-membros {
         font-size: 6vw;

@@ -23,7 +23,7 @@ body::-webkit-scrollbar {
 
 header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    height: 100px;
+    height: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -35,7 +35,8 @@ header {
 }
 
 .logo {
-    height: 80px;
+    height: 58px;
+      width: auto;
     display: flex;
     position: absolute;
     left: 1vw;
@@ -44,8 +45,11 @@ header {
 }
 
 .logo img {
-    height: 70px;
-    width: auto;
+    height: 40px;
+}
+
+.logo-mobile {
+    display: none;
 }
 
 .menu {
@@ -215,7 +219,7 @@ main {
 }
 
 .servico {
-    background-color: #0D1B3E;
+    background-color: #6dbe8c;
     height: 54vw;
     display: flex;
     flex-direction: column;
@@ -227,14 +231,14 @@ main {
 }
 
 .servico h2 {
-    color: #f1f1f1;
+    color: #20204a;
     font-size: 3vw;
 }
 
 .servico p {
     font-family: 'DM Sans', sans-serif;
-    color: aliceblue;
-    font-size: 26px;
+    color: rgb(5, 5, 5);
+    font-size: 2.7vh;
 }
 
 .titulo-secao-membros {
@@ -282,9 +286,6 @@ main {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-.menu-hamburguer {
-    display: none;
-}
 
 .menu-hamburguer {
     display: none;
@@ -331,15 +332,12 @@ main {
 .quem-somos-wrapper p {
     font-family: 'DM Sans', sans-serif;
     color: rgb(0, 0, 0);
-    font-size: 15px;
+    font-size: 1.5vw;
 }
 
-.quem-somos-wrapper p {
-    font-size: 1.17vw;
-}
 
 .container2 {
-    background-color: #c8efff;
+    background-color: #8ad5f2;
     border: 1px solid #68fab6;
     border-radius: 2vw;
     padding: 3vw 4vw;
@@ -367,7 +365,7 @@ main {
 }
 
 .servico-card {
-    background-color: #4CAF7D;
+    background-color: #90c5f0;
     border-radius: 1.5vw;
     padding: 2vw;
     flex: 1;
@@ -383,9 +381,9 @@ main {
 }
 
 .servico-card p {
-    font-size: 2vw;
+    font-size: 1.8vw;
     width: 100%;
-    color: #ffffff;
+    color: #000000;
 }
 
 .logo .logo-mobile {
@@ -395,7 +393,7 @@ main {
 .icone1 img,
 .icone2 img,
 .icone3 img {
-    width: 170px;
+    width: 100px;
     height: 170px;
     object-fit: contain;
 }
@@ -410,8 +408,3 @@ main {
     align-items: center;
 }
 
-.foto-membro img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
