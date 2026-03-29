@@ -264,4 +264,43 @@
     .coluna span {
         font-size: 3.5vw;
     }
+
+    #popupMembro {
+    width: 80vw;
+    padding: 5vw;
+    border-radius: 3vw;
+  }
+
+  #popupMembro button {
+    font-size: 4vw;
+    top: 2vw;
+    right: 2vw;
+  }
+
+  #popup-foto {
+    width: 20vw;
+    height: 20vw;
+    margin-bottom: 3vw;
+  }
+
+  #popupMembro h3 {
+    font-size: 4.5vw;
+    margin-bottom: 1vw;
+  }
+
+  #popupMembro p {
+    font-size: 3.5vw;
+    margin-bottom: 3vw;
+  }
+
+  .popup-links {
+    gap: 4vw;
+    margin-top: 3vw;
+  }
+
+  .icone-social {
+    width: 8vw;
+    height: 8vw;
+  }
+
 }
