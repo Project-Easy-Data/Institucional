@@ -88,16 +88,19 @@ nav a.ativo {
     align-items: center;
 }
 
-.loginCadastro a {
-    color: #0D1B3E;
-    text-decoration: none;
-    font-size: 1.3vw;
-    transition: color 0.3s ease, transform 0.3s ease;
+
+.btn-login {
+  background-color: #0D1B3E; 
+  color: white;
+  padding: 6px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
 }
 
-.loginCadastro a:hover {
-    transform: translateY(-2px);
-    color: #4CAF7D;
+.btn-login:hover {
+  background-color: #218838; 
 }
 
 
