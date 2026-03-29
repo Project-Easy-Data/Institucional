@@ -213,13 +213,13 @@ main {
 .texto-secao {
     width: 100%;
     margin: 0 auto 5vh auto;
-    color: #000000;
+    color: #ffffff;
     font-size: 4vw;
     line-height: 1.5;
 }
 
 .servico {
-    background-color: #6dbe8c;
+    background-color: #002645;
     height: 54vw;
     display: flex;
     flex-direction: column;
@@ -231,13 +231,13 @@ main {
 }
 
 .servico h2 {
-    color: #20204a;
+    color: #ffffff;
     font-size: 3vw;
 }
 
 .servico p {
     font-family: 'DM Sans', sans-serif;
-    color: rgb(5, 5, 5);
+    color: rgb(0, 0, 0);
     font-size: 2.7vh;
 }
 
@@ -338,7 +338,7 @@ main {
 
 .container2 {
     background-color: #8ad5f2;
-    border: 1px solid #68fab6;
+    border: 1px solid #002645;
     border-radius: 2vw;
     padding: 3vw 4vw;
     width: 55%;
@@ -398,13 +398,87 @@ main {
     object-fit: contain;
 }
 
-.foto-membro {
-    height: 13vh;
-    width: 13vh;
-    border-radius: 50%;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+#overlayMembro {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
 }
 
+#overlayMembro.ativo {
+  display: flex;
+}
+
+#overlayMembro {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+#overlayMembro.ativo {
+  display: flex;
+}
+
+#popupMembro {
+  background: #fff;
+  border-radius: 1vw;
+  padding: 3vw;
+  text-align: center;
+  width: 25vw;
+  position: relative;
+}
+
+#popupMembro button {
+  position: absolute;
+  top: 1vw;
+  right: 1vw;
+  background: none;
+  border: none;
+  font-size: 2vw;
+  cursor: pointer;
+  color: #555;
+}
+
+#popup-foto {
+  width: 10vw;
+  height: 10vw;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1vw;
+}
+
+#popupMembro h3 {
+  font-size: 2.2vw;
+  margin-bottom: 0.5vw;
+}
+
+#popupMembro p {
+  font-size: 1.8vw;
+  color: #888;
+  margin-bottom: 1vw;
+}
+
+.foto-membro img {
+  cursor: pointer;
+}
+
+.popup-links {
+  display: flex;
+  gap: 1.5vw;
+  justify-content: center;
+  margin-top: 1.5vw;
+}
+
+.icone-social {
+  width: 3vw;
+  height: 3vw;
+  border-radius: 0;
+  object-fit: contain;
+}
