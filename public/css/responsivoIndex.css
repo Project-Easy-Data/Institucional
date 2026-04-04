@@ -197,6 +197,44 @@
     .imagem-logo img {
         display: none;
     }
+.quem-somos-wrapper {
+        flex-direction: column;
+        gap: 6vw;
+        margin-top: 0;
+        padding: 5vw;
+    }
+
+    .quem-somos-wrapper p {
+        font-size: 4vw;
+        width: 100%;
+        text-align: center;
+    }
+
+    .quem-somos-cards {
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        gap: 5vw;
+    }
+
+    .quem-somos-card {
+        border-radius: 4vw;
+        padding: 5vw;
+    }
+
+    .quem-somos-card h3 {
+        font-size: 5.5vw;
+        margin-bottom: 3vw;
+    }
+
+    .quem-somos-card p {
+        font-size: 4.2vw;
+    }
+
+    .quem-somos-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
 
   
     .servico {
