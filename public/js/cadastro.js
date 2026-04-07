@@ -1,10 +1,17 @@
 const empresa = document.querySelector("#empresa");
-const senha = document.querySelector("#senha");
 const cnpj = document.querySelector("#cnpj");
 const email = document.querySelector("#email");
 
 const btnCadastro = document.querySelector(".botaoCadastro");
 
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * Gera uma senha aleatória com 30 caracteres (15 caracteres de cada parte separados por um hífen).
+ * Mostra a mensagem de "Senha gerada com sucesso!" por 2.5 segundos com cor #90EE90.
+ * Após 2.5 segundos, oculta a mensagem.
+ * Após 3 segundos, volta a mostrar a mensagem com a cor original.
+ * @returns {void}
+/*******  a654ef0c-b10d-4c92-8373-4abf3bf8a754  *******/
 function gerarSenha() {
     senha.value = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     msgCorretoSenha.textContent = "Senha gerada com sucesso!";
@@ -69,13 +76,13 @@ function validarCampos (input, msg, tamanho) {
             let tipoValido = false;
 
             for (let i = 0; i < dominios.length; i++) {
-                if (email.value.includes(dominios[i])) {
+                if (input.value.includes(dominios[i])) {
                     dominioValido = true;
                 }
             }
 
             for (let j = 0; j < tipoEmail.length; j++) {
-                if (email.value.includes(tipoEmail[j])) {
+                if (input.value.includes(tipoEmail[j])) {
                     tipoValido = true;
                 }
             }
@@ -106,17 +113,49 @@ function validarCampos (input, msg, tamanho) {
                 msg.textContent = "";
             }, 3000);
         }
-    })
+    });
 }
+
+btnCadastro.addEventListener("click", () => {
+
+    let cnpjLimpo = cnpj.value.replace(/\D/g, "");
+
+    if (
+        empresa.value.length >= 1 &&
+        email.value.length >= 7 &&
+        cnpjLimpo.length === 14
+    ) {
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                empresaServer: empresa.value,
+                emailServer: email.value,
+                cnpjServer: cnpjLimpo
+            })
+        })
+        .then(resposta => {
+            if (resposta.ok) {
+                alert("Cadastro realizado com sucesso!")
+                sessionStorage.setItem("email", email.value);
+            } else {
+                alert("Erro ao realizar o cadastro.");
+            }
+        })
+        .catch(erro => {
+            console.error("Erro:", erro);
+        });
+
+    } else {
+        alert("Preencha todos os campos corretamente!");
+    }
+});
+
+
 
 validarCampos(empresa, msgCorretoNome, 1);
 validarCampos(email, msgCorretoEmail, 7);
 validarCampos(cnpj, msgCorretoCnpj, 14);
-
-function cadastrar() {
-    sessionStorage.setItem("senha", senha.value);
-    sessionStorage.setItem("email", email.value);
-}
 
 
 
