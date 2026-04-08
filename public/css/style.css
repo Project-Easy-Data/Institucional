@@ -11,7 +11,7 @@ body {
 }
 
 body {
-    background: radial-gradient(#65b5fb 1%, #c9dff2 49%, #ffffff 96%);
+    background-color: #f1f1f1;
     flex-direction: column;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -35,8 +35,8 @@ header {
 }
 
 .logo {
-    height: 58px;
-      width: auto;
+    height: 70px;
+    width: 40px;
     display: flex;
     position: absolute;
     left: 1vw;
@@ -45,7 +45,7 @@ header {
 }
 
 .logo img {
-    height: 40px;
+    height: 55px;
 }
 
 .logo-mobile {
@@ -95,7 +95,7 @@ nav a.ativo {
   padding: 6px 22px;
   border-radius: 8px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 1.3vw;
   transition: 0.3s;
 }
 
@@ -122,9 +122,9 @@ main {
 
 .texto-principal {
     font-weight: 500;
-    font-size: 3vw;
+    font-size: 2.7vw;
     width: 60%;
-    margin-top: 5vw;
+    margin-top: 3vw;
     color: #111111;
 }
 
@@ -146,7 +146,7 @@ main {
     border-radius: 2vw;
     position: absolute;
     left: -25vw;
-    top: 7vw;
+    top: 2vw;
     width: 50vw;
     height: 28.64vw;
     border-radius: 2vw;
@@ -154,10 +154,10 @@ main {
 
 .container {
     width: 62.5vw;
-    height: 23.02vw;
+    height: 24.02vw;
     background-color: #0D1B3E;
     border-radius: 2vw;
-    margin-top: 15vw;
+    margin-top: 9vw;
 }
 
 .descricao {
@@ -199,14 +199,14 @@ main {
 }
 
 .titulo-secao {
-    font-size: 3vw;
+    font-size: 2.7vw;
     font-weight: bold;
     color: #0D1B3E;
     margin-bottom: 2vh;
 }
 
 .sobre {
-    gap: 2vw;
+
     display: flex;
     flex-direction: column;
     min-height: 20vw;
@@ -223,19 +223,20 @@ main {
 
 .servico {
     background-color: #002645;
-    height: 54vw;
+    height: 44vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 2vw;
     margin-bottom: 5vh;
-    margin-top: 5vw;
+    margin-top: 4vw;
 }
 
 .servico h2 {
     color: #ffffff;
-    font-size: 3vw;
+    font-size: 2.7vw;
+    top: 0.5vw;
 }
 
 .servico p {
@@ -245,10 +246,10 @@ main {
 }
 
 .titulo-secao-membros {
-    font-size: 2vw;
+    font-size: 2.7vw;
     font-weight: bold;
     color: #007e3f;
-    margin-bottom: 4vh;
+    margin-bottom: 10vh;
 }
 
 .membros {
@@ -356,7 +357,7 @@ main {
 }
 
 .quem-somos-card {
-    background-color: #6ecaf5;
+    background-color: #a7d9f0;
     border-radius: 1.5vw;
     padding: 2vw;
     flex: 1;
@@ -387,7 +388,7 @@ main {
     gap: 2vw;
     justify-content: center;
     width: 90%;
-    height: 63%;
+    height: 66%;
 }
 
 .servico-card:hover {
@@ -486,12 +487,12 @@ main {
 }
 
 #popupMembro h3 {
-  font-size: 2.2vw;
+  font-size: 1.7vw;
   margin-bottom: 0.5vw;
 }
 
 #popupMembro p {
-  font-size: 1.8vw;
+  font-size: 1.4vw;
   color: #888;
   margin-bottom: 1vw;
 }
