@@ -50,8 +50,30 @@ senha.addEventListener("input", () => {
             msgCorretoSenha.style.opacity = "1";
             msgCorretoSenha.textContent = "";
         }, 3000);
-    } else {
-        msgCorretoSenha.textContent = "O campo deve ser preenchido corretamente!";
-        msgCorretoSenha.style.color = "#ff4444";
     }
 });
+
+function entrar() {
+    fetch("/usuarios/autenticar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            emailServer: email.value,
+            senhaServer: senha.value
+        })
+    })
+    .then(resposta => {
+        if (!resposta.ok) {
+            console.log("Erro no login! Status: " + resposta.status);
+            return;
+        }
+        return resposta.json();
+    })
+    .then(resultado => {
+        console.log("Resultado: ", resultado);
+        alert("Login realizado com sucesso!");
+    })
+    .catch(erro => {
+        console.error("ERRO NO LOGIN:", erro);
+    });
+}

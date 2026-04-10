@@ -4,14 +4,6 @@ const email = document.querySelector("#email");
 
 const btnCadastro = document.querySelector(".botaoCadastro");
 
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * Gera uma senha aleatória com 30 caracteres (15 caracteres de cada parte separados por um hífen).
- * Mostra a mensagem de "Senha gerada com sucesso!" por 2.5 segundos com cor #90EE90.
- * Após 2.5 segundos, oculta a mensagem.
- * Após 3 segundos, volta a mostrar a mensagem com a cor original.
- * @returns {void}
-/*******  a654ef0c-b10d-4c92-8373-4abf3bf8a754  *******/
 function gerarSenha() {
     senha.value = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
     msgCorretoSenha.textContent = "Senha gerada com sucesso!";
