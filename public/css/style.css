@@ -23,7 +23,7 @@ body::-webkit-scrollbar {
 
 header {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    height: 75px;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,8 +122,8 @@ main {
 
 .texto-principal {
     font-weight: 500;
-    font-size: 2.7vw;
-    width: 60%;
+    font-size: 2vw;
+    width: 50%;
     margin-top: 3vw;
     color: #111111;
 }
@@ -145,15 +145,15 @@ main {
 .imagem-predios img {
     border-radius: 2vw;
     position: absolute;
-    left: -25vw;
+    left: -23.5vw;
     top: 2vw;
-    width: 50vw;
-    height: 28.64vw;
+    width: 47vw;
+    height: 28.6vw;
     border-radius: 2vw;
 }
 
 .container {
-    width: 62.5vw;
+    width: 55vw;
     height: 24.02vw;
     background-color: #0D1B3E;
     border-radius: 2vw;
@@ -161,16 +161,16 @@ main {
 }
 
 .descricao {
-    font-size: 2.1vw;
+    font-size: 1.4vw;
     color: #000000;
-    width: 55%;
+    width: 50%;
     margin: 3vw auto;
     margin-bottom: 3vw;
 }
 
 .btn-saibamais {
-    height: 5vw;
-    width: 13vw;
+    height: 3.5vw;
+    width: 12.5vw;
     background: #4CAF7D;
     color: #f1f1f1;
     border: none;
@@ -199,7 +199,7 @@ main {
 }
 
 .titulo-secao {
-    font-size: 2.7vw;
+    font-size: 2.0vw;
     font-weight: bold;
     color: #0D1B3E;
     margin-bottom: 2vh;
@@ -223,7 +223,7 @@ main {
 
 .servico {
     background-color: #002645;
-    height: 44vw;
+    height: 37vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -235,7 +235,7 @@ main {
 
 .servico h2 {
     color: #ffffff;
-    font-size: 2.7vw;
+    font-size: 2.0vw;
     top: 0.5vw;
 }
 
@@ -246,7 +246,7 @@ main {
 }
 
 .titulo-secao-membros {
-    font-size: 2.7vw;
+    font-size: 2.0vw;
     font-weight: bold;
     color: #007e3f;
     margin-bottom: 10vh;
@@ -336,7 +336,7 @@ main {
 .quem-somos-wrapper p {
     font-family: 'DM Sans', sans-serif;
     color: rgb(0, 0, 0);
-    font-size: 1.5vw;
+    font-size: 1.2vw;
         width: 60%;
 }
 
@@ -347,8 +347,9 @@ main {
     justify-content: center;
     width: 90%;
     height: 63%;
-    margin-top: 2vw;
+    margin-top: 3vw;
     margin: 0 auto; 
+     margin-bottom: 5vw;
 }
 
 .quem-somos-card:hover {
@@ -365,14 +366,15 @@ main {
 }
 
 .quem-somos-card h3 {
-    font-size: 2.1vw;
+    font-size: 1.4vw;
     font-weight: 700;
     margin-bottom: 1vw;
 }
 
 .quem-somos-card p {
-    font-size: 1.8vw;
-    width: 100%;
+    text-align: center;
+    font-size: 1.2vw;
+    width:100%;
     color: #000000;
 
 
@@ -406,14 +408,16 @@ main {
 }
 
 .servico-card h3 {
-    font-size: 2.1vw;
+    text-align: center;
+    font-size: 1.5vw;
     font-weight: 700;
-    margin-bottom: 1vw;
+    margin-bottom: 1.5vw;
 
 }
 
 .servico-card p {
-    font-size: 1.8vw;
+    text-align: center;
+    font-size: 1.2vw;
     width: 100%;
     color: #000000;
 }
@@ -425,9 +429,11 @@ main {
 .icone1 img,
 .icone2 img,
 .icone3 img {
-    width: 100px;
+ width: 100px;
     height: 170px;
     object-fit: contain;
+    display: block;
+    margin: 0 auto;
 }
 
 #overlayMembro {
