@@ -55,11 +55,11 @@
 
       <div class="nomeCargo">
         <div class="perfil">
-          <img src="https://placehold.co/50x50" alt="" srcset="" />
+          <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
         </div>
         <div class="username">
-          <p class="nome">Nome</p>
-          <p class="cargo">Cargo</p>
+          <p class="nome">Bobby</p>
+          <p class="cargo">Gerente</p>
         </div>
       </div>
 
@@ -112,7 +112,26 @@
 
           <div class="notaCidade">
             <div class="notaGrafico">
-              <p id="circulo">8.5</p>
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle
+                  cx="40" cy="40" r="30"
+                  fill="none"
+                  stroke="#e0e0e0"
+                  stroke-width="6"
+                />
+                <circle
+                  cx="40" cy="40" r="30"
+                  fill="none"
+                  stroke="#002645"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="188.5"
+                  stroke-dashoffset="26.4"
+                  transform="rotate(-90 40 40)"
+                />
+                <text x="40" y="45" text-anchor="middle" font-size="18" fill="#002645" font-weight="600">8.5</text>
+              </svg>
+              <p>8.5/10</p>
             </div>
             <div class="notaBarra">
               <div class="notaInfra">
@@ -212,6 +231,7 @@
               </div>
 
             <div class="grafico">
+              <p id="evolucao">Evolução - Distribuição de Água potável</p>
               <div>
                 <canvas id="myChart" style="max-width: 100%; max-height: 100%;"></canvas>
               </div>
@@ -233,7 +253,7 @@
         labels: ["2018", "2019", "2020", "2021", "2024"],
         datasets: [
           {
-            label: "Distribuição de Água Potável",
+            label: "Evolução - Distribuição de Água Potável",
             data: [50, 60, 70, 80],
             borderWidth: 1,
           },
@@ -248,6 +268,11 @@
             max: 90
           },
         },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
       },
     });
   </script>

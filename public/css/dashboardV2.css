@@ -167,6 +167,17 @@ main #infosCidades .scoreCidade .tituloScore h2 {
     font-size: 1.2vw;
 }
 
+main #infosCidades .scoreCidade .notaCidade .notaGrafico {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+
+main #infosCidades .scoreCidade .notaCidade .notaGrafico p {
+    font-size: 1vw;
+}
+
 main #infosCidades .scoreCidade .notaCidade .notaGrafico #circulo {
     width: 50%;
     display: flex;
@@ -417,6 +428,13 @@ main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual .percentual p {
     font-weight: 600;
 }
 
+main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual .percentual .aumento {
+    background-color: #002645;
+    color: #f1f1f1;
+    padding: 0.4vw;
+    border-radius: 0.7vw;
+}
+
 .risco {
     display: flex;
     gap: 1vw;
@@ -437,4 +455,11 @@ main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual .percentual p {
     flex-direction: column;
     align-items: center;
     gap: 1vw;
+}
+
+#evolucao {
+    text-align: center;
+    font-size: 1.4vw;
+    color: #002645;
+    font-weight: 600;
 }
