@@ -85,7 +85,126 @@
                 </div>
             </div>
         </section>
+
+        <section id="infosCidades">
+            <div class="scoreCidade">
+                <div class="tituloScore">
+                    <h2>Score da Cidade</h2>
+                </div>
+
+                <div class="notaCidade">
+                    <div class="notaGrafico">
+                        <p id="circulo">8.5</p>
+                    </div>
+                    <div class="notaBarra">
+                        <p>8.5</p>
+                        <p>Nota <br> 8.5/10</p>
+                    </div>
+
+                <div class="potencialCidade">
+                    <div class="potencial">
+                        <p>Alto Potencial</p>
+                    </div>
+                    <div class="areasPotenciais">
+                        <ul>
+                            <li>Saneamento</li>
+                            <li>Água Potável</li>
+                            <li>Esgoto</li>
+                        </ul>
+                    </div>
+                </div>
+                </div>
+            </div>
+
+            <div class="regiaoAtual">
+                <div class="regiaoTitulo">
+                    <p>Região Atual</p>
+                </div>
+                <div class="cidadeRegiao">
+                    <p>Curitiba (PR)</p>
+                </div>
+                <div class="qtdHabitantes">
+                    <p>2.4 milhões de habitantes</p>
+                </div>
+            </div>
+
+            <div class="evolucaoAnual">
+                <div class="evolucaoTitulo">
+                    <p>Evolução Anual</p>
+                </div>
+                <div class="percentualEvolucao">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="aumento">
+                        <p>+9.5%</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="infoSaneamentoGeral">
+            <div class="containerAgua">
+                <div class="header">
+                    <div class="aguaPotavel">
+                        <p><i class="fa-solid fa-earth-americas"></i> Água Potável</p>
+                    </div>
+                    <div class="esgoto">
+                        <p><i class="fa-solid fa-toilet"></i> Esgoto</p>
+                    </div>
+                    <div class="residuos">
+                        <p><i class="fa-solid fa-trash"></i> Residuos</p>
+                    </div>
+                    <div class="drenagem">
+                        <p><i class="fa-solid fa-droplet"></i> Drenagem</p>
+                    </div>
+                </div>
+                
+                <div class="main">
+                    <div class="percentualAcessoAgua">
+                        <div>
+                            <p><span>2%</span></p>
+                        </div>
+                        <div class="totalHabitantes">
+                            <p><span>44.876</span> habitantes</p>
+                        </div>
+                        <div class="semAcesso">
+                            <p>Sem acesso à água potável</p>
+                        </div>
+                    </div>
+
+                    <div class="grafico">
+                        <div>
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2018', '2019', '2020', '2021', '2024'],
+      datasets: [{
+        label: '# of Votes',
+        data: [50, 60, 70, 80],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
 
 </html>
