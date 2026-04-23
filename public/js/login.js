@@ -72,6 +72,7 @@ function entrar() {
     .then(resultado => {
         console.log("Resultado: ", resultado);
         alert("Login realizado com sucesso!");
+        window.location.href = "dashboardV2.html"
     })
     .catch(erro => {
         console.error("ERRO NO LOGIN:", erro);
