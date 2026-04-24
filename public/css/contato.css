@@ -1,11 +1,12 @@
+@import url("https://fonts.googleapis.com/css");
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     height: 100%;
 }
 
@@ -15,12 +16,12 @@ body {
     color: #111;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
-    background: radial-gradient(#65b5fb 1%, #c9dff2 49%, #ffffff 96%);
+        
 }
 
+
 header {
-    height: 4vw;
+    height: 77px;
     display: flex;
     align-items: center;
     padding: 0 2vw;
@@ -41,7 +42,7 @@ header {
 }
 
 .menu a {
-    color: #f1f1f1;
+    color: white;
     text-decoration: none;
 }
 
@@ -51,84 +52,58 @@ header {
     color: #768859;
 }
 
-nav a.ativo {
-    border-bottom: 2px solid #f1f1f1;
-    padding-bottom: 5px;
-}
 
 main {
     display: flex;
     flex: 1;
-}
-
-container1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 80px;
-}
-
-.form-contato {
-    background: #002645;
-    width: 420px;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    width: 36vw;
-    gap: 2vw;
+      min-height: 0;
+        height: calc(100vh - 77px);
 }
 
 .section-contato {
-    background: radial-gradient(#65b5fb 1%, #c9dff2 49%, #ffffff 96%);
     display: flex;
-    width: 100%;
+    width: 50%;
+    background-color: #023966;
     justify-content: center;
     align-items: center;
 }
 
-.tituloContato {
-    color: white;
-    font-size: 1.8vw;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 0.5vw;
-}
 
 .subtituloContato {
-    color: #f1f1f1;
-    font-size: 1.4vw;
-    text-align: center;
-    font-size: 2.1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 56px;
+    color: #ffffff;
+    font-size: 2vw;
+}
+.section-contato,
+.bannerLogo {
+    flex:1;
+}
+.form-contato {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
 }
 
 .tituloCampo {
     color: white;
     font-size: 1.4vw;
     font-weight: 600;
-    margin-bottom: 0.4vw;
+    margin-bottom: 0.3vw;
 }
+
 
 .campoInput {
-    width: 100%;
-    height: 2.8vw;
-    background-color: white;
-    border-radius: 0.6vw;
-    border: 0.1vw solid #d9d9d9;
+    width: 30vw;
+    height: 3vw;
+    background-color: #d9d9d9;
+    border-radius: 0.7vw;
     display: flex;
     align-items: center;
-    padding: 0 1vw;
-    transition: 0.3s;
-}
-
-.campoInput:hover {
-    border-color: #768859;
-}
-
-.campoInput:focus-within {
-    border-color: #002b57;
-    box-shadow: 0 0 0.3vw rgba(0, 0, 0, 0.2);
+    padding: 0 0.6vw;
+    box-shadow: 1px 1px 10px #494848;
 }
 
 .campoInput input {
@@ -137,31 +112,19 @@ container1 {
     outline: none;
     background: transparent;
     font-family: "Poppins", sans-serif;
-    font-size: 1.1vw;
-    color: #333;
+    font-size: 1vw;
+    color: #000000;
+    margin-left: 1vw;
 }
 
-.campoInput input::placeholder {
-    color: #999;
-}
 
 .campoMensagem {
-    width: 100%;
-    height: 10vw;
-    background-color: white;
-    border-radius: 0.6vw;
-    border: 0.1vw solid #d9d9d9;
-    padding: 1vw;
-    transition: 0.3s;
-}
-
-.campoMensagem:hover {
-    border-color: #768859;
-}
-
-.campoMensagem:focus-within {
-    border-color: #002b57;
-    box-shadow: 0 0 0.3vw rgba(0, 0, 0, 0.2);
+    width: 30vw;
+    height: 8vw;
+    background-color: #d9d9d9;
+    border-radius: 0.7vw;
+    padding: 0.6vw;
+    box-shadow: 1px 1px 10px #494848;
 }
 
 .campoMensagem textarea {
@@ -172,28 +135,27 @@ container1 {
     resize: none;
     background: transparent;
     font-family: "Poppins", sans-serif;
-    font-size: 1.1vw;
+    font-size: 1vw;
+    color: #000000;
 }
 
-.campoMensagem textarea::placeholder {
-    color: #999;
-}
 
 .botaoContato {
-    display: flex;
-    height: 3vw;
-    width: 10vw;
+    width: 50%;
+    height: 2.8vw;
     border: none;
-    border-radius: 0.6vw;
+    border-radius: 1vw;
     background-color: #f1f1f1;
     color: black;
     font-family: "Poppins", sans-serif;
-    font-size: 1.2vw;
+    font-size: 1vw;
     font-weight: 700;
     cursor: pointer;
-    transition: 0.3s;
-    align-items: center;
+    margin-top: 2vw;
+    margin-bottom: 0.4vw;
+    display: flex;
     align-self: center;
+    align-items: center;
     justify-content: center;
 }
 
@@ -202,43 +164,143 @@ container1 {
     transition: 0.4s ease-in-out;
 }
 
+
 #msgCorretoNome,
 #msgCorretoEmail,
 #msgCorretoMensagem {
+    color: #90EE90;
     font-size: 1vw;
-    outline: none;
-    font-weight: 200;
-    box-shadow: none;
-    text-shadow: none;
+    margin-top: 0.3vw;
 }
 
-#enviadoSucesso {
-    font-size: 0.9vw;
-    font-weight: 700;
-    text-align: center;
+
+.bannerLogo {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.popup {
-    display: none;
-    position: fixed;
-    top: 5.5vw;
-    right: 1vw;
-    background-color: #ff4444;
-    color: #f1f1f1;
-    padding: 1vw 1.5vw;
-    border-radius: 0.6vw;
-    font-size: 1vw;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.bannerLogo img {
+    width: 35vw;
 }
 
-.popup.visivel {
-    display: block;
-}
+
 .menu-hamburguer {
     display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-hamburguer span {
+    width: 100%;
+    height: 3px;
+    background: #f1f1f1;
+    border-radius: 3px;
 }
 
 #fecharMenu {
     display: none;
+}
+
+
+@media screen and (max-width: 480px) {
+
+    header {
+        height: 80px;
+        position: relative;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .menu-hamburguer {
+        display: flex;
+        position: absolute;
+        right: 4vw;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    .menu.aberto {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 8vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #002645;
+    }
+    .menu a {
+    font-size: 22px;
+}
+
+    #fecharMenu {
+        display: block;
+        position: absolute;
+        top: 4vw;
+        right: 5vw;
+        font-size: 7vw;
+        background: none;
+        border: none;
+        color: #fff;
+    }
+
+
+    .bannerLogo {
+        display: none;
+    }
+
+        .logoLogin img {
+        display: block;
+        width: 30%;
+        margin-left: 4vw;}
+
+    .section-contato {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .subtituloContato {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .tituloCampo {
+        font-size: 16px;
+    }
+
+    .campoInput {
+    
+        width: 80vw;
+        height: 8vw;
+        border-radius: 2vw;
+    }
+    
+
+    .campoMensagem {
+        width: 100%;
+        height: 120px;
+    }
+
+    .campoInput input,
+    .campoMensagem textarea {
+        font-size: 16px;
+    }
+
+    .botaoContato {
+        width: 100%;
+        height: 45px;
+        font-size: 16px;
+    }
 }

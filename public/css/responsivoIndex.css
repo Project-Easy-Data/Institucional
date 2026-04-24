@@ -101,6 +101,13 @@
         justify-content: center;
         align-items: center;
     }
+    a .btn-saibamais {
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+}
 
     nav a.ativo {
         border-bottom: 1px solid #f1f1f1;
@@ -272,7 +279,8 @@
         width: 100%;
     }
 
-
+.btn-saibamais {
+    text-decoration: none; }
 
     .icone1 img,
 .icone2 img,
