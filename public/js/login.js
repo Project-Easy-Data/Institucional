@@ -18,6 +18,9 @@ olhoFechado.addEventListener("click", () => {
     olhoAberto.style.display = "inline";
 });
 
+
+function entrar() {
+
 email.addEventListener("input", () => {
     if (email.value.length >= 10 && email.value.includes("@") && (email.value.includes(".com") || email.value.includes(".br") || email.value.includes(".net") || email.value.includes(".org")) ) {
         msgCorretoEmail.textContent = "Campo preenchido com sucesso!";
@@ -34,6 +37,7 @@ email.addEventListener("input", () => {
     } else {
         msgCorretoEmail.textContent = "O campo deve ser preenchido corretamente!";
         msgCorretoEmail.style.color = "#ff4444";
+        return;
     }
 });
 
@@ -52,8 +56,6 @@ senha.addEventListener("input", () => {
         }, 3000);
     }
 });
-
-function entrar() {
     fetch("/usuarios/autenticar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -72,7 +74,9 @@ function entrar() {
     .then(resultado => {
         console.log("Resultado: ", resultado);
         alert("Login realizado com sucesso!");
-        window.location.href = "dashboardV2.html"
+         setTimeout(function () {
+                        window.location = "../dashboardV2.html";
+                    }, 1000); 
     })
     .catch(erro => {
         console.error("ERRO NO LOGIN:", erro);
