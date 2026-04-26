@@ -315,14 +315,6 @@ main #infoSaneamentoGeral .containerAgua .header .drenagem {
     cursor: pointer;
 }
 
-main #infoSaneamentoGeral .containerAgua .header .aguaPotavel:hover,
-main #infoSaneamentoGeral .containerAgua .header .esgoto:hover,
-main #infoSaneamentoGeral .containerAgua .header .residuos:hover,
-main #infoSaneamentoGeral .containerAgua .header .drenagem:hover {
-    cursor: pointer;
-    background-color: #0375d393;
-}
-
 main #infoSaneamentoGeral .containerAgua .header .aguaPotavel {
     background-color: #00466E;
     border-radius: 1vw 0 0 0;
@@ -335,6 +327,11 @@ main #infoSaneamentoGeral .containerAgua .header .aguaPotavel p {
 
 main #infoSaneamentoGeral .containerAgua .header .esgoto {
     background-color: #EBF1FB;;
+}
+
+main #infoSaneamentoGeral .containerAgua .header .esgoto:hover {
+    background-color: #ebf1fb62;
+    cursor: pointer;
 }
 
 main #infoSaneamentoGeral .containerAgua .header .residuos {

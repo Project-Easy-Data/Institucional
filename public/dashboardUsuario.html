@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/dashboardV2.css" />
+    <link rel="stylesheet" href="css/dashboardGerente.css" />
     <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/barraLateral.css">
     <title>Dashboard</title>
     <link rel="icon" href="logos/favicon_easydata.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,6 +29,16 @@
         <img src="img/logodata.png" alt="Logo da EasyData" />
       </div>
 
+      <div class="nomeCargo">
+        <div class="perfil">
+          <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
+        </div>
+        <div class="username">
+          <p class="nome">Bob</p>
+          <p class="cargo">Funcionário</p>
+        </div>
+      </div>
+
       <div class="btns">
         <ul>
           <li>
@@ -37,30 +48,10 @@
           </li>
           <li>
             <p>
-              <a href=""><i class="fa-solid fa-chart-line"></i> Gráfico</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href=""><i class="fa-solid fa-user-group"></i> Perfil</a>
-            </p>
-          </li>
-          <li>
-            <p>
-              <a href=""><i class="fa-solid fa-gear"></i> Configuração</a>
+              <a href="configuracao.html"><i class="fa-solid fa-gear"></i> Configuração</a>
             </p>
           </li>
         </ul>
-      </div>
-
-      <div class="nomeCargo">
-        <div class="perfil">
-          <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
-        </div>
-        <div class="username">
-          <p class="nome">Bobby</p>
-          <p class="cargo">Gerente</p>
-        </div>
       </div>
 
       <div class="sair">
@@ -195,7 +186,7 @@
               <p><i class="fa-solid fa-toilet"></i> Esgoto</p>
             </div>
             <div class="residuos">
-              <p><i class="fa-solid fa-trash"></i> Residuos</p>
+              <p><i class="fa-solid fa-trash"></i> Resíduos</p>
             </div>
             <div class="drenagem">
               <p><i class="fa-solid fa-droplet"></i> Drenagem</p>
@@ -231,7 +222,7 @@
               </div>
 
             <div class="grafico">
-              <p id="evolucao">Evolução - Distribuição de Água potável</p>
+              <p id="evolucao">Evolução - Distribuição de Água Potável</p>
               <div>
                 <canvas id="myChart" style="max-width: 100%; max-height: 100%;"></canvas>
               </div>

@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/dashboardGerente.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/barraLateral.css">
+    <title>Dashboard</title>
+    <link rel="icon" href="logos/favicon_easydata.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+
+  <body>
+    <aside>
+      <div class="logo">
+        <img src="img/logodata.png" alt="Logo da EasyData" />
+      </div>
+
+      <div class="nomeCargo">
+        <div class="perfil">
+          <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
+        </div>
+        <div class="username">
+          <p class="nome">Bobby</p>
+          <p class="cargo">Gerente</p>
+        </div>
+      </div>
+
+      <div class="btns">
+        <ul>
+          <li>
+            <p>
+              <a href=""><i class="fa-solid fa-house"></i> Inicio</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="usuarios.html"><i class="fa-solid fa-user-group"></i> Usuários</a>
+            </p>
+          </li>
+          <li>
+            <p>
+              <a href="configuracao.html"><i class="fa-solid fa-gear"></i> Configuração</a>
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sair">
+        <button class="btnSair">Sair</button>
+      </div>
+    </aside>
+
+    <main>
+      <section id="tituloFiltros">
+        <div class="titulo">
+          <h2>Indicadores de Saneamento</h2>
+        </div>
+
+        <div class="filtros">
+          <div class="filtro ano">
+            <p>Ano</p>
+            <select name="2024" id="">
+              <option value="2024">2024</option>
+              <option value="2020">2020</option>
+              <option value="2018">2018</option>
+            </select>
+          </div>
+
+          <div class="filtro estado">
+            <p>Estado</p>
+            <select value="Paraná" name="Paraná" id="">
+              <option value="parana">Paraná</option>
+              <option value="saoPaulo">São Paulo</option>
+              <option value="rioDeJaneiro">Rio de Janeiro</option>
+            </select>
+          </div>
+
+          <div class="filtro cidade">
+            <p>Cidade</p>
+            <select value="Curitiba" name="Curitiba" id="">
+              <option value="guarulhos">Guarulhos</option>
+              <option value="macae">Macaé</option>
+              <option value="ouroPreto">Ouro Preto</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <section id="infosCidades">
+        <div class="scoreCidade">
+          <div class="tituloScore">
+            <h2>Score da Cidade</h2>
+          </div>
+
+          <div class="notaCidade">
+            <div class="notaGrafico">
+              <svg width="80" height="80" viewBox="0 0 80 80">
+                <circle
+                  cx="40" cy="40" r="30"
+                  fill="none"
+                  stroke="#e0e0e0"
+                  stroke-width="6"
+                />
+                <circle
+                  cx="40" cy="40" r="30"
+                  fill="none"
+                  stroke="#002645"
+                  stroke-width="6"
+                  stroke-linecap="round"
+                  stroke-dasharray="188.5"
+                  stroke-dashoffset="26.4"
+                  transform="rotate(-90 40 40)"
+                />
+                <text x="40" y="45" text-anchor="middle" font-size="18" fill="#002645" font-weight="600">8.5</text>
+              </svg>
+              <p>8.5/10</p>
+            </div>
+            <div class="notaBarra">
+              <div class="notaInfra">
+                <p>Infraestrutura: 8/10</p>
+                <p>Risco: 4/10</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="fatoresCriticos">
+          <div class="tituloFatores">
+            <p>Fatores Críticos</p>
+          </div>
+          <div class="listaFatores">
+            <div class="risco deficitSaneamento">
+              <div class="icone">
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </div>
+              <div class="tituloDeficit">
+                <p>Déficit de Saneamento</p>
+              </div>
+              <div class="porcentagem">
+                <p>37%</p>
+              </div>
+            </div>
+            <div class="risco riscoInundacao">
+              <div class="icone">
+                <i class="fa-solid fa-circle-exclamation"></i>
+              </div>
+              <div class="tituloRisco">
+                <p>Risco de Inundação (Domicílios)</p>
+              </div>
+              <div class="porcentagem">
+                <p>12%</p>
+              </div>
+            </div>
+            <div class="risco crescimentoPopulacional">
+              <div class="icone">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
+              <div class="tituloCrescimento">
+                <p>Crescimento Populacional</p>
+              </div>
+              <div class="porcentagem">
+                <p>+7%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <h2 id="titulo">Análise por Categoria</h2>
+      <section id="infoSaneamentoGeral">
+        <div class="containerAgua">
+          <div class="header">
+            <div class="aguaPotavel">
+              <p><i class="fa-solid fa-earth-americas"></i> Água Potável</p>
+            </div>
+            <div class="esgoto">
+              <p><i class="fa-solid fa-toilet"></i> Esgoto</p>
+            </div>
+            <div class="residuos">
+              <p><i class="fa-solid fa-trash"></i> Resíduos</p>
+            </div>
+            <div class="drenagem">
+              <p><i class="fa-solid fa-droplet"></i> Drenagem</p>
+            </div>
+          </div>
+
+          <div class="main">
+            <div class="container">
+            <div class="percentualAcessoAgua">
+                <div class="infosJuntas">
+                    <div>
+                        <p><span>23%</span></p>
+                    </div>
+                    <div class="totalHabitantes">
+                        <p><span>44.876</span> habitantes</p>
+                    </div>
+                </div>
+              <div class="semAcesso">
+                <p>Sem acesso à água potável</p>
+              </div>
+            </div>
+            <div class="evolucaoAnual">
+                <div class="tituloEvolucao">
+                    <p>Evolução Anual</p>
+                </div>
+                <div class="percentual">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="aumento">
+                        <p>+9.5%</p>
+                    </div>
+                </div>
+              </div>
+              </div>
+
+            <div class="grafico">
+              <p id="evolucao">Evolução - Distribuição de Água Potável</p>
+              <div>
+                <canvas id="myChart" style="max-width: 100%; max-height: 100%;"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </body>
+
+  <script>
+    const ctx = document.getElementById("myChart");
+
+    new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["2018", "2019", "2020", "2021", "2024"],
+        datasets: [
+          {
+            label: "Evolução - Distribuição de Água Potável",
+            data: [50, 60, 70, 80],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            min: 50,
+            max: 90
+          },
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      },
+    });
+  </script>
+</html>

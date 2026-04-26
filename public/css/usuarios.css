@@ -1,0 +1,108 @@
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.container h2 {
+    text-align: center;
+    color: #002645;
+    font-size: 2vw;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 15%;
+    padding: 20px;
+    flex: 1;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.card {
+    max-height: 35vw;
+    width: 70%;
+    border-radius: 1vw;
+    background-color: #ffffff;;
+    margin-top: 5vw;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card .addUsuario {
+    margin-left: 1vw;
+    margin-top: 1vw;
+}
+
+.card .addUsuario button {
+    padding: 0.3vw;
+    height: 2.3vw;
+    width: 9vw;
+    background-color: #002645;
+    color: #f1f1f1;
+    border-radius: 0.4vw;
+    border: none;
+    font-size: 0.8vw;
+    font-weight: 600;
+}
+
+.card .container2 {
+    margin-left: 2vw;
+    margin-top: 0.5vw;
+    margin-right: 2vw;
+}
+
+.card .container2 .listaUsuarios .cabecalho {
+    display: flex;
+    background-color: #f1f1f1;
+    justify-content: space-between;
+    padding: 1vw;
+    border-radius: 1vw 1vw 0 0;
+    width: 98%;
+    border: 1px solid #00264554;
+    font-weight: 600;
+    font-size: 1.1vw;
+    box-sizing: border-box;
+}
+
+.card .container2 .listaUsuarios {
+    border-radius: 1vw;
+    overflow-y: auto;
+    max-height: 28vw;
+    margin-left: 1vw;
+    margin-bottom: 1vw;
+    margin-top: 0.8vw;
+}
+
+.card .container2 .listaUsuarios .linha {
+    display: flex;
+    justify-content: space-between;
+    padding: 1vw;
+    width: 98%;
+    border: 1px solid #00264554;
+    font-size: 0.9vw;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.card .container2 .listaUsuarios .linha:last-child {
+    border-radius: 0 0 1vw 1vw;
+}
+
+.card .container2 .listaUsuarios .linha #excluir {
+    background: none;
+    color: #b70a0a;
+    border-radius: 0.5vw;
+    font-size: 0.8vw;
+    border: 1px solid #b70a0a;
+    padding: 0.5vw;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.card .container2 .listaUsuarios .linha #excluir:hover {
+    cursor: pointer;
+    background: #b70a0a1e;;
+    transition: 0.3s ease-in-out;
+}
