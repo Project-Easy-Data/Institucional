@@ -45,6 +45,7 @@ body {
     border: none;
     font-size: 0.8vw;
     font-weight: 600;
+    cursor: pointer;
 }
 
 .card .container2 {
@@ -90,6 +91,17 @@ body {
     border-radius: 0 0 1vw 1vw;
 }
 
+.card .container2 .listaUsuarios .linha .excluir {
+    background: none;
+    color: #b70a0a;
+    border-radius: 0.5vw;
+    font-size: 0.8vw;
+    border: 1px solid #b70a0a;
+    padding: 0.5vw;
+    cursor: pointer;
+    font-weight: 600;
+}
+
 .card .container2 .listaUsuarios .linha #excluir {
     background: none;
     color: #b70a0a;
@@ -106,3 +118,113 @@ body {
     background: #b70a0a1e;;
     transition: 0.3s ease-in-out;
 }
+
+.card .container2 .listaUsuarios .linha .excluir:hover {
+    cursor: pointer;
+    background: #b70a0a1e;;
+    transition: 0.3s ease-in-out;
+}
+
+.cardCadastro {
+    background: #fff;
+    border-radius: 14px;
+    padding: 1.5rem 1.8rem;
+    width: 340px;
+    max-width: 95vw;
+    box-shadow: 0 8px 32px rgba(0, 38, 69, 0.18);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cardCadastro .cardTitulo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardCadastro .cardTitulo p {
+    color: #002645;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.cardCadastro label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #002645;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.cardCadastro input {
+    width: 100%;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid #00264530;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    outline: none;
+    font-family: inherit;
+    color: var(--color-text-primary);
+    background: var(--color-background-primary);
+}
+
+.cardCadastro select {
+    width: 100%;
+    padding: 0.45rem 0.7rem;
+    border: 1px solid #00264530;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    outline: none;
+    font-family: inherit;
+    color: var(--color-text-primary);
+    background: var(--color-background-primary);
+}
+
+.cardCadastro .erro {
+    font-size: 0.73rem;
+    color: #b70a0a;
+    display: none;
+    margin-top: 2px;
+}
+
+.cardCadastro #acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 0.2rem;
+}
+
+.cardCadastro .btnCancelar {
+    background: none;
+    border: 1px solid #00264530;
+    border-radius: 7px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #555;
+    font-family: inherit;
+}
+
+.cardCadastro .btnConfirmar {
+        background: #002645;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.sobrepor {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+}
+

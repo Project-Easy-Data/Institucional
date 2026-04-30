@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/dashboardGerente.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/barraLateral.css">
     <title>Dashboard</title>
@@ -187,7 +187,7 @@
             <div class="aguaPotavel">
               <p><i class="fa-solid fa-earth-americas"></i> Água Potável</p>
             </div>
-            <div class="esgoto">
+            <div id="esgoto" class="esgoto">
               <p><i class="fa-solid fa-toilet"></i> Esgoto</p>
             </div>
             <div class="residuos">
@@ -235,15 +235,103 @@
           </div>
         </div>
       </section>
+
+      <h2 style="display: none;" id="titulo">Análise por Categoria</h2>
+      <section style="display: none;" id="infoSaneamentoGeralEsgoto">
+        <div class="containerEsgoto">
+          <div class="header">
+            <div id="agua" class="aguaPotavel">
+              <p><i class="fa-solid fa-earth-americas"></i> Água Potável</p>
+            </div>
+            <div class="esgoto">
+              <p><i class="fa-solid fa-toilet"></i> Esgoto</p>
+            </div>
+            <div class="residuos">
+              <p><i class="fa-solid fa-trash"></i> Resíduos</p>
+            </div>
+            <div class="drenagem">
+              <p><i class="fa-solid fa-droplet"></i> Drenagem</p>
+            </div>
+          </div>
+
+          <div class="main">
+            <div class="container">
+            <div class="percentualAcessoEsgoto">
+                <div class="infosJuntas">
+                    <div>
+                        <p><span>23%</span></p>
+                    </div>
+                    <div class="totalHabitantes">
+                        <p><span>44.876</span> habitantes</p>
+                    </div>
+                </div>
+              <div class="semAcesso">
+                <p>Sem acesso à água potável</p>
+              </div>
+            </div>
+            <div class="evolucaoAnual">
+                <div class="tituloEvolucao">
+                    <p>Evolução Anual</p>
+                </div>
+                <div class="percentual">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="aumento">
+                        <p>+9.5%</p>
+                    </div>
+                </div>
+              </div>
+              </div>
+
+            <div class="grafico">
+              <p id="evolucao">Evolução - Acesso ao Esgoto</p>
+              <div>
+                <canvas id="myChartEsgoto" style="max-width: 100%; max-height: 100%;"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
   </body>
 
   <script>
     const ctx = document.getElementById("myChart");
 
     new Chart(ctx, {
+      type: "line",
+      data: {
+        labels: ["2018", "2019", "2020", "2021", "2024"],
+        datasets: [
+          {
+            label: "Evolução - Distribuição de Água Potável",
+            data: [50, 60, 70, 80],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          y: {
+            min: 50,
+            max: 90
+          },
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      },
+    });
+  
+    const ctxp = document.getElementById("myChartEsgoto");
+
+    new Chart(ctxp, {
       type: "line",
       data: {
         labels: ["2018", "2019", "2020", "2021", "2024"],

@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="css/usuarios.css" />
     <link rel="stylesheet" href="css/reset.css" />
-    <link rel="stylesheet" href="css/barraLateral.css">
+    <link rel="stylesheet" href="css/barraLateral.css" />
     <title>Usuários</title>
     <link rel="icon" href="logos/favicon_easydata.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,7 @@
       referrerpolicy="no-referrer"
     />
   </head>
-<body>
+  <body>
     <aside>
       <div class="logo">
         <img src="img/logodata.png" alt="Logo da EasyData" />
@@ -30,7 +30,15 @@
 
       <div class="nomeCargo">
         <div class="perfil">
-          <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
+          <i
+            class="fa-regular fa-user"
+            style="
+              font-size: 2vw;
+              border: 1px solid #010101;
+              border-radius: 50%;
+              padding: 1vw;
+            "
+          ></i>
         </div>
         <div class="username">
           <p class="nome">Bobby</p>
@@ -42,17 +50,23 @@
         <ul>
           <li>
             <p>
-              <a href="dashboardGerente.html"><i class="fa-solid fa-house"></i> Inicio</a>
+              <a href="dashboardGerente.html"
+                ><i class="fa-solid fa-house"></i> Inicio</a
+              >
             </p>
           </li>
           <li>
             <p>
-              <a href="usuarios.html"><i class="fa-solid fa-user-group"></i> Usuários</a>
+              <a href="usuarios.html"
+                ><i class="fa-solid fa-user-group"></i> Usuários</a
+              >
             </p>
           </li>
           <li>
             <p>
-              <a href="configuracao.html"><i class="fa-solid fa-gear"></i> Configuração</a>
+              <a href="configuracao.html"
+                ><i class="fa-solid fa-gear"></i> Configuração</a
+              >
             </p>
           </li>
         </ul>
@@ -63,31 +77,83 @@
       </div>
     </aside>
     <div class="container">
-        <h2>Usuários</h2>
-        <div class="card">
-            <div class="container2">
-                <div class="addUsuario">
-                    <button onclick="addFunc()">
-                        <p>+ Adicionar Usuário</p>
-                    </button>
-                </div>
-                <div class="listaUsuarios">
-                    <div class="cabecalho">
-                        <p>Nome</p>
-                        <p>Email</p>
-                        <p>Cargo</p>
-                        <p></p>
-                    </div>
-                    <div class="linha">
-                        <p>João Silva</p>
-                        <p>joao@easydata.com</p>
-                        <p>Gerente</p>
-                        <button id="excluir">Excluir</button>
-                    </div>
-                </div>
+      <h2>Usuários</h2>
+      <div class="card">
+        <div class="container2">
+          <div class="addUsuario">
+            <button onclick="addFunc()">
+              <p>+ Adicionar Usuário</p>
+            </button>
+          </div>
+          <div class="listaUsuarios">
+            <div class="cabecalho">
+              <p>Nome</p>
+              <p>Email</p>
+              <p>Cargo</p>
+              <p></p>
             </div>
+            <div class="linha">
+              <p>João Silva</p>
+              <p>joao@easydata.com</p>
+              <p>Gerente</p>
+              <button id="excluir">Excluir</button>
+            </div>
+          </div>
         </div>
-    </div>
-</body>
-</html>
+      </div>
 
+      <div class="sobrepor" id="sobrepor">
+        <div class="cardCadastro">
+          <div class="cardTitulo">
+            <p>Adicionar Usuário</p>
+          </div>
+          <div class="campoCadastro">
+            <label for="inputNome">Nome</label>
+            <input
+              type="text"
+              id="inputNome"
+              placeholder="Ex: Rafael Calderon"
+            />
+            <p class="erro" id="erroNome" style="display: none">
+              Informe o nome.
+            </p>
+          </div>
+          <div class="campoCadastro">
+            <label for="inputEmail">Email</label>
+            <input
+              type="text"
+              id="inputEmail"
+              placeholder="Ex: rcalderon@easydata.com"
+            />
+            <p class="erro" id="erroEmail" style="display: none">
+              Informe o email.
+            </p>
+          </div>
+          <div class="campoCadastro">
+            <label for="inputCargo">Cargo</label>
+            <select id="selectCargo">
+              <option value="">Selecionar...</option>
+              <option value="Gerente">Gerente</option>
+              <option value="Funcionário">Funcionário</option>
+              <option value="Suporte">Suporte</option>
+            </select>
+            <p class="erro" id="erroCargo" style="display: none">
+              Selecione um cargo.
+            </p>
+          </div>
+          <div id="acoes">
+            <button class="btnCancelar" onclick="fecharModal()">
+              Cancelar
+            </button>
+            <button class="btnConfirmar" onclick="confirmar()">
+              Adicionar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <script src="js/usuarios.js"></script>
+  </body>
+</html>
