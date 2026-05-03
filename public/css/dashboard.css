@@ -666,3 +666,18 @@ main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual .percentua
     color: #002645;
     font-weight: 600;
 }
+
+#icones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+#iconeDash {
+    width: 10%;
+}
+
+#crescimento {
+    width: 35%;
+}
