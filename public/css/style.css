@@ -37,7 +37,7 @@ header {
     width: 40px;
     display: flex;
     position: absolute;
-    left: 1vw;
+    left: 2.5vw;
     align-items: center;
     top: 2px;
 }
@@ -271,7 +271,8 @@ main {
 
 .foto-membro {
     height: 13vh;
-    width: 14vh;
+    width: 13vh;
+    object-fit: cover;
     border-radius: 50%;
     overflow: hidden;
     display: flex;
@@ -284,6 +285,7 @@ main {
 .foto-membro img {
     height: 100%;
     width: 100%;
+    object-fit: cover;
 }
 
 .foto-membro:hover {
