@@ -59,6 +59,7 @@ header {
 }
 
 .menu a {
+     font-family: 'DM Sans', sans-serif;
      margin-top: 0;
     color: #0D1B3E;
     text-decoration: none;
@@ -189,6 +190,8 @@ main {
     transition: 0.3s ease-in-out;
     background-color: hsl(0, 0%, 50%);
 }
+
+
 
 .section2 {
     text-align: center;

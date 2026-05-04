@@ -13,6 +13,7 @@ body {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background: white;
     color: #111;
     display: flex;
     flex-direction: column;
@@ -63,7 +64,17 @@ main {
     align-items: center;
 }
 
+.titulo-bemvindo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 56px;
+}
 
+.titulo-bemvindo h2 {
+    color: #ffffff;
+    font-size: 2vw;
+}
 .form-login {
     display: flex;
     flex-direction: column;
@@ -77,7 +88,7 @@ main {
 
 .tituloCampo {
     color: white;
-    font-size: 2vw;
+    font-size: 1.4vw;
     font-weight: 600;
     margin-bottom: 0.3vw;
 }
@@ -191,7 +202,14 @@ main {
 #msgCorretoSenha {
     color: #90EE90;
     font-size: 1vw;
-    margin-top: 0.3vw;
+    margin-top: 1vw;
+}
+
+#msgErro {
+    color: #90EE90;
+    font-size: 1vw;
+    margin-top: 1vw;
+    text-align: center.;
 }
 
 .menu-hamburguer {
@@ -305,8 +323,12 @@ main {
     }
 
     .tituloCampo {
-        font-size: 4vw;
+        font-size: 16px;
     }
+    .titulo-bemvindo h2 {
+    color: #ffffff;
+    font-size: 20px;
+}
 
     .campoInput {
         width: 80vw;
@@ -349,4 +371,19 @@ main {
     #msgCorretoSenha {
         font-size: 3vw;
     }
+}
+
+.loading {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.loading img {
+    width: 20%;
+}
+
+#botaoTexto {
+    display: flex;
 }

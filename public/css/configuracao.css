@@ -1,0 +1,76 @@
+body {
+    font-family: 'DM Sans', sans-serif;
+}
+
+.container {
+    margin-left: 15%;
+    padding: 20px;
+    flex: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f1f1f1;
+    gap: 2vw;
+}
+
+.container h2 {
+    margin-top: 1vw;
+}
+
+.container .card {
+    background-color: #ffffff;
+    padding: 1vw;
+    width: 80%;
+    height: 40vw;
+    border-radius: 1vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.container .card .campos {
+    display: flex;
+    flex-direction: column;
+    gap: 2vw;
+    align-items: center;
+}
+
+.container .card .campos .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5vw;
+    width: 95%;
+    margin-top: 1vw;
+}
+
+.container .card .campos .campo label {
+    font-size: 1.3vw;
+    font-weight: 600;
+}
+
+.container .card .campos .campo input {
+    height: 3.4vw;
+    border-radius: 0.5vw;
+    border: 1px solid #002645;
+    padding: 1vw;
+    font-size: 1vw;
+}
+
+.container .card .campos .campo input {
+    
+}
+
+.container .card .campos .botaoSalvar {
+    width: 20%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: #002645;
+    color: #f1f1f1;
+    font-size: 0.9vw;
+    border: 0px;
+    border-radius: 0.6vw;
+    padding: 1vw;
+    font-weight: 600;
+    cursor: pointer;
+}
