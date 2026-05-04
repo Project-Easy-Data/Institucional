@@ -2,7 +2,11 @@ const olhoAberto = document.querySelector("#olhoAberto");
 const olhoFechado = document.querySelector("#olhoFechado");
 const senha = document.querySelector("#senha");
 const email = document.querySelector("#email");
+const loading = document.querySelector(".loading");
+const botaoTexto = document.querySelector("#botaoTexto");
+const erroMsg = document.querySelector("#msgErro");
 
+// Toggle senha
 olhoAberto.addEventListener("click", () => {
     senha.type = "text";
     olhoAberto.style.display = "none";
@@ -19,17 +23,21 @@ function entrar() {
     const emailValor = email.value.trim();
     const senhaValor = senha.value.trim();
 
+    erroMsg.textContent = ""; // limpa antes
+
     if (!emailValor) {
-        msgCorretoEmail.textContent = "Preencha o campo de e-mail!";
-        msgCorretoEmail.style.color = "#ff4444";
+        erroMsg.textContent = "Preencha o campo de e-mail!";
+        erroMsg.style.color = "#ff4444";
         return;
     }
 
     if (!senhaValor) {
-        msgCorretoSenha.textContent = "Preencha o campo de senha!";
-        msgCorretoSenha.style.color = "#ff4444";
+        erroMsg.textContent = "Preencha o campo de senha!";
+        erroMsg.style.color = "#ff4444";
         return;
     }
+
+    carregando();
 
     fetch("/usuarios/autenticar", {
         method: "POST",
@@ -41,40 +49,49 @@ function entrar() {
     })
     .then(resposta => {
         if (resposta.status === 403) {
-            msgCorretoEmail.textContent = "E-mail e/ou senha inválido(s)!";
-            msgCorretoEmail.style.color = "#ff4444";
-            msgCorretoSenha.textContent = "Verifique suas credenciais.";
-            msgCorretoSenha.style.color = "#ff4444";
-            return null;
+            throw new Error("Credenciais inválidas");
         }
 
         if (resposta.status === 500) {
-            msgCorretoEmail.textContent = "Erro interno no servidor. Tente novamente.";
-            msgCorretoEmail.style.color = "#ff4444";
-            return null;
+            throw new Error("Erro interno no servidor");
         }
 
         if (!resposta.ok) {
-            msgCorretoEmail.textContent = "Erro inesperado. Status: " + resposta.status;
-            msgCorretoEmail.style.color = "#ff4444";
-            return null;
+            throw new Error("Erro desconhecido");
         }
 
         return resposta.json();
     })
     .then(resultado => {
-        if (!resultado) return;
-
-        msgCorretoEmail.textContent = "Login realizado com sucesso!";
-        msgCorretoEmail.style.color = "#90EE90";
+        erroMsg.textContent = "Login realizado com sucesso!";
+        erroMsg.style.color = "#90EE90";
 
         setTimeout(() => {
             window.location = "../dashboardGerente.html";
         }, 1000);
     })
-    .catch(erro => {
-        console.error("ERRO NO LOGIN:", erro);
-        msgCorretoEmail.textContent = "Não foi possível conectar ao servidor.";
-        msgCorretoEmail.style.color = "#ff4444";
+    .catch(err => {
+        if (err.message === "Credenciais inválidas") {
+            erroMsg.textContent = "E-mail e/ou senha inválido(s)!";
+        } else if (err.message === "Erro interno no servidor") {
+            erroMsg.textContent = "Erro interno no servidor. Tente novamente.";
+        } else {
+            erroMsg.textContent = "Não foi possível conectar ao servidor.";
+        }
+
+        erroMsg.style.color = "#ff4444";
+    })
+    .finally(() => {
+        carregado();
     });
+}
+
+function carregando() {
+    loading.style.display = "flex";
+    botaoTexto.style.display = "none";
+}
+
+function carregado() {
+    loading.style.display = "none";
+    botaoTexto.style.display = "flex";
 }

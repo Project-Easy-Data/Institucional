@@ -202,7 +202,14 @@ main {
 #msgCorretoSenha {
     color: #90EE90;
     font-size: 1vw;
-    margin-top: 0.3vw;
+    margin-top: 1vw;
+}
+
+#msgErro {
+    color: #90EE90;
+    font-size: 1vw;
+    margin-top: 1vw;
+    text-align: center.;
 }
 
 .menu-hamburguer {
@@ -364,4 +371,19 @@ main {
     #msgCorretoSenha {
         font-size: 3vw;
     }
+}
+
+.loading {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.loading img {
+    width: 20%;
+}
+
+#botaoTexto {
+    display: flex;
 }
