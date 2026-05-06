@@ -1,0 +1,128 @@
+#rag-fab {
+  position: fixed;
+  bottom: 2.5vw;
+  right: 2.5vw;
+  width: 3.5vw;
+  height: 3.5vw;
+  border-radius: 50%;
+  background: #0d1b3e;
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  color: #fff;
+  font-size: 1.5vw;
+}
+
+#rag-painel {
+  position: fixed;
+  bottom: 7vw;
+  right: 2.5vw;
+  width: 18vw;
+  min-height: 15vw;
+  max-height: 30vw;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 0.6vw;
+  display: none;
+  flex-direction: column;
+  z-index: 9999;
+}
+
+.rag-header {
+  background: #0d1b3e;
+  color: #fff;
+  padding: 0.7vw 1vw;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9vw;
+  display: flex;
+  align-items: center;
+  gap: 0.5vw;
+  border-radius: 0.6vw 0.6vw 0 0;
+}
+
+#rag-dot {
+  width: 0.5vw;
+  height: 0.5vw;
+  border-radius: 50%;
+  background: #888;
+  flex-shrink: 0;
+}
+
+#rag-msgs {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0.7vw;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4vw;
+  background: #f7f9fc;
+}
+
+.rag-bubble {
+  padding: 0.5vw 0.7vw;
+  border-radius: 0.4vw;
+  font-size: 0.85vw;
+  line-height: 1.5;
+  max-width: 85%;
+  word-break: break-word;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.rag-bubble.usuario {
+  background: #0d1b3e;
+  color: #fff;
+  align-self: flex-end;
+}
+
+.rag-bubble.bot {
+  background: #fff;
+  border: 1px solid #ddd;
+  color: #222;
+  align-self: flex-start;
+}
+
+.rag-bubble.erro {
+  background: #fff0f0;
+  border: 1px solid #fca5a5;
+  color: #c0392b;
+  align-self: flex-start;
+}
+
+.rag-footer {
+  display: flex;
+  border-top: 1px solid #ddd;
+  background: #fff;
+  border-radius: 0 0 0.6vw 0.6vw;
+}
+
+#rag-input {
+  flex: 1;
+  border: none;
+  padding: 0.5vw 0.7vw;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85vw;
+  outline: none;
+  resize: none;
+  border-radius: 0 0 0 0.6vw;
+}
+
+#rag-enviar {
+  background: #0d1b3e;
+  color: #fff;
+  border: none;
+  padding: 0 1vw;
+  cursor: pointer;
+  font-size: 1vw;
+  border-radius: 0 0 0.6vw 0;
+}
+#rag-enviar:hover { background: #1a3560; }
+#rag-enviar:disabled { opacity: 0.4; cursor: not-allowed; }
+
+@media (max-width: 768px) {
+  #rag-fab    { width: 12vw; height: 12vw; font-size: 5vw; bottom: 4vw; right: 4vw; }
+  #rag-painel { width: 80vw; height: 60vw; bottom: 18vw; right: 4vw; border-radius: 2vw; }
+  .rag-header { font-size: 3vw; padding: 2vw 3vw; }
+  .rag-bubble { font-size: 2.8vw; padding: 1.5vw 2vw; }
+  #rag-input  { font-size: 2.8vw; padding: 1.5vw 2vw; }
+  #rag-enviar { font-size: 3.5vw; padding: 0 3vw; }
+}

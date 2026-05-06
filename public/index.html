@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/responsivoIndex.css">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/popup.css">
+  <link rel="stylesheet" href="css/rag.css">
   <title>EasyData</title>
   <link rel="icon" href="logos/favicon_easydata.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -214,21 +214,20 @@
     </div>
   </footer>
 
-  <script src="js/menu.js"></script>
+<button id="rag-fab" onclick="toggle()">💬</button>
 
+<div id="rag-painel">
+  <div class="rag-header">
+    <span id="rag-dot"></span>
+    Assistente EasyData
+  </div>
+  <div id="rag-msgs"></div>
+  <div class="rag-footer">
+    <textarea id="rag-input" rows="1" placeholder="Digite sua pergunta…"></textarea>
+    <button id="rag-enviar" onclick="enviar()">➤</button>
+  </div>
+</div>
+  <script src="js/menu.js"></script>
+  <script src="js/rag.js"></script>
 </body>
 </html>
-  <script>
-    function abrirPopup(nome, cargo, foto, linkedin, github) {
-      document.getElementById('popup-nome').textContent = nome;
-      document.getElementById('popup-cargo').textContent = cargo;
-      document.getElementById('popup-foto').src = foto;
-      document.getElementById('popup-linkedin').href = linkedin;
-      document.getElementById('popup-github').href = github;
-      document.getElementById('overlayMembro').style.display = 'flex';
-    }
-
-    function fecharPopup() {
-      document.getElementById('overlayMembro').style.display = 'none';
-    }
-  </script>

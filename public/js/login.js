@@ -6,7 +6,6 @@ const loading = document.querySelector(".loading");
 const botaoTexto = document.querySelector("#botaoTexto");
 const erroMsg = document.querySelector("#msgErro");
 
-// Toggle senha
 olhoAberto.addEventListener("click", () => {
     senha.type = "text";
     olhoAberto.style.display = "none";
@@ -23,7 +22,7 @@ function entrar() {
     const emailValor = email.value.trim();
     const senhaValor = senha.value.trim();
 
-    erroMsg.textContent = ""; // limpa antes
+    erroMsg.textContent = "";
 
     if (!emailValor) {
         erroMsg.textContent = "Preencha o campo de e-mail!";
