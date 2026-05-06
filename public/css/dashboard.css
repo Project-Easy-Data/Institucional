@@ -311,6 +311,11 @@ main #infoSaneamentoGeral .containerCategoria .header .tabBtn {
     cursor: pointer;
 }
 
+main #infoSaneamentoGeral .containerCategoria .header .aguaPotavel:hover {
+    background-color: #065596;
+    transition: 0.3s ease-in-out;
+}
+
 main #infoSaneamentoGeral .containerCategoria .header .aguaPotavel {
     border-radius: 1vw 0 0 0;
 }
@@ -321,7 +326,7 @@ main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo {
 
 main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo p {
     text-decoration: underline;
-    color: #22cc22be;
+    color: #f1f1f1;
 }
 
 main #infoSaneamentoGeral .containerCategoria .header .esgoto {
@@ -329,7 +334,7 @@ main #infoSaneamentoGeral .containerCategoria .header .esgoto {
 }
 
 main #infoSaneamentoGeral .containerCategoria .header .esgoto:hover {
-    background-color: #ebf1fb62;
+    background-color: #065596;
     transition: 0.3s ease-in-out;
 }
 
@@ -338,7 +343,7 @@ main #infoSaneamentoGeral .containerCategoria .header .residuos {
 }
 
 main #infoSaneamentoGeral .containerCategoria .header .residuos:hover {
-    background-color: #fdf1e04b;
+    background-color: #065596;
     transition: 0.3s ease-in-out;
 }
 
@@ -348,9 +353,17 @@ main #infoSaneamentoGeral .containerCategoria .header .drenagem {
 }
 
 main #infoSaneamentoGeral .containerCategoria .header .drenagem:hover {
-    background-color: #f1f3ed44;
+    background-color: #065596;
     border-radius: 0 1vw 0 0;
     transition: 0.3s ease-in-out;
+}
+
+main .header p {
+    color: #2b2b2b;
+}
+
+main .header p:hover {
+    color: #f1f1f1;
 }
 
 main #infoSaneamentoGeral .containerCategoria .main {
