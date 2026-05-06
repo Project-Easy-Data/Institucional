@@ -202,12 +202,13 @@ main {
 #msgCorretoSenha {
     color: #90EE90;
     font-size: 1vw;
-    margin-top: .4vw;
+    margin-top: 1vw;
 }
 
 #msgErro {
     color: #90EE90;
     font-size: 1vw;
+    margin-top: 1vw;
     text-align: center;
 }
 
