@@ -20,20 +20,32 @@ olhoFechado.addEventListener("click", () => {
 
 email.addEventListener("input", () => {
     if (email.value.length >= 10 && email.value.includes("@") && (email.value.includes(".com") || email.value.includes(".br") || email.value.includes(".net") || email.value.includes(".org")) ) {
-        msgCorretoEmail.textContent = "Campo preenchido com sucesso!";
+        msgCorretoEmail.textContent = "E-mail válido!";
         msgCorretoEmail.style.color = "#90EE90";
+    } else {
+        msgCorretoEmail.textContent = "E-mail inválido!";
+        msgCorretoEmail.style.color = "#ff4444";
+    }
+});
+
+senha.addEventListener("input", () => {
+    if (senha.value.length >= 8) {
+        msgCorretoSenha.textContent = "";
 
         setTimeout(() => {
-            msgCorretoEmail.style.opacity = "0";
+            msgCorretoSenha.style.opacity = "0";
         }, 2500);
 
         setTimeout(() => {
-            msgCorretoEmail.style.opacity = "1";
-            msgCorretoEmail.textContent = "";
+            msgCorretoSenha.style.opacity = "1";
+            msgCorretoSenha.textContent = "";
         }, 3000);
     } else {
-        msgCorretoEmail.textContent = "O campo deve ser preenchido corretamente!";
-        msgCorretoEmail.style.color = "#ff4444";
+        msgCorretoSenha.textContent = "Mínimo de 8 caracteres!";
+        msgCorretoSenha.style.color = "#ff4444";
+    }
+})
+
 function entrar() {
     const emailValor = email.value.trim();
     const senhaValor = senha.value.trim();
@@ -80,14 +92,15 @@ function entrar() {
     .then(resultado => {
         erroMsg.textContent = "Login realizado com sucesso!";
         erroMsg.style.color = "#90EE90";
+        carregando();
 
         setTimeout(() => {
             window.location = "../dashboardGerente.html";
-        }, 1000);
+        }, 1500);
     })
     .catch(err => {
         if (err.message === "Credenciais inválidas") {
-            erroMsg.textContent = "E-mail e/ou senha inválido(s)!";
+            erroMsg.textContent = "E-mail e/ou senha incorreto(s)!";
         } else if (err.message === "Erro interno no servidor") {
             erroMsg.textContent = "Erro interno no servidor. Tente novamente.";
         } else {

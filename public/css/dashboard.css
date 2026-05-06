@@ -34,7 +34,7 @@ aside .btns {
 aside .btns ul {
     display: flex;
     flex-direction: column;
-    gap: 1.4vw
+    gap: 1.4vw;
 }
 
 aside .btns a {
@@ -285,158 +285,75 @@ main #infoSaneamentoGeral {
     display: flex;
 }
 
-main #infoSaneamentoGeralEsgoto {
-    border: 1px solid #010101;
-    width: 80%;
-    margin-left: 8vw;
-    height: 22vw;
-    border-radius: 1vw;
-    display: flex;
-}
-
-main #infoSaneamentoGeral .containerAgua {
+main #infoSaneamentoGeral .containerCategoria {
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-main #infoSaneamentoGeral .containerAgua .header {
+main #infoSaneamentoGeral .containerCategoria .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    align-items: center;
     text-align: center;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    text-align: center;
-}
-
-main #infoSaneamentoGeral .containerAgua .header .aguaPotavel,
-main #infoSaneamentoGeral .containerAgua .header .esgoto,
-main #infoSaneamentoGeral .containerAgua .header .residuos,
-main #infoSaneamentoGeral .containerAgua .header .drenagem {
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn {
     width: 25%;
     height: 3vw;
     border-right: 1px solid #010101;
     border-bottom: 1px solid #010101;
-    align-items: center;
     display: flex;
+    align-items: center;
     justify-content: center;
     font-size: 1vw;
     cursor: pointer;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .aguaPotavel,
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .esgoto,
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .residuos,
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .drenagem {
-    width: 25%;
-    height: 3vw;
-    border-right: 1px solid #010101;
-    border-bottom: 1px solid #010101;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    font-size: 1vw;
-    cursor: pointer;
-}
-
-main #infoSaneamentoGeral .containerAgua .header .aguaPotavel {
-    background-color: #00466E;
+main #infoSaneamentoGeral .containerCategoria .header .aguaPotavel {
     border-radius: 1vw 0 0 0;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .aguaPotavel {
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo {
     background-color: #00466E;
-    border-radius: 1vw 0 0 0;
 }
 
-main #infoSaneamentoGeral .containerAgua .header .aguaPotavel p {
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo p {
     text-decoration: underline;
-    color: #f1f1f1;
+    color: #22cc22be;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .aguaPotavel p {
-    text-decoration: underline;
-    color: #f1f1f1;
+main #infoSaneamentoGeral .containerCategoria .header .esgoto {
+    background-color: #EBF1FB;
 }
 
-main #infoSaneamentoGeral .containerAgua .header .esgoto {
-    background-color: #EBF1FB;;
-}
-
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .esgoto {
-    background-color: #EBF1FB;;
-}
-
-main #infoSaneamentoGeral .containerAgua .header .esgoto:hover {
+main #infoSaneamentoGeral .containerCategoria .header .esgoto:hover {
     background-color: #ebf1fb62;
-    cursor: pointer;
     transition: 0.3s ease-in-out;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .esgoto:hover {
-    background-color: #ebf1fb62;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-main #infoSaneamentoGeral .containerAgua .header .residuos {
+main #infoSaneamentoGeral .containerCategoria .header .residuos {
     background-color: #FDF1E0;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .residuos {
-    background-color: #FDF1E0;
-}
-
-main #infoSaneamentoGeral .containerAgua .header .residuos:hover {
+main #infoSaneamentoGeral .containerCategoria .header .residuos:hover {
     background-color: #fdf1e04b;
-    cursor: pointer;
     transition: 0.3s ease-in-out;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .residuos:hover {
-    background-color: #fdf1e04b;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-main #infoSaneamentoGeral .containerAgua .header .drenagem {
+main #infoSaneamentoGeral .containerCategoria .header .drenagem {
     background-color: #F1F3ED;
     border-radius: 0 1vw 0 0;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .drenagem {
-    background-color: #F1F3ED;
-    border-radius: 0 1vw 0 0;
-}
-
-main #infoSaneamentoGeral .containerAgua .header .drenagem:hover {
+main #infoSaneamentoGeral .containerCategoria .header .drenagem:hover {
     background-color: #f1f3ed44;
     border-radius: 0 1vw 0 0;
     transition: 0.3s ease-in-out;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .header .drenagem:hover {
-    background-color: #f1f3ed44;
-    border-radius: 0 1vw 0 0;
-    transition: 0.3s ease-in-out;
-}
-
-main #infoSaneamentoGeral .containerAgua .main {
+main #infoSaneamentoGeral .containerCategoria .main {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -444,15 +361,7 @@ main #infoSaneamentoGeral .containerAgua .main {
     height: 20vw;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 100%;
-    height: 20vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .percentualAcessoAgua {
+main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso {
     background-color: #E7F2FC;
     height: 8vw;
     width: 60%;
@@ -466,176 +375,66 @@ main #infoSaneamentoGeral .containerAgua .main .percentualAcessoAgua {
     border: 1px solid #010101;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .percentualAcessoEsgoto {
-    background-color: #E7F2FC;
+main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso p {
+    text-align: center;
+    font-size: 1vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso span {
+    font-weight: 600;
+    font-size: 1.5vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual {
+    border: 1px solid #002645;
+    border-radius: 1vw;
+    padding: 1vw;
     height: 8vw;
     width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 0.9vw;
-    border-radius: 1vw;
     color: #002645;
-    padding: 0.5vw;
-    border: 1px solid #010101;
 }
 
-main #infoSaneamentoGeral .containerAgua .main .percentualAcessoAgua p {
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual p {
     text-align: center;
     font-size: 1.2vw;
 }
 
-main #infoSaneamentoGeral .containerEsgoto .main .percentualAcessoAgua p {
-    text-align: center;
-    font-size: 1.2vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .percentualAcessoEsgoto p {
-    text-align: center;
-    font-size: 1.2vw;
-}
-
-main #infoSaneamentoGeral .containerEsgoto .main .percentualAcessoEsgoto p {
-    text-align: center;
-    font-size: 1.2vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .percentualAcessoAgua .semAcesso p {
-    font-size: 1vw;
-}
-
-main #infoSaneamentoGeral .containerEsgoto .main .percentualAcessoAgua .semAcesso p {
-    font-size: 1vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .percentualAcessoEsgoto .semAcesso p {
-    font-size: 1vw;
-}
-
-main #infoSaneamentoGeral .containerEsgoto .main .percentualAcessoEsgoto .semAcesso p {
-    font-size: 1vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .percentualAcessoAgua span {
-    font-weight: 600;
-}
-
-main #infoSaneamentoGeral .containerEsgoto .main .percentualAcessoAgua span {
-    font-weight: 600;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .percentualAcessoEsgoto span {
-    font-weight: 600;
-}
-
-main #infoSaneamentoGeral .containerEsgoto .main .percentualAcessoEsgoto span {
-    font-weight: 600;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .grafico {
-    width: 50%;
-    height: 80%;
-    position: relative;
-}
-
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .grafico {
-    width: 50%;
-    height: 80%;
-    position: relative;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .grafico canvas {
-    width: 30vw;
-    height: 15vw;
-}
-
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .grafico canvas {
-    width: 30vw;
-    height: 15vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual {
-    border: 1px solid #002645;
-    border-radius: 1vw;
-    padding: 1vw;
-    border-radius: 1vw;
-    height: 8vw;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.9vw;
-    color: #002645
-}
-
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual {
-    border: 1px solid #002645;
-    border-radius: 1vw;
-    padding: 1vw;
-    border-radius: 1vw;
-    height: 8vw;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.9vw;
-    color: #002645
-}
-
-main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual p {
-    text-align: center;
-    font-size: 1.2vw;
-}
-
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual p {
-    text-align: center;
-    font-size: 1.2vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual .percentual {
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual {
     display: flex;
     gap: 1vw;
     align-items: center;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual .percentual {
-    display: flex;
-    gap: 1vw;
-    align-items: center;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual .percentual i {
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual i {
     font-size: 2.3vw;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual .percentual i {
-    font-size: 2.3vw;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual .percentual p {
-    font-size: 1.6vw;
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual p {
+    font-size: 1.3vw;
     font-weight: 600;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual .percentual p {
-    font-size: 1.6vw;
-    font-weight: 600;
-}
-
-main #infoSaneamentoGeral .containerAgua .main .evolucaoAnual .percentual .aumento {
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual .aumento {
     background-color: #002645;
     color: #f1f1f1;
     padding: 0.4vw;
     border-radius: 0.7vw;
 }
 
-main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual .percentual .aumento {
-    background-color: #002645;
-    color: #f1f1f1;
-    padding: 0.4vw;
-    border-radius: 0.7vw;
+main #infoSaneamentoGeral .containerCategoria .main .grafico {
+    width: 50%;
+    height: 80%;
+    position: relative;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .grafico canvas {
+    width: 30vw;
+    height: 15vw;
 }
 
 .risco {
@@ -667,6 +466,13 @@ main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual .percentua
     font-weight: 600;
 }
 
+.icones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
 #icones {
     display: flex;
     align-items: center;
@@ -674,10 +480,35 @@ main #infoSaneamentoGeralEsgoto .containerEsgoto .main .evolucaoAnual .percentua
     gap: 1vw;
 }
 
-#iconeDash {
+.iconeDash {
     width: 10%;
+}
+
+.semAcesso p {
+    font-size: 0.5vw;
+}
+
+.tituloCategoria {
+    text-align: center;
+    font-size: 1.4vw;
+    color: #002645;
+    font-weight: 600;
+    margin-top: 1.3vw;
+    margin-bottom: 0.5vw;
 }
 
 #crescimento {
     width: 35%;
 }
+
+.crescimento {
+    width: 40%;
+}
+
+#tabTituloGrafico {
+    text-align: center;
+    font-size: 1.4vw;
+    color: #002645;
+    font-weight: 600;
+}
+

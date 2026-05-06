@@ -20,16 +20,3 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
-
-function abrirPopup(nome, cargo, foto, linkedin, github) {
-      document.getElementById('popup-nome').textContent = nome;
-      document.getElementById('popup-cargo').textContent = cargo;
-      document.getElementById('popup-foto').src = foto;
-      document.getElementById('popup-linkedin').href = linkedin;
-      document.getElementById('popup-github').href = github;
-      document.getElementById('overlayMembro').style.display = 'flex';
-    }
-
-    function fecharPopup() {
-      document.getElementById('overlayMembro').style.display = 'none';
-  }

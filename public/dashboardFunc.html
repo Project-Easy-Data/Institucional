@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/dashboard.css" />
     <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
     <link rel="stylesheet" href="css/barraLateral.css">
     <title>Dashboard</title>
     <link rel="icon" href="logos/favicon_easydata.ico" />
@@ -34,22 +34,18 @@
           <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
         </div>
         <div class="username">
-          <p class="nome">Bob</p>
-          <p class="cargo">Funcionário</p>
+          <p class="nome">Bobby</p>
+          <p class="cargo">Gerente</p>
         </div>
       </div>
 
       <div class="btns">
         <ul>
           <li>
-            <p>
-              <a href=""><i class="fa-solid fa-house"></i> Inicio</a>
-            </p>
+            <p><a href=""><i class="fa-solid fa-house"></i> Inicio</a></p>
           </li>
           <li>
-            <p>
-              <a href="configuracaoFunc.html"><i class="fa-solid fa-gear"></i> Configuração</a>
-            </p>
+            <p><a href="configuracaoFunc.html"><i class="fa-solid fa-gear"></i> Configuração</a></p>
           </li>
         </ul>
       </div>
@@ -68,8 +64,8 @@
         <div class="filtros">
           <div class="filtro ano">
             <p>Ano</p>
-            <select name="2024" id="">
-              <option value="2024">2024</option>
+            <select name="ano" id="filtroAno">
+              <option value="2024" selected>2024</option>
               <option value="2020">2020</option>
               <option value="2018">2018</option>
             </select>
@@ -77,8 +73,8 @@
 
           <div class="filtro estado">
             <p>Estado</p>
-            <select value="Paraná" name="Paraná" id="">
-              <option value="parana">Paraná</option>
+            <select name="estado" id="filtroEstado">
+              <option value="parana" selected>Paraná</option>
               <option value="saoPaulo">São Paulo</option>
               <option value="rioDeJaneiro">Rio de Janeiro</option>
             </select>
@@ -86,8 +82,8 @@
 
           <div class="filtro cidade">
             <p>Cidade</p>
-            <select value="Curitiba" name="Curitiba" id="">
-              <option value="guarulhos">Guarulhos</option>
+            <select name="cidade" id="filtroCidade">
+              <option value="guarulhos" selected>Guarulhos</option>
               <option value="macae">Macaé</option>
               <option value="ouroPreto">Ouro Preto</option>
             </select>
@@ -104,12 +100,7 @@
           <div class="notaCidade">
             <div class="notaGrafico">
               <svg width="80" height="80" viewBox="0 0 80 80">
-                <circle
-                  cx="40" cy="40" r="30"
-                  fill="none"
-                  stroke="#e0e0e0"
-                  stroke-width="6"
-                />
+                <circle cx="40" cy="40" r="30" fill="none" stroke="#e0e0e0" stroke-width="6" />
                 <circle
                   cx="40" cy="40" r="30"
                   fill="none"
@@ -140,7 +131,7 @@
           <div class="listaFatores">
             <div class="risco deficitSaneamento">
               <div class="icone">
-                <i class="fa-solid fa-circle-exclamation"></i>
+                <img src="Icones_Dashboard/Deficit.svg" alt="">
               </div>
               <div class="tituloDeficit">
                 <p>Déficit de Saneamento</p>
@@ -175,96 +166,67 @@
         </div>
       </section>
 
-      <h2 id="titulo">Análise por Categoria</h2>
+      <h2 class="tituloCategoria">Análise por Categoria</h2>
+
       <section id="infoSaneamentoGeral">
-        <div class="containerAgua">
+        <div class="containerCategoria">
+
           <div class="header">
-            <div class="aguaPotavel">
-              <p id="icones"><img id="iconeDash" src="Icones_Dashboard/AguaPotavel.svg" alt=""> Água Potável</p>
+            <div class="tabBtn aguaPotavel ativo" data-tab="agua">
+              <p class="icones"><img class="iconeDash" src="Icones_Dashboard/AguaPotavel.svg" alt=""> Água Potável</p>
             </div>
-            <div id="esgoto" class="esgoto">
-              <p id="icones"><img id="iconeDash" src="Icones_Dashboard/Esgoto.svg" alt=""> Esgoto</p>
+            <div class="tabBtn esgoto" data-tab="esgoto">
+              <p class="icones"><img class="iconeDash" src="Icones_Dashboard/Esgoto.svg" alt=""> Esgoto</p>
             </div>
-            <div class="residuos">
-              <p id="icones"><img id="iconeDash" src="Icones_Dashboard/Residuos.svg" alt=""> Resíduos</p>
+            <div class="tabBtn residuos" data-tab="residuos">
+              <p class="icones"><img class="iconeDash" src="Icones_Dashboard/Residuos.svg" alt=""> Resíduos</p>
             </div>
-            <div class="drenagem">
-              <p id="icones"><img id="iconeDash" src="Icones_Dashboard/Drenagem.svg" alt=""> Drenagem</p>
+            <div class="tabBtn drenagem" data-tab="drenagem">
+              <p class="icones"><img class="iconeDash" src="Icones_Dashboard/Drenagem.svg" alt=""> Drenagem</p>
             </div>
           </div>
 
           <div class="main">
             <div class="container">
-            <div class="percentualAcessoAgua">
+              <div class="percentualAcesso">
                 <div class="infosJuntas">
-                    <div>
-                        <p><span>23%</span></p>
-                    </div>
-                    <div class="totalHabitantes">
-                        <p><span>44.876</span> habitantes</p>
-                    </div>
+                  <div>
+                    <p><span id="tabPorcentagem">23%</span></p>
+                  </div>
+                  <div class="totalHabitantes">
+                    <p><span id="tabHabitantes">44.876</span> habitantes</p>
+                  </div>
                 </div>
-              <div class="semAcesso">
-                <p>Sem acesso à água potável</p>
+                <div class="semAcesso">
+                  <p id="tabDescricao">Sem acesso à água potável</p>
+                </div>
               </div>
-            </div>
-            <div class="evolucaoAnual">
+              <div class="evolucaoAnual">
                 <div class="tituloEvolucao">
-                    <p>Evolução Anual</p>
+                  <p>Evolução Anual</p>
                 </div>
                 <div class="percentual">
-                    <img id="crescimento" src="Icones_Dashboard/Crescimento.svg" alt="" srcset="">
-                    <div class="aumento">
-                        <p>+9.5%</p>
-                    </div>
+                  <img class="crescimento" src="Icones_Dashboard/Crescimento.svg" alt="">
+                  <div class="aumento">
+                    <p id="tabEvolucao">+9.5%</p>
+                  </div>
                 </div>
               </div>
-              </div>
+            </div>
 
             <div class="grafico">
-              <p id="evolucao">Evolução - Distribuição de Água Potável</p>
+              <p class="evolucao" id="tabTituloGrafico">Evolução - Distribuição de Água Potável</p>
               <div>
                 <canvas id="myChart" style="max-width: 100%; max-height: 100%;"></canvas>
               </div>
             </div>
           </div>
+
         </div>
       </section>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/dashboard.js"></script>
   </body>
-
-  <script>
-    const ctx = document.getElementById("myChart");
-
-    new Chart(ctx, {
-      type: "line",
-      data: {
-        labels: ["2018", "2019", "2020", "2021", "2024"],
-        datasets: [
-          {
-            label: "Evolução - Distribuição de Água Potável",
-            data: [50, 60, 70, 80],
-            borderWidth: 1,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            min: 50,
-            max: 90
-          },
-        },
-        plugins: {
-          legend: {
-            display: false
-          }
-        }
-      },
-    });
-  </script>
 </html>
