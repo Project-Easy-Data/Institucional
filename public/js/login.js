@@ -18,6 +18,22 @@ olhoFechado.addEventListener("click", () => {
     olhoAberto.style.display = "inline";
 });
 
+email.addEventListener("input", () => {
+    if (email.value.length >= 10 && email.value.includes("@") && (email.value.includes(".com") || email.value.includes(".br") || email.value.includes(".net") || email.value.includes(".org")) ) {
+        msgCorretoEmail.textContent = "Campo preenchido com sucesso!";
+        msgCorretoEmail.style.color = "#90EE90";
+
+        setTimeout(() => {
+            msgCorretoEmail.style.opacity = "0";
+        }, 2500);
+
+        setTimeout(() => {
+            msgCorretoEmail.style.opacity = "1";
+            msgCorretoEmail.textContent = "";
+        }, 3000);
+    } else {
+        msgCorretoEmail.textContent = "O campo deve ser preenchido corretamente!";
+        msgCorretoEmail.style.color = "#ff4444";
 function entrar() {
     const emailValor = email.value.trim();
     const senhaValor = senha.value.trim();
