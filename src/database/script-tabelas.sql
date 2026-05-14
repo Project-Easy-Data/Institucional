@@ -1,73 +1,91 @@
 CREATE DATABASE EasyData;
-
 USE EasyData;
 
-CREATE TABLE empresa (
-    id_empresa INT AUTO_INCREMENT,
-    nome_empresa VARCHAR(255) NOT NULL,
-    email_empresa VARCHAR(255) NOT NULL UNIQUE,
-    cnpj_empresa CHAR(14) NOT NULL UNIQUE,
-    status TINYINT NOT NULL,
-    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,-- O on update atualiza automaticamente com a data/hora atual sempre que o registro for alterado.
-    CONSTRAINT pk_empresa PRIMARY KEY (id_empresa), -- serve para dar um nome a chave primaria para caso de erro saber onde o erro ocorreu
-    CONSTRAINT chk_status_empresa CHECK (status IN (0,1)) -- 0 para inativo e 1 para ativo
-);
-
-CREATE TABLE funcionario (
-    id_funcionario INT AUTO_INCREMENT,
-    nome_funcionario VARCHAR(255) NOT NULL,
-    email_funcionario VARCHAR(255) NOT NULL UNIQUE,
-    senha_funcionario VARCHAR(255) NOT NULL,
-    cargo_funcionario VARCHAR(255) NOT NULL,
-    status TINYINT NOT NULL,
-    permissao INT NOT NULL,
+CREATE TABLE Empresa (
+    id_Empresa INT AUTO_INCREMENT,
+    razao_social VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    cnpj VARCHAR(14) NOT NULL UNIQUE,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    empresa_id_empresa INT NOT NULL,
-    CONSTRAINT pk_funcionario PRIMARY KEY (id_funcionario),
-    CONSTRAINT fk_funcionario_empresa 
-        FOREIGN KEY (empresa_id_empresa) 
-        REFERENCES empresa(id_empresa)
-        ON DELETE CASCADE -- O ON DELETE CASCADE apaga automaticamente os registros relacionados quando o registro pai for deletado.
-        ON UPDATE CASCADE,-- O ON UPDATE CASCADE atualiza automaticamente as chaves estrangeiras quando a chave primária for alterada.
-    CONSTRAINT chk_permissao CHECK (permissao IN (1,2,3)), -- Nivel de permissão que o funcionario tem dentro da empresa
-    CONSTRAINT chk_status_funcionario CHECK (status IN (0,1)) -- 0 para inativo e 1 para ativo
+    status ENUM('ATIVO', 'INATIVO', 'PENDENTE') NOT NULL,
+    CONSTRAINT pk_empresa PRIMARY KEY (id_Empresa)
 );
 
-CREATE TABLE estados (
-    id_estados INT AUTO_INCREMENT,
-    sigla_estado CHAR(2) NOT NULL,
-    nome_estado VARCHAR(45) NOT NULL,
-    CONSTRAINT pk_estados PRIMARY KEY (id_estados)
+CREATE TABLE Usuario (
+    id_funcionario INT AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    cargo VARCHAR(255) NOT NULL,
+    permissao INT NOT NULL,
+    status ENUM('ATIVO', 'INATIVO', 'PENDENTE') NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    Empresa_id_Empresa INT NOT NULL,
+
+    CONSTRAINT pk_usuario PRIMARY KEY (id_funcionario),
+
+    CONSTRAINT fk_usuario_empresa
+        FOREIGN KEY (Empresa_id_Empresa)
+        REFERENCES Empresa(id_Empresa)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT chk_permissao_usuario CHECK (permissao IN (1, 2, 3))
 );
 
-CREATE TABLE dados_saneamento (
-    id_dado_saneamento INT AUTO_INCREMENT,
-    populacao_atendida_esgoto INT NOT NULL,
-    populacao_urbana_residente_esgoto INT NOT NULL,
-    populacao_urbana_atendida_esgoto INT NOT NULL,
-    populacao_urbana_residente_esgoto_ibge INT NOT NULL,
-    extensao_rede_esgoto INT NOT NULL,
-    estados_id_estados INT NOT NULL,
-    CONSTRAINT pk_dados_saneamento PRIMARY KEY (id_dado_saneamento),
-    CONSTRAINT fk_dados_estado 
-        FOREIGN KEY (estados_id_estados) 
-        REFERENCES estados(id_estados)
+CREATE TABLE Unidade_Federativa (
+    idUnidade_Federativa INT AUTO_INCREMENT,
+    sigla CHAR(2) NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_unidade_federativa PRIMARY KEY (idUnidade_Federativa)
+);
+
+CREATE TABLE Municipio (
+    idMunicipios INT AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    Unidade_Federativa_idUnidade_Federativa INT NOT NULL,
+
+    CONSTRAINT pk_municipio PRIMARY KEY (idMunicipios),
+
+    CONSTRAINT fk_municipio_unidade_federativa
+        FOREIGN KEY (Unidade_Federativa_idUnidade_Federativa)
+        REFERENCES Unidade_Federativa(idUnidade_Federativa)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
-CREATE TABLE log (
+CREATE TABLE Dados_Saneamento (
+    idDados_Saneamento INT AUTO_INCREMENT,
+    ano_referencia DATE NOT NULL,
+    agua_potavel INT NOT NULL,
+    esgoto INT NOT NULL,
+    residuos INT NOT NULL,
+    drenagem INT NOT NULL,
+    Dados_Saneamentocol VARCHAR(45),
+    Empresa_id_Empresa INT NOT NULL,
+    Municipio_idMunicipios INT NOT NULL,
+
+    CONSTRAINT pk_dados_saneamento PRIMARY KEY (idDados_Saneamento),
+
+    CONSTRAINT fk_dados_empresa
+        FOREIGN KEY (Empresa_id_Empresa)
+        REFERENCES Empresa(id_Empresa)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_dados_municipio
+        FOREIGN KEY (Municipio_idMunicipios)
+        REFERENCES Municipio(idMunicipios)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE
+);
+
+CREATE TABLE Log (
     id_log INT AUTO_INCREMENT,
-    data_log DATETIME DEFAULT CURRENT_TIMESTAMP,
-    motivo_log VARCHAR(255) NOT NULL,
-    tipo_log VARCHAR(45) NOT NULL,
-    funcionario_id_funcionario INT NOT NULL,
-    CONSTRAINT pk_log PRIMARY KEY (id_log),
-    CONSTRAINT fk_log_funcionario 
-        FOREIGN KEY (funcionario_id_funcionario) 
-        REFERENCES funcionario(id_funcionario)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
+    data DATETIME DEFAULT CURRENT_TIMESTAMP,
+    motivo VARCHAR(255) NOT NULL,
+    tipo VARCHAR(45) NOT NULL,
+    CONSTRAINT pk_log PRIMARY KEY (id_log)
 );
