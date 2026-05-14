@@ -1,4 +1,4 @@
-const SERVER = "http://127.0.0.1:8000";
+const SERVER = "http://18.208.222.151:8000";
 let online = false;
 let loading = false;
 
