@@ -101,6 +101,34 @@ main #tituloFiltros .titulo h2 {
     font-size: 2vw;
     letter-spacing: 0.3vw;
     color: #002645;
+    border-radius: 0.6vw;
+}
+
+main #tituloFiltros .titulo {
+  position: relative;
+  width: 100%;    
+  text-align: center;     
+}
+
+.btn-baixar-relatorio {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.5vw 1.2vw;
+  background-color: #002645;
+  color: #f1f1f1;
+  font-size: 0.9vw;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  border-radius: 0.6vw;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.btn-baixar-relatorio:hover {
+  background-color: #00466E;
 }
 
 main #tituloFiltros .filtros {
