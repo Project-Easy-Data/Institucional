@@ -65,8 +65,7 @@ function entrar() {
             erroMsg.style.color = "#90EE90";
 
             console.log(resultado);
-
-            sessionStorage.setItem('permissao', resultado.permissao);
+            console.log(sessionStorage.setItem('permissao', resultado.permissao));
 
             const permissaoUsuario = Number(sessionStorage.getItem('permissao'));
 
