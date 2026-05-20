@@ -55,10 +55,10 @@ const tabData = {
         const d = tabData[tab];
         if (!d) return;
 
-        document.getElementById("tabPorcentagem").textContent   = d.porcentagem;
-        document.getElementById("tabHabitantes").textContent    = d.habitantes;
-        document.getElementById("tabDescricao").textContent     = d.descricao;
-        document.getElementById("tabEvolucao").textContent      = d.evolucao;
+        document.getElementById("tabPorcentagem").textContent = d.porcentagem;
+        document.getElementById("tabHabitantes").textContent = d.habitantes;
+        document.getElementById("tabDescricao").textContent = d.descricao;
+        document.getElementById("tabEvolucao").textContent = d.evolucao;
         document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
 
         chartInstance.data.datasets[0].label = d.tituloGrafico;

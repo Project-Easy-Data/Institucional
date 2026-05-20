@@ -70,7 +70,6 @@ function confirmar() {
 }
 
 function excluir(botao, id) {
-    console.log("excluir chamado, id:", id);
     fetch("/deletar/" + id, {
         method: "DELETE"
     })

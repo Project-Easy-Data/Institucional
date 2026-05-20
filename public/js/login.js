@@ -67,7 +67,7 @@ function entrar() {
 
             if (permissao === 1) {
                 setTimeout(() => {
-                    window.location = "../dashboardFuncionario.html";
+                    window.location = "../dashboardFunc.html";
                 }, 1000);
             }
 
