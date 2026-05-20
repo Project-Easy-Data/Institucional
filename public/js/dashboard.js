@@ -1,8 +1,8 @@
 const nome = sessionStorage.getItem('nome');
 const cargo = sessionStorage.getItem('cargo');
 
-document.getElementById("nomeUsuario").textContent = nome;
-document.getElementById("cargoUsuario").textContent = cargo;
+document.getElementById("nome").innerHTML = nome;
+document.getElementById("cargo").innerHTML = cargo;
 
 const tabData = {
         agua: {
