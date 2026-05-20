@@ -31,7 +31,7 @@ function confirmar() {
     }
 
     const senhaTemporaria = gerarSenhaTemporaria(10);
-    sessionStorage.setItem('permissao', cargo);
+    sessionStorage.setItem('permissao', permissao);
 
     fetch("/funcionarios/cadastrar", {
         method: "POST",
@@ -69,9 +69,7 @@ function confirmar() {
 }
 
 function excluir(botao, id) {
-    fetch("/deletar/" + id, {
-        method: "DELETE"
-    })
+    fetch("/deletar/" + id, { method: "DELETE" })
     .then(function(resposta) {
         if (resposta.ok) {
             botao.closest(".linha").remove();

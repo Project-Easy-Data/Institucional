@@ -64,9 +64,13 @@ function entrar() {
             erroMsg.textContent = "Login realizado com sucesso!";
             erroMsg.style.color = "#90EE90";
 
-            const permissao = Number(sessionStorage.getItem('permissao'));
+            console.log(resultado);
 
-            if (permissao === 1) {
+            sessionStorage.setItem('permissao', resultado.permissao);
+
+            const permissaoUsuario = Number(sessionStorage.getItem('permissao'));
+
+            if (permissaoUsuario === 1) {
                 setTimeout(() => {
                     window.location = "../dashboardFunc.html";
                 }, 1000);
@@ -74,7 +78,7 @@ function entrar() {
                 
             }
 
-            if (permissao === 2 || permissao === 3) {
+            if (permissaoUsuario === 2 || permissaoUsuario === 3) {
                 setTimeout(() => {
                     window.location = "../dashboardGerente.html";
                 }, 1000);
