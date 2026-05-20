@@ -15,6 +15,8 @@ function confirmar() {
         permissao = 2;
     }
 
+    sessionStorage.setItem('permissao', permissao);
+
     if (!nome) {
         document.getElementById("erroNome").style.display = "block";
         return;
