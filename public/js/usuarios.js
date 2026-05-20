@@ -15,8 +15,6 @@ function confirmar() {
         permissao = 2;
     }
 
-    sessionStorage.setItem('permissao', permissao);
-
     if (!nome) {
         document.getElementById("erroNome").style.display = "block";
         return;
@@ -33,6 +31,7 @@ function confirmar() {
     }
 
     const senhaTemporaria = gerarSenhaTemporaria(10);
+    sessionStorage.setItem('permissao', cargo);
 
     fetch("/funcionarios/cadastrar", {
         method: "POST",

@@ -5,7 +5,6 @@ const email = document.querySelector("#email");
 const loading = document.querySelector(".loading");
 const botaoTexto = document.querySelector("#botaoTexto");
 const erroMsg = document.querySelector("#msgErro");
-const permissao = Number(sessionStorage.getItem('permissao'));
 
 olhoAberto.addEventListener("click", () => {
     senha.type = "text";
@@ -65,16 +64,21 @@ function entrar() {
             erroMsg.textContent = "Login realizado com sucesso!";
             erroMsg.style.color = "#90EE90";
 
+            const permissao = Number(sessionStorage.getItem('permissao'));
+
             if (permissao === 1) {
                 setTimeout(() => {
                     window.location = "../dashboardFunc.html";
                 }, 1000);
+                console.log("Funcionário");
+                
             }
 
             if (permissao === 2 || permissao === 3) {
                 setTimeout(() => {
                     window.location = "../dashboardGerente.html";
                 }, 1000);
+                console.log("Gerente ou Suporte");
             }
         })
         .catch(err => {
