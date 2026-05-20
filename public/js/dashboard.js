@@ -1,3 +1,9 @@
+const nome = sessionStorage.getItem('nome');
+const cargo = sessionStorage.getItem('cargo');
+
+document.getElementById("nomeUsuario").textContent = nome;
+document.getElementById("cargoUsuario").textContent = cargo;
+
 const tabData = {
         agua: {
           porcentagem: "23%",
@@ -72,3 +78,4 @@ const tabData = {
       document.querySelectorAll(".tabBtn").forEach(btn => {
         btn.addEventListener("click", () => trocarTab(btn.dataset.tab));
       });
+
