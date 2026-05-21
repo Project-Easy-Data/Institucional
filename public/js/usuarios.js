@@ -31,11 +31,6 @@ function confirmar() {
     }
 
     const senhaTemporaria = gerarSenhaTemporaria(10);
-    
-    sessionStorage.setItem('permissao', permissao);
-    sessionStorage.setItem('nome', resultado.nome);
-    sessionStorage.setItem('cargo', resultado.cargo);
-
 
     fetch("/funcionarios/cadastrar", {
         method: "POST",
