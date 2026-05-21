@@ -1,0 +1,536 @@
+body {
+    min-height: 100vh;
+    background-color: #F1F1F1;
+    display: flex;
+    font-family: 'DM Sans', sans-serif;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo p {
+    color: #f1f1f1;
+    text-decoration: underline;
+}
+
+.nomeCargo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.nomeCargo .perfil {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nomeCargo .perfil img {
+    border-radius: 4vw;
+    width: 100%;
+}
+
+.nomeCargo .username .nome {
+    font-size: 1.4vw;
+    color: #010101;
+}
+
+.nomeCargo .username .cargo {
+    font-size: 1vw;
+    color: #010101;
+}
+
+.sair button {
+    padding: 0.5vw;
+    width: 5vw;
+    color: #f1f1f1;
+    background-color: #002645;
+    font-size: 1.4vw;
+    border-radius: 0.6vw;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    margin-left: 15%;
+    padding: 20px;
+    flex: 1;
+    min-height: 100vh;
+}
+
+main #tituloFiltros {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+main #tituloFiltros .titulo h2 {
+    font-size: 2vw;
+    letter-spacing: 0.3vw;
+    color: #002645;
+    border-radius: 0.6vw;
+}
+
+main #tituloFiltros .titulo {
+  position: relative;
+  width: 100%;    
+  text-align: center;     
+}
+
+.btn-baixar-relatorio {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0.5vw 1.2vw;
+  background-color: #002645;
+  color: #f1f1f1;
+  font-size: 0.9vw;
+  font-family: 'DM Sans', sans-serif;
+  border: none;
+  border-radius: 0.6vw;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease;
+}
+
+.btn-baixar-relatorio:hover {
+  background-color: #00466E;
+}
+
+main #tituloFiltros .filtros {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+
+main #tituloFiltros .filtros select {
+    width: 5vw;
+    text-align: center;
+    background-color: #D9D9D9;
+    font-size: 0.8vw;
+    color: #002645;
+    border-radius: 0.4vw;
+}
+
+main #tituloFiltros .filtros .filtro {
+    text-align: center;
+}
+
+main #tituloFiltros .filtros .filtro p {
+    color: #002645;
+    font-size: 1vw;
+}
+
+main #infosCidades {
+    display: flex;
+    justify-content: center;
+    margin-top: 2vw;
+    gap: 2vw;
+}
+
+main #infosCidades .scoreCidade {
+    background-color: #FBFBFD;
+    border: 1px solid #002645;
+    padding: 1vw;
+    border-radius: 1vw;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    height: 11vw;
+}
+
+main #infosCidades .scoreCidade .notaCidade {
+    display: flex;
+    gap: 2vw;
+    align-items: center;
+}
+
+main #infosCidades .scoreCidade .notaCidade .notaBarra .notaInfra p {
+    font-size: 1vw;
+    font-weight: 600;
+}
+
+main #infosCidades .scoreCidade .tituloScore h2 {
+    color: #002645;
+    font-size: 1.2vw;
+}
+
+main #infosCidades .scoreCidade .notaCidade .notaGrafico {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+
+main #infosCidades .scoreCidade .notaCidade .notaGrafico p {
+    font-size: 1vw;
+}
+
+main #infosCidades .scoreCidade .notaCidade .notaGrafico #circulo {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #002645;
+    border-radius: 50%;
+    height: 2.5vw;
+    width: 2.5vw;
+    padding: 2vw;
+    font-size: 1vw;
+}
+
+main #infosCidades .scoreCidade .notaCidade .notaBarra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+main #infosCidades .scoreCidade .notaCidade .notaBarra p {
+    color: #002645;
+    font-size: 0.8vw;
+}
+
+main #infosCidades .notaCidade .potencialCidade .potencial p {
+    color: #002645;
+    font-size: 1vw;
+}
+
+main #infosCidades .notaCidade .potencialCidade .areasPotenciais ul {
+    text-align: center;
+}
+
+main #infosCidades .notaCidade .potencialCidade .areasPotenciais ul li {
+    color: #002645;
+    font-size: 0.8vw;
+}
+
+main #infosCidades .fatoresCriticos {
+    border: 1px solid #002645;
+    border-radius: 1vw;
+    width: 30%;
+    padding: 0.7vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #EBE7E9;
+    height: 11vw;
+}
+
+main #infosCidades .fatoresCriticos .tituloFatores p {
+    color: #002645;
+    font-size: 1.2vw;
+    font-weight: 600;
+}
+
+main #infosCidades .fatoresCriticos .listaFatores {
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+main #infosCidades .fatoresCriticos .listaFatores .icone {
+    font-size: 1.5vw;
+}
+
+main #infosCidades .fatoresCriticos .listaFatores .deficitSaneamento .icone {
+    color: #ff0000;
+}
+
+main #infosCidades .fatoresCriticos .listaFatores .riscoInundacao .icone {
+    color: #bdbd3783;
+}
+
+main #infosCidades .fatoresCriticos .listaFatores .crescimentoPopulacional .icone {
+    color: #057405;
+}
+
+main #infosCidades .fatoresCriticos .listaFatores .porcentagem {
+    font-size: 1.4vw;
+    font-weight: 600;
+    color: #002645;
+}
+
+main #infosCidades .fatoresCriticos .listaFatores .tituloDeficit,
+main #infosCidades .fatoresCriticos .listaFatores .tituloRisco,
+main #infosCidades .fatoresCriticos .listaFatores .tituloCrescimento {
+    font-size: 1vw;
+    color: #002645;
+}
+
+main #titulo {
+    font-size: 1.6vw;
+    text-align: center;
+    margin-top: 2vw;
+}
+
+main #infoSaneamentoGeral {
+    border: 1px solid #010101;
+    width: 80%;
+    margin-left: 8vw;
+    height: 22vw;
+    border-radius: 1vw;
+    display: flex;
+}
+
+main #infoSaneamentoGeral .containerCategoria {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    text-align: center;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn {
+    width: 25%;
+    height: 3vw;
+    border-right: 1px solid #010101;
+    border-bottom: 1px solid #010101;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .aguaPotavel {
+    border-radius: 1vw 0 0 0;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .aguaPotavel.ativo {
+    background-color: #58A8D6;
+} 
+
+main #infoSaneamentoGeral .containerCategoria .header .esgoto.ativo {
+    background-color: #0566AC;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .residuos.ativo {
+    background-color: #CA6A04;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .drenagem.ativo {
+    background-color: #048233;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo p {
+    color: #f1f1f1;
+    text-decoration: underline;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo .iconeDash {
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    padding: 1.5px;
+    width: 1.5vw;
+    box-sizing: content-box;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .esgoto {
+    background-color: #EBF1FB;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .residuos {
+    background-color: #FDF1E0;
+}
+
+
+main #infoSaneamentoGeral .containerCategoria .header .drenagem {
+    background-color: #F1F3ED;
+    border-radius: 0 1vw 0 0;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .aguaPotavel:hover {
+    background-color: #1a5f82;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .esgoto:hover {
+    background-color: #023a6b;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .residuos:hover {
+    background-color: #7a3e00;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .drenagem:hover {
+    background-color: #024d1e;
+}
+
+main #infoSaneamentoGeral .containerCategoria .header .tabBtn:hover p {
+    color: #f1f1f1;
+    transition: 0.2s ease-in-out;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 20vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso {
+    background-color: #E7F2FC;
+    height: 8vw;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.9vw;
+    border-radius: 1vw;
+    color: #002645;
+    padding: 0.5vw;
+    border: 1px solid #010101;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso p {
+    text-align: center;
+    font-size: 1vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso span {
+    font-weight: 600;
+    font-size: 1.5vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual {
+    border: 1px solid #002645;
+    border-radius: 1vw;
+    padding: 1vw;
+    height: 8vw;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9vw;
+    color: #002645;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual p {
+    text-align: center;
+    font-size: 1.2vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual {
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual i {
+    font-size: 2.3vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual p {
+    font-size: 1.3vw;
+    font-weight: 600;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual .aumento {
+    background-color: #002645;
+    color: #f1f1f1;
+    padding: 0.4vw;
+    border-radius: 0.7vw;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .grafico {
+    width: 50%;
+    height: 80%;
+    position: relative;
+}
+
+main #infoSaneamentoGeral .containerCategoria .main .grafico canvas {
+    width: 30vw;
+    height: 15vw;
+}
+
+.risco {
+    display: flex;
+    gap: 1vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.infosJuntas {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vw;
+}
+
+#evolucao {
+    text-align: center;
+    font-size: 1.4vw;
+    color: #002645;
+    font-weight: 600;
+}
+
+.icones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+#icones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.iconeDash {
+    width: 10%;
+}
+
+.semAcesso p {
+    font-size: 0.5vw;
+}
+
+.tituloCategoria {
+    text-align: center;
+    font-size: 1.4vw;
+    color: #002645;
+    font-weight: 600;
+    margin-top: 1.3vw;
+    margin-bottom: 0.5vw;
+}
+
+#crescimento {
+    width: 35%;
+}
+
+.crescimento {
+    width: 40%;
+}
+
+#tabTituloGrafico {
+    text-align: center;
+    font-size: 1.4vw;
+    color: #002645;
+    font-weight: 600;
+}
+

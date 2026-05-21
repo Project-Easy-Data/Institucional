@@ -32,6 +32,8 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuariosRouter);
 app.use("/funcionarios", funcionariosRouter);
 app.use("/deletar", deletarRouter);
+app.use("/funcionarios", funcionariosRouter);
+app.use("/deletar", deletarRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
