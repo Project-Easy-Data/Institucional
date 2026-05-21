@@ -1,3 +1,9 @@
+const nome = sessionStorage.getItem('nome');
+const cargo = sessionStorage.getItem('cargo');
+
+document.getElementById("nome").innerHTML = nome;
+document.getElementById("cargo").innerHTML = cargo;
+
 const tabData = {
         agua: {
           porcentagem: "23%",
@@ -56,10 +62,10 @@ const tabData = {
         if (!d) return;
         
 
-        document.getElementById("tabPorcentagem").textContent   = d.porcentagem;
-        document.getElementById("tabHabitantes").textContent    = d.habitantes;
-        document.getElementById("tabDescricao").textContent     = d.descricao;
-        document.getElementById("tabEvolucao").textContent      = d.evolucao;
+        document.getElementById("tabPorcentagem").textContent = d.porcentagem;
+        document.getElementById("tabHabitantes").textContent = d.habitantes;
+        document.getElementById("tabDescricao").textContent = d.descricao;
+        document.getElementById("tabEvolucao").textContent = d.evolucao;
         document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
 
         chartInstance.data.datasets[0].label = d.tituloGrafico;

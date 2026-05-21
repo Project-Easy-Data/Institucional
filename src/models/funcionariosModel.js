@@ -14,7 +14,7 @@ function cadastrar(nome, email, senha, permissao, cargo, empresaId) {
 }
 
 function excluir(id) {
-    var instrucaoSql = `DELETE FROM funcionario WHERE id_funcionario = ${id};`;
+    var instrucaoSql = `DELETE FROM Usuario WHERE id_funcionario = ${id};`;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }

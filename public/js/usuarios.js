@@ -32,6 +32,8 @@ function confirmar() {
 
     const senhaTemporaria = gerarSenhaTemporaria(10);
 
+    sessionStorage.setItem('permissao', permissao);
+
     fetch("/funcionarios/cadastrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -68,10 +70,7 @@ function confirmar() {
 }
 
 function excluir(botao, id) {
-    console.log("excluir chamado, id:", id);
-    fetch("/deletar/" + id, {
-        method: "DELETE"
-    })
+    fetch("/deletar/" + id, { method: "DELETE" })
     .then(function(resposta) {
         if (resposta.ok) {
             botao.closest(".linha").remove();
