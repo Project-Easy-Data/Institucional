@@ -64,7 +64,6 @@ function entrar() {
             erroMsg.textContent = "Login realizado com sucesso!";
             erroMsg.style.color = "#90EE90";
 
-            sessionStorage.setItem('permissao', permissao);
             sessionStorage.setItem('nome', resultado.nome);
             sessionStorage.setItem('cargo', resultado.cargo);
 
