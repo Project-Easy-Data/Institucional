@@ -104,3 +104,24 @@ function gerarSenhaTemporaria(tamanho) {
     }
     return senha;
 }
+
+    function trocarTab(tab) {
+        const d = tabData[tab];
+        if (!d) return;
+    
+
+        document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("ativo"));
+        document.querySelector(`.tabBtn[data-tab="${tab}"]`).classList.add("ativo");
+      }
+
+      document.querySelectorAll(".tabBtn").forEach(btn => {
+        btn.addEventListener("click", () => trocarTab(btn.dataset.tab));
+      });
+
+      const links = document.querySelectorAll('aside .btns a');
+
+      links.forEach(link => {
+          if (link.href === window.location.href) {
+              link.classList.add('ativo');
+          }
+      });

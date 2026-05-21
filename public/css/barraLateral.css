@@ -35,6 +35,11 @@ aside .btns a {
     color: #010101;
 }
 
+aside .btns a.ativo {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
 .nomeCargo {
     display: flex;
     align-items: center;

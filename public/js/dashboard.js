@@ -60,6 +60,7 @@ const tabData = {
       function trocarTab(tab) {
         const d = tabData[tab];
         if (!d) return;
+        
 
         document.getElementById("tabPorcentagem").textContent = d.porcentagem;
         document.getElementById("tabHabitantes").textContent = d.habitantes;
@@ -79,3 +80,10 @@ const tabData = {
         btn.addEventListener("click", () => trocarTab(btn.dataset.tab));
       });
 
+      const links = document.querySelectorAll('aside .btns a');
+
+      links.forEach(link => {
+          if (link.href === window.location.href) {
+              link.classList.add('ativo');
+          }
+      });
