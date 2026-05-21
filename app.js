@@ -19,15 +19,19 @@ var indexRouter = require("./src/routes/index");
 var usuariosRouter = require("./src/routes/usuarios");
 var funcionariosRouter = require("./src/routes/funcionarios");
 var deletarRouter = require("./src/routes/deletar");
+var ragRouter = require("./src/routes/rag");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use("/rag", ragRouter);
 
 app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuariosRouter);
+app.use("/funcionarios", funcionariosRouter);
+app.use("/deletar", deletarRouter);
 app.use("/funcionarios", funcionariosRouter);
 app.use("/deletar", deletarRouter);
 
