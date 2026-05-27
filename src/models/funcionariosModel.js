@@ -7,8 +7,10 @@ function cadastrar(nome, email, senha, permissao, cargo, empresaId) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO Usuario (nome, email, senha, cargo, permissao, status, Empresa_id_Empresa) VALUES ('${nome}', '${email}', '${senha}', '${cargo}', ${permissao}, 'ATIVO', ${empresaId});
-    `;
+    INSERT INTO Usuario (nome, email, senha, fk_Cargo, permissao, status, fk_Empresa) 
+    VALUES ('${nome}', '${email}', '${senha}', ${cargo}, ${permissao}, 'ATIVO', ${empresaId});
+`;
+
     
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
