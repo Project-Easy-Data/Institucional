@@ -29,7 +29,7 @@ function confirmar() {
         return;
     }
 
-    if (!cargo) {
+    if (!cargoSelect) {
         document.getElementById("erroCargo").style.display = "block";
         return;
     }
@@ -58,7 +58,7 @@ function confirmar() {
             novaLinha.innerHTML = `
                 <p>${nome}</p>
                 <p>${email}</p>
-                <p>${cargo}</p>
+                <p>${cargoSelect}</p>
                 <button class="excluir" onclick="excluir(this, ${dados.id})">Excluir</button>
             `;
             listaUsuarios.appendChild(novaLinha);
