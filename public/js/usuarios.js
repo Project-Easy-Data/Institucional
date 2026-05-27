@@ -59,7 +59,7 @@ function confirmar() {
                 <p>${nome}</p>
                 <p>${email}</p>
                 <p>${cargoSelect}</p>
-                <button class="excluir" onclick="excluir(this, ${dados.id})">Excluir</button>
+                <button class="excluir" onclick="excluir(this, ${dados.insertId})">Excluir</button>
             `;
             listaUsuarios.appendChild(novaLinha);
             fecharModal();

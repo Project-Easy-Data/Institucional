@@ -18,7 +18,6 @@ var app = express();
 var indexRouter = require("./src/routes/index");
 var usuariosRouter = require("./src/routes/usuarios");
 var funcionariosRouter = require("./src/routes/funcionarios");
-var deletarRouter = require("./src/routes/deletar");
 var ragRouter = require("./src/routes/rag");
 
 app.use(express.json());
