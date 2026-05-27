@@ -3,16 +3,20 @@ const sobrepor = document.getElementById("sobrepor");
 function confirmar() {
     const nome = document.getElementById("inputNome").value;
     const email = document.getElementById("inputEmail").value;
-    const cargo = document.getElementById("selectCargo").value;
+    const cargoSelect = document.getElementById("selectCargo").value;
 
-    let permissao = cargo;
+    let permissao;
+    let cargoId;
 
-    if (permissao === 'Gerente') {
+    if (cargoSelect === 'Gerente') {
         permissao = 3;
-    } else if (permissao === 'Funcionário') {
+        cargoId = 1; // 
+    } else if (cargoSelect === 'Funcionário') {
         permissao = 1;
+        cargoId = 2;
     } else {
         permissao = 2;
+        cargoId = 3;
     }
 
     if (!nome) {
@@ -38,12 +42,12 @@ function confirmar() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            nomeServer: nome,
-            emailServer: email,
-            cargoServer: cargo,
-            permissaoServer: permissao,
-            senhaServer: senhaTemporaria
-        })
+        nomeServer: nome,
+        emailServer: email,
+        cargoServer: cargoId,   
+        permissaoServer: permissao,
+        senhaServer: senhaTemporaria
+    })
     })
     .then(resposta => {
     if (resposta.ok) {
