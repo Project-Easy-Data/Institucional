@@ -6,28 +6,34 @@ document.getElementById("cargo").innerHTML = cargo;
 
 const tabData = {
         agua: {
-          porcentagem: "23%",
-          habitantes: "44.876",
+          porcentagem: "8,3%",
+          habitantes: "162.789",
           descricao: "Sem acesso à água potável",
-          evolucao: "+9.5%",
-          tituloGrafico: "Evolução - Distribuição de Água Potável",
-          dados: [50, 60, 70, 80, 87],
+          atendidoPorcentagem: "91,7%",
+          atendidoHabitantes: "1.800.937",
+          atendidoDescricao: "População atendida",
+          tituloGrafico: "População atendida (%)",
+          dados: [91.7, 87.3, 83.4]
         },
         esgoto: {
           porcentagem: "23%",
           habitantes: "44.876",
           descricao: "Sem acesso ao tratamento de Esgoto",
-          evolucao: "+29.5%",
-          tituloGrafico: "Evolução - Acesso ao Esgoto",
-          dados: [50, 60, 70, 80, 87],
+          atendidoPorcentagem: "77%",
+          atendidoHabitantes: "1.918.850",
+          atendidoDescricao: "População atendida",
+          tituloGrafico: "População atendida (%)",
+          dados: [50, 60, 70]
         },
         residuos: {
-          porcentagem: "23%",
-          habitantes: "44.876",
+          porcentagem: "8,3%",
+          habitantes: "162.789",
           descricao: "Sem coleta de Resíduos",
-          evolucao: "+9.5%",
-          tituloGrafico: "Evolução - Redução de Resíduos",
-          dados: [50, 60, 70, 80, 87],
+          atendidoPorcentagem: "91,7%",
+          atendidoHabitantes: "1.800.937",
+          atendidoDescricao: "População atendida",
+          tituloGrafico: "População atendida (%)",
+          dados: [91.7, 87.3, 83.4]
         },
         drenagem: {
           porcentagem: "23%",
@@ -39,23 +45,79 @@ const tabData = {
         },
       };
 
-      const chartInstance = new Chart(document.getElementById("myChart"), {
-        type: "line",
+      const labelAcimaBarras = {
+        id: 'labelAcimaBarras',
+        afterDatasetsDraw(chart) {
+            const { ctx, data, scales: { x, y } } = chart;
+            ctx.save();
+
+            data.datasets[0].data.forEach((value, index) => {
+                const xPos = x.getPixelForValue(index);
+                const yPos = y.getPixelForValue(value);
+                const texto = value + "%";
+
+                ctx.font = 'bold 12px DM Sans, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'bottom';
+
+                const padding = { x: 6, y: 4 };
+                const largura = ctx.measureText(texto).width + padding.x * 2;
+                const altura = 18;
+                const rectX = xPos - largura / 2;
+                const rectY = yPos - altura - 4;
+
+                ctx.fillStyle = 'rgba(255,255,255,0.85)';
+                ctx.beginPath();
+                ctx.roundRect(rectX, rectY, largura, altura, 4);
+                ctx.fill();
+
+                ctx.fillStyle = '#002645';
+                ctx.fillText(texto, xPos, yPos - 4);
+            });
+
+            ctx.restore();
+        }
+    };
+
+    const chartInstance = new Chart(document.getElementById("myChart"), {
+        type: "bar",
         data: {
-          labels: ["2018", "2019", "2020", "2021", "2024"],
-          datasets: [{
-            label: "",
-            data: tabData.agua.dados,
-            borderWidth: 1,
-          }],
+            labels: ["Município", "Estado", "Brasil"],
+            datasets: [{
+                label: "",
+                data: tabData.agua.dados,
+                borderWidth: 1,
+                backgroundColor: ["#002645", "#0A5E9A", "#58A8D6"],
+            }],
         },
         options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: { y: { min: 50, max: 90 } },
-          plugins: { legend: { display: false } },
+            responsive: true,
+            maintainAspectRatio: false,
+            layout: {
+                padding: { top: 20, bottom: 0}
+            },
+            scales: {
+                y: {
+                    min: 0,
+                    max: 100,
+                    display: false
+                },
+                x: {
+                  ticks: {
+                    font: { size: 11},
+                    color: '#002645'
+                  },
+                  grid: { display: false},
+                  border: {display: false}
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                datalabels: { display: false }
+            }
         },
-      });
+        plugins: [labelAcimaBarras]
+    });
 
       function trocarTab(tab) {
         const d = tabData[tab];
@@ -65,11 +127,14 @@ const tabData = {
         document.getElementById("tabPorcentagem").textContent = d.porcentagem;
         document.getElementById("tabHabitantes").textContent = d.habitantes;
         document.getElementById("tabDescricao").textContent = d.descricao;
-        document.getElementById("tabEvolucao").textContent = d.evolucao;
+        document.getElementById("tabAtendidoPorcentagem").textContent = d.atendidoPorcentagem;
+        document.getElementById("tabAtendidoHabitantes").textContent = d.atendidoHabitantes;
+        document.getElementById("tabAtendidoDescricao").textContent = d.atendidoDescricao;
         document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
 
-        chartInstance.data.datasets[0].label = d.tituloGrafico;
-        chartInstance.data.datasets[0].data  = d.dados;
+
+        chartInstance.data.labels = d.labels ?? ["Município", "Estado", "Brasil"];
+        chartInstance.data.datasets[0].data = d.dados;
         chartInstance.update();
 
         document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("ativo"));
@@ -80,6 +145,8 @@ const tabData = {
         btn.addEventListener("click", () => trocarTab(btn.dataset.tab));
       });
 
+      trocarTab("agua");
+
       const links = document.querySelectorAll('aside .btns a');
 
       links.forEach(link => {
@@ -87,3 +154,5 @@ const tabData = {
               link.classList.add('ativo');
           }
       });
+
+      
