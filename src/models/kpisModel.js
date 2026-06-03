@@ -1,53 +1,65 @@
 var database = require("../database/config");
 
-function buscarPorEstado(idEstado) {
+function listarMunicipios() {
     var instrucaoSql = `
         SELECT 
-            ds.populacao_atendida_esgoto,
-            ds.populacao_urbana_residente_esgoto,
-            ds.populacao_urbana_atendida_esgoto,
-            ds.populacao_urbana_residente_esgoto_ibge,
-            ds.extensao_rede_esgoto,
-            e.sigla_estado,
-            e.nome_estado
-        FROM dados_saneamento ds
-            INNER JOIN estados e ON ds.estados_id_estados = e.id_estados
-        WHERE ds.estados_id_estados = ${idEstado};
+            m.idMunicipios,
+            m.nome AS nome_municipio,
+            uf.sigla,
+            uf.nome AS nome_estado
+        FROM Municipio m
+            INNER JOIN Unidade_Federativa uf ON m.fk_Unidade_Federativa = uf.idUnidade_Federativa
+        ORDER BY m.nome;
     `;
-    console.log("Executando instrução SQL:\n" + instrucaoSql);
+    console.log("Executando:\n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
-function listarEstados() {
+function buscarPorMunicipio(idMunicipio) {
     var instrucaoSql = `
-        SELECT id_estados, sigla_estado, nome_estado
-        FROM estados
-        ORDER BY nome_estado;
+        SELECT 
+            ds.idDados_Saneamento,
+            ds.ano_referencia,
+            ds.agua_potavel,
+            ds.esgoto,
+            ds.residuos,
+            ds.drenagem,
+            ds.observacao,
+            m.nome AS nome_municipio,
+            uf.sigla,
+            uf.nome AS nome_estado
+        FROM Dados_Saneamento ds
+            INNER JOIN Municipio m ON ds.fk_Municipio = m.idMunicipios
+            INNER JOIN Unidade_Federativa uf ON m.fk_Unidade_Federativa = uf.idUnidade_Federativa
+        WHERE ds.fk_Municipio = ${idMunicipio}
+        ORDER BY ds.ano_referencia DESC;
     `;
-    console.log("Executando instrução SQL:\n" + instrucaoSql);
+    console.log("Executando:\n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarResumoGeral() {
     var instrucaoSql = `
         SELECT 
-            e.sigla_estado,
-            e.nome_estado,
-            SUM(ds.populacao_atendida_esgoto) AS total_atendida_esgoto,
-            SUM(ds.populacao_urbana_residente_esgoto) AS total_urbana_residente,
-            SUM(ds.populacao_urbana_atendida_esgoto) AS total_urbana_atendida,
-            SUM(ds.extensao_rede_esgoto) AS total_extensao_rede
-        FROM dados_saneamento ds
-            INNER JOIN estados e ON ds.estados_id_estados = e.id_estados
-        GROUP BY e.id_estados, e.sigla_estado, e.nome_estado
-        ORDER BY e.nome_estado;
+            m.nome AS nome_municipio,
+            uf.sigla,
+            uf.nome AS nome_estado,
+            SUM(ds.agua_potavel) AS total_agua,
+            SUM(ds.esgoto)       AS total_esgoto,
+            SUM(ds.residuos)     AS total_residuos,
+            SUM(ds.drenagem)     AS total_drenagem
+        FROM Dados_Saneamento ds
+            INNER JOIN Municipio m ON ds.fk_Municipio = m.idMunicipios
+            INNER JOIN Unidade_Federativa uf ON m.fk_Unidade_Federativa = uf.idUnidade_Federativa
+        GROUP BY m.idMunicipios, m.nome, uf.sigla, uf.nome
+        ORDER BY m.nome;
     `;
-    console.log("Executando instrução SQL:\n" + instrucaoSql);
+    console.log("Executando:\n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 module.exports = {
-    buscarPorEstado,
-    listarEstados,
+    listarMunicipios,
+    buscarPorMunicipio,
     buscarResumoGeral
 };
