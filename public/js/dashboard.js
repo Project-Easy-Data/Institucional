@@ -82,13 +82,18 @@ const tabData = {
     const chartInstance = new Chart(document.getElementById("myChart"), {
         type: "bar",
         data: {
-            labels: ["Município", "Estado", "Brasil"],
+            labels: ["Estado", "Município"],
             datasets: [{
-                label: "",
-                data: tabData.agua.dados,
-                borderWidth: 1,
-                backgroundColor: ["#002645", "#0A5E9A", "#58A8D6"],
-            }],
+                label: "Urbano",
+                data: [91.7, 87.3],
+                backgroundColor: "#002645",
+            },
+            {
+                label: "Rural",
+                data: [8.3, 12.7],
+                backgroundColor: "#58A8D6",
+            },
+          ],
         },
         options: {
             responsive: true,
@@ -112,7 +117,7 @@ const tabData = {
                 }
             },
             plugins: {
-                legend: { display: false },
+                legend: { display: true, position: 'bottom', labels: { color: '#002645', font: { size: 11}}},
                 datalabels: { display: false }
             }
         },
@@ -133,9 +138,12 @@ const tabData = {
         document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
 
 
-        chartInstance.data.labels = d.labels ?? ["Município", "Estado", "Brasil"];
+        chartInstance.data.labels = d.labels ?? ["Estado", "Município"];
         chartInstance.data.datasets[0].data = d.dados;
         chartInstance.update();
+      
+
+        
 
         document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("ativo"));
         document.querySelector(`.tabBtn[data-tab="${tab}"]`).classList.add("ativo");
