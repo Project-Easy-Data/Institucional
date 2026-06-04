@@ -74,6 +74,25 @@ main #tituloFiltros .titulo {
   text-align: center;     
 }
 
+.btn-filtrar {
+    background-color: #002645;
+    color: #f1f1f1;
+    font-size: 0.8vw;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5vw;
+    padding: 0.6vw 1.2vw;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+    margin-left: 0.5vw;
+}
+
+.btn-filtrar:hover {
+    background-color: #00466E;
+}
+
 .btn-baixar-relatorio {
   position: absolute;
   right: 0;
@@ -194,6 +213,17 @@ main #infosCidades .scoreCidade .notaCidade .notaBarra p {
     font-size: 0.8vw;
 }
 
+main #infosCidades .scoreCidade .tituloScore {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+main #infosCidades .scoreCidade .tituloScore h2 {
+    margin: 0;
+    white-space: nowrap;
+}
+
 main #infosCidades .notaCidade .potencialCidade .potencial p {
     color: #002645;
     font-size: 1vw;
@@ -206,6 +236,39 @@ main #infosCidades .notaCidade .potencialCidade .areasPotenciais ul {
 main #infosCidades .notaCidade .potencialCidade .areasPotenciais ul li {
     color: #002645;
     font-size: 0.8vw;
+}
+
+.tooltip-trigger {
+    position: relative;
+    cursor: help;
+    font-size: 1.2vw;
+    color: #002645;
+    margin-left: 0.5vw;
+    display: inline-block;
+}
+
+.tooltip-content {
+    display: none;
+    position: absolute;
+    background: #002645;
+    color: #fff;
+    font-size: 0.9vw;
+    border-radius: 0.5vw;
+    padding: 0.8vw;
+    width: 18vw;
+    top: 0.5vw;
+    left: 100%;
+    margin-left: 0.6vw; 
+    transform: none;
+    z-index: 10;
+    box-shadow: 0 0.5vw 1vw rgba(0,0,0,0.2);
+    text-align: left;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+.tooltip-trigger:hover .tooltip-content {
+  display: block;
 }
 
 .populacaoCidade {

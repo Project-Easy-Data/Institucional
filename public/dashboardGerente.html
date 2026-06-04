@@ -37,8 +37,8 @@
           <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
         </div>
         <div class="username">
-          <p id="nome" class="nome"></p>
-          <p id="cargo" class="cargo"></p>
+          <p id="nome" class="nome">João</p>
+          <p id="cargo" class="cargo">Gerente</p>
         </div>
       </div>
 
@@ -91,14 +91,27 @@
               <option value="ouroPreto">Ouro Preto</option>
             </select>
           </div>
+
+          <button class="btn-filtrar" id="btnFiltrar" type="button">
+            Aplicar Filtro
+          </button>
         </div>
       </section>
 
       <section id="infosCidades">
         <div class="scoreCidade">
           <div class="tituloScore">
-            <h2>Score da Cidade</h2>
-          </div>
+  <h2>Score da Cidade</h2>
+  <span class="tooltip-trigger">
+    <i class="fa-solid fa-circle-question"></i>
+    <div class="tooltip-content">
+      <strong>Como o Score é calculado?</strong><br>
+      <strong>Infraestrutura (0–10):</strong> média das notas de Água Potável, Esgoto, Resíduos e Drenagem.<br>
+      <strong>Risco (0–10):</strong> nota baseada em fatores críticos (déficit, inundação, etc).<br>
+      <strong>Score Total (0–10):</strong> combinação das notas de Infraestrutura e Risco (ex: média ponderada).
+    </div>
+  </span>
+</div>
 
           <div class="notaCidade">
             <div class="notaGrafico">
