@@ -93,27 +93,6 @@ main #tituloFiltros .titulo {
     background-color: #00466E;
 }
 
-.btn-baixar-relatorio {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 0.5vw 1.2vw;
-  background-color: #002645;
-  color: #f1f1f1;
-  font-size: 0.9vw;
-  font-family: 'DM Sans', sans-serif;
-  border: none;
-  border-radius: 0.6vw;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.3s ease;
-}
-
-.btn-baixar-relatorio:hover {
-  background-color: #00466E;
-}
-
 main #tituloFiltros .filtros {
     display: flex;
     align-items: center;
@@ -121,6 +100,68 @@ main #tituloFiltros .filtros {
     gap: 1vw;
     margin-top: 0.5vw;
     margin-bottom: 0.5vw;
+}
+
+.toggle-slack {
+    position: absolute;
+    right: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3vw;
+}
+
+.toggle-label {
+    font-size: 0.8vw;
+    color: #002645;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 3vw;
+    height: 1.5vw;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    inset: 0;
+    background-color: #C4C4C4;
+    border-radius: 1.5vw;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    height: 1.1vw;
+    width: 1.1vw;
+    left: 0.2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: #002645;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateY(-50%) translateX(1.5vw);
 }
 
 main #tituloFiltros .filtros select {
