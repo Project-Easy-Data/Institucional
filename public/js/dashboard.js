@@ -36,12 +36,14 @@ const tabData = {
           dados: [91.7, 87.3, 83.4]
         },
         drenagem: {
-          porcentagem: "23%",
-          habitantes: "44.876",
-          descricao: "Sem acesso à Drenagem adequada",
-          evolucao: "+9.5%",
-          tituloGrafico: "Evolução - Acesso à Drenagem",
-          dados: [50, 60, 70, 80, 87],
+          porcentagem: "52,1%",
+          habitantes: "744.521",
+          descricao: "Sem cobertura de drenagem",
+          atendidoPorcentagem: "47,9%",
+          atendidoHabitantes: "680.432",
+          atendidoDescricao: "Cobertura de drenagem",
+          tituloGrafico: "Cobertura de drenagem (%)",
+          dados: [62.3, 47.9],
         },
       };
 
@@ -128,6 +130,22 @@ const tabData = {
         const d = tabData[tab];
         if (!d) return;
         
+        chartInstance.data.labels = ["Estado", "Município"];
+
+        if (tab === "drenagem") {
+          chartInstance.data.datasets = [{
+            label: "Índice de Drenagem",
+            data: d.dados,
+            backgroundColor: "#002645",
+          }];
+        } else {
+          chartInstance.data.datasets = [
+            { label: "Urbano", data: d.dados, backgroundColor: "#002645" },
+            { label: "Rural",  data: [8.3, 12.7],  backgroundColor: "#58A8D6" },
+          ];
+        }
+
+        chartInstance.update();
 
         document.getElementById("tabPorcentagem").textContent = d.porcentagem;
         document.getElementById("tabHabitantes").textContent = d.habitantes;
@@ -137,13 +155,6 @@ const tabData = {
         document.getElementById("tabAtendidoDescricao").textContent = d.atendidoDescricao;
         document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
 
-
-        chartInstance.data.labels = d.labels ?? ["Estado", "Município"];
-        chartInstance.data.datasets[0].data = d.dados;
-        chartInstance.update();
-      
-
-        
 
         document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("ativo"));
         document.querySelector(`.tabBtn[data-tab="${tab}"]`).classList.add("ativo");
