@@ -20,7 +20,6 @@ var usuariosRouter = require("./src/routes/usuarios");
 var funcionariosRouter = require("./src/routes/funcionarios");
 var deletarRouter = require("./src/routes/deletar");
 var ragRouter = require("./src/routes/rag");
-var kpisRouter = require("./src/routes/KPIs");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +32,6 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuariosRouter);
 app.use("/funcionarios", funcionariosRouter);
 app.use("/deletar", deletarRouter);
-app.use("/kpis", kpisRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
