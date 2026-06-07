@@ -48,7 +48,7 @@
             <p><a href=""><i class="fa-solid fa-house"></i> Indicadores</a></p>
           </li>
           <li>
-            <p><a href="usuarios.html"><i class="fa-solid fa-user-group"></i> Usuários</a></p>
+            <p><a id="linkUsuarios" href="usuarios.html"><i class="fa-solid fa-user-group"></i> Usuários</a></p>
           </li>
           <li>
             <p><a href="configuracao.html"><i class="fa-solid fa-gear"></i> Configuração</a></p>
@@ -260,3 +260,10 @@
     <script src="js/dashboard.js"></script>
   </body>
 </html>
+
+<script>
+    const permissao = Number(sessionStorage.getItem('permissao'));
+    if (permissao === 3) {
+        document.getElementById('linkUsuarios').href = 'usuariosSupporte.html';
+    }
+</script>
