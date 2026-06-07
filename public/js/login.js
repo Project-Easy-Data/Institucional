@@ -73,7 +73,7 @@ function entrar() {
 
             const permissaoUsuario = Number(sessionStorage.getItem('permissao'));
 
-            if (permissaoUsuario === 1) {
+            if (permissaoUsuario === 2) {
                 setTimeout(() => {
                     window.location = "../dashboardFunc.html";
                 }, 1000);
@@ -81,7 +81,7 @@ function entrar() {
                 
             }
 
-            if (permissaoUsuario === 2 || permissaoUsuario === 3) {
+            if (permissaoUsuario === 1 || permissaoUsuario === 3) {
                 setTimeout(() => {
                     window.location = "../dashboardGerente.html";
                 }, 1000);
