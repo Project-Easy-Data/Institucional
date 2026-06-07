@@ -9,13 +9,13 @@ function confirmar() {
     let cargoId;
 
     if (cargoSelect === 'Gerente') {
-        permissao = 3;
-        cargoId = 1; // 
-    } else if (cargoSelect === 'Funcionário') {
         permissao = 1;
+        cargoId = 1;
+    } else if (cargoSelect === 'Funcionário') {
+        permissao = 2;
         cargoId = 2;
     } else {
-        permissao = 2;
+        permissao = 3;
         cargoId = 3;
     }
 
