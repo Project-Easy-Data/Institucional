@@ -6,10 +6,18 @@ function cadastrar(req, res) {
     var cnpj = req.body.cnpjServer;
     var status = req.body.statusServer;
 
-    if (!razao) { return res.status(400).send("Razão social indefinida!"); }
-    if (!email) { return res.status(400).send("Email indefinido!"); }
-    if (!cnpj) { return res.status(400).send("CNPJ indefinido!"); }
-    if (!status) { return res.status(400).send("Status indefinido!"); }
+    if (!razao) { 
+        return res.status(400).send("Razão social indefinida!"); 
+    }
+    if (!email) { 
+        return res.status(400).send("Email indefinido!"); 
+    }
+    if (!cnpj) { 
+        return res.status(400).send("CNPJ indefinido!"); 
+    }
+    if (!status) { 
+        return res.status(400).send("Status indefinido!"); 
+    }
 
     empresaModel.cadastrar(razao, email, cnpj, status)
         .then(function(resultado) { res.json(resultado); })
