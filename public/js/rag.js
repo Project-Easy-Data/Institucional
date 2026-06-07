@@ -35,7 +35,7 @@ async function enviar() {
 
   try {
     const res = await fetch(`${SERVER}/ask?question=${encodeURIComponent(q)}`, {
-      signal: AbortSignal.timeout(60000)
+      signal: AbortSignal.timeout(180000)
     });
 
     const data = await res.json();
@@ -73,4 +73,4 @@ document.getElementById("rag-input").addEventListener("keydown", e => {
   }
 });
 
-verificar();
+window.toggle 

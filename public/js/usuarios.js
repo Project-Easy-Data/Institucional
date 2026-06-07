@@ -129,3 +129,24 @@ function gerarSenhaTemporaria(tamanho) {
               link.classList.add('ativo');
           }
       });
+
+      function carregarUsuarios() {
+    fetch("/funcionarios/listar")
+        .then(res => res.json())
+        .then(function(lista) {
+            const listaUsuarios = document.querySelector(".listaUsuarios");
+            lista.forEach(function(u) {
+                const novaLinha = document.createElement("div");
+                novaLinha.classList.add("linha");
+                novaLinha.innerHTML = `
+                    <p>${u.nome}</p>
+                    <p>${u.email}</p>
+                    <p>${u.cargo}</p>
+                    <button class="excluir" onclick="excluir(this, ${u.id_funcionario})">Excluir</button>
+                `;
+                listaUsuarios.appendChild(novaLinha);
+            });
+        });
+}
+
+document.addEventListener("DOMContentLoaded", carregarUsuarios);
