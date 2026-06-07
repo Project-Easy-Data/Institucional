@@ -1,16 +1,21 @@
 document.addEventListener("DOMContentLoaded", function() {
     var id = sessionStorage.getItem("ID_USUARIO");
-    var nome = sessionStorage.getItem("NOME_USUARIO");
-    var email = sessionStorage.getItem("EMAIL_USUARIO");
-    var cargo = sessionStorage.getItem("CARGO_USUARIO");
+    var nome = sessionStorage.getItem("nome");
+    var email = sessionStorage.getItem("email");
+    var cargo = sessionStorage.getItem("cargo");
 
     if (!id) {
         window.location = "login.html";
         return;
     }
 
-    document.getElementById("nomeUsuario").textContent = nome || "";
-    document.getElementById("cargoUsuario").textContent = cargo || "";
+    if (document.getElementById("nomeUsuario")) {
+        document.getElementById("nomeUsuario").textContent = nome || "";
+    }
+    if (document.getElementById("cargoUsuario")) {
+        document.getElementById("cargoUsuario").textContent = cargo || "";
+    }
+
     document.getElementById("inputNome").value = nome || "";
     document.getElementById("inputEmail").value = email || "";
 });
@@ -38,8 +43,8 @@ document.querySelector(".botaoSalvar").addEventListener("click", function() {
     })
     .then(function(resposta) {
         if (resposta.ok) {
-            sessionStorage.setItem("NOME_USUARIO", nome);
-            sessionStorage.setItem("EMAIL_USUARIO", email);
+            sessionStorage.setItem("nome", nome);
+            sessionStorage.setItem("email", email);
             alert("Alterações salvas com sucesso!");
         } else {
             alert("Erro ao salvar alterações.");

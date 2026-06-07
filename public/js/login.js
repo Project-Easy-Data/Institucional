@@ -66,6 +66,7 @@ function entrar() {
 
             sessionStorage.setItem('nome', resultado.nome);
             sessionStorage.setItem('cargo', resultado.cargo);
+            sessionStorage.setItem('ID_USUARIO', resultado.id_funcionario);  
 
             console.log(resultado);
             console.log(sessionStorage.setItem('permissao', resultado.permissao));
