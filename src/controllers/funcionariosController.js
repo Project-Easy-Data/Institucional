@@ -1,7 +1,7 @@
 var funcionariosModel = require("../models/funcionariosModel");
 
 function cadastrar(req, res) {
-    var nome = req.body.nomeServer
+    var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var permissao = req.body.permissaoServer;
@@ -20,36 +20,22 @@ function cadastrar(req, res) {
         res.status(400).send("Seu cargo está indefinido!");
     } else {
         funcionariosModel.cadastrar(nome, email, senha, cargo, permissao, empresaId)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
-                }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+            .then(function(resultado) { res.json(resultado); })
+            .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
     }
+}
+
+function listar(req, res) {
+    funcionariosModel.listar(1)
+        .then(function(resultado) { res.json(resultado); })
+        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
 }
 
 function excluir(req, res) {
     var id = req.params.id;
     funcionariosModel.excluir(id)
-        .then(function(resultado) {
-            res.json(resultado);
-        })
-        .catch(function(erro) {
-            console.log("\nHouve um erro ao excluir! Erro: ", erro.sqlMessage);
-            res.status(500).json(erro.sqlMessage);
-        });
+        .then(function(resultado) { res.json(resultado); })
+        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
 }
 
-module.exports = {
-    cadastrar,
-    excluir
-}
+module.exports = { cadastrar, excluir, listar };

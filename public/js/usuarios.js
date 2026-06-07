@@ -3,16 +3,20 @@ const sobrepor = document.getElementById("sobrepor");
 function confirmar() {
     const nome = document.getElementById("inputNome").value;
     const email = document.getElementById("inputEmail").value;
-    const cargo = document.getElementById("selectCargo").value;
+    const cargoSelect = document.getElementById("selectCargo").value;
 
-    let permissao = cargo;
+    let permissao;
+    let cargoId;
 
-    if (permissao === 'Gerente') {
+    if (cargoSelect === 'Gerente') {
         permissao = 3;
-    } else if (permissao === 'Funcionário') {
+        cargoId = 1; // 
+    } else if (cargoSelect === 'Funcionário') {
         permissao = 1;
+        cargoId = 2;
     } else {
         permissao = 2;
+        cargoId = 3;
     }
 
     if (!nome) {
@@ -25,7 +29,7 @@ function confirmar() {
         return;
     }
 
-    if (!cargo) {
+    if (!cargoSelect) {
         document.getElementById("erroCargo").style.display = "block";
         return;
     }
@@ -38,12 +42,12 @@ function confirmar() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            nomeServer: nome,
-            emailServer: email,
-            cargoServer: cargo,
-            permissaoServer: permissao,
-            senhaServer: senhaTemporaria
-        })
+        nomeServer: nome,
+        emailServer: email,
+        cargoServer: cargoId,   
+        permissaoServer: permissao,
+        senhaServer: senhaTemporaria
+    })
     })
     .then(resposta => {
     if (resposta.ok) {
@@ -54,8 +58,8 @@ function confirmar() {
             novaLinha.innerHTML = `
                 <p>${nome}</p>
                 <p>${email}</p>
-                <p>${cargo}</p>
-                <button class="excluir" onclick="excluir(this, ${dados.id})">Excluir</button>
+                <p>${cargoSelect}</p>
+                <button class="excluir" onclick="excluir(this, ${dados.insertId})">Excluir</button>
             `;
             listaUsuarios.appendChild(novaLinha);
             fecharModal();
@@ -125,3 +129,24 @@ function gerarSenhaTemporaria(tamanho) {
               link.classList.add('ativo');
           }
       });
+
+      function carregarUsuarios() {
+    fetch("/funcionarios/listar")
+        .then(res => res.json())
+        .then(function(lista) {
+            const listaUsuarios = document.querySelector(".listaUsuarios");
+            lista.forEach(function(u) {
+                const novaLinha = document.createElement("div");
+                novaLinha.classList.add("linha");
+                novaLinha.innerHTML = `
+                    <p>${u.nome}</p>
+                    <p>${u.email}</p>
+                    <p>${u.cargo}</p>
+                    <button class="excluir" onclick="excluir(this, ${u.id_funcionario})">Excluir</button>
+                `;
+                listaUsuarios.appendChild(novaLinha);
+            });
+        });
+}
+
+document.addEventListener("DOMContentLoaded", carregarUsuarios);

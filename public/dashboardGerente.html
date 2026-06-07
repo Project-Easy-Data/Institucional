@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="br">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,6 +21,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
   </head>
 
   <body>
@@ -34,8 +37,8 @@
           <i class="fa-regular fa-user" style="font-size: 2vw; border: 1px solid #010101; border-radius: 50%; padding: 1vw;"></i>
         </div>
         <div class="username">
-          <p id="nome" class="nome"></p>
-          <p id="cargo" class="cargo"></p>
+          <p id="nome" class="nome">João</p>
+          <p id="cargo" class="cargo">Gerente</p>
         </div>
       </div>
 
@@ -62,17 +65,19 @@
       <section id="tituloFiltros">
         <div class="titulo">
           <h2>Indicadores de Saneamento</h2>
-          <button class="btn-baixar-relatorio">Baixar Relatório</button>
+          <div class="toggle-slack">
+            <span class="toggle-label">Notificações Slack</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggleSlack">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
         </div>
 
         <div class="filtros">
           <div class="filtro ano">
-            <p>Ano</p>
-            <select name="ano" id="filtroAno">
-              <option value="2024" selected>2024</option>
-              <option value="2020">2020</option>
-              <option value="2018">2018</option>
-            </select>
+          <p>Ano</p>
+          <span class="badge-referencia" style="background-color: #D9D9D9; color: #002645; padding: 2px 8px; border-radius: 4px; font-size: 0.8vw; font-weight: bold; display: inline-block;">Referência: 2021</span>
           </div>
 
           <div class="filtro estado">
@@ -92,18 +97,31 @@
               <option value="ouroPreto">Ouro Preto</option>
             </select>
           </div>
+
+          <button class="btn-filtrar" id="btnFiltrar" type="button">
+            Aplicar Filtro
+          </button>
         </div>
       </section>
 
       <section id="infosCidades">
         <div class="scoreCidade">
           <div class="tituloScore">
-            <h2>Score da Cidade</h2>
-          </div>
+  <h2>Score da Cidade</h2>
+  <span class="tooltip-trigger">
+    <i class="fa-solid fa-circle-question"></i>
+    <div class="tooltip-content">
+      <strong>Como o Score é calculado?</strong><br>
+      <strong>Infraestrutura (0–10):</strong> média das notas de Água Potável, Esgoto, Resíduos e Drenagem.<br>
+      <strong>Risco (0–10):</strong> nota baseada em fatores críticos (déficit, inundação, etc).<br>
+      <strong>Score Total (0–10):</strong> combinação das notas de Infraestrutura e Risco (ex: média ponderada).
+    </div>
+  </span>
+</div>
 
           <div class="notaCidade">
             <div class="notaGrafico">
-              <svg width="80" height="80" viewBox="0 0 80 80">
+              <svg width="60" height="60" viewBox="0 0 80 80">
                 <circle cx="40" cy="40" r="30" fill="none" stroke="#e0e0e0" stroke-width="6" />
                 <circle
                   cx="40" cy="40" r="30"
@@ -125,8 +143,34 @@
                 <p>Risco: 9/10</p>
               </div>
             </div>
+
+            
+
           </div>
         </div>
+
+        <div class="populacaoCidade">
+          <h2>População</h2>
+
+          <div class="numeroPopulacao">
+            <p>1.963.726</p>
+            <span>habitantes</span>
+          </div>
+
+          <div class="detalhePopulacao">
+            <div>
+              <strong>99,4%</strong>
+              <p>Urbana</p>
+            </div>
+
+            <div>
+              <strong>0,6%</strong>
+              <p>Rural</p>
+            </div>
+          </div>
+        </div>
+
+        
 
         <div class="fatoresCriticos">
           <div class="tituloFatores">
@@ -155,15 +199,11 @@
                 <p>12%</p>
               </div>
             </div>
-            <div class="risco crescimentoPopulacional">
-              <div class="icone">
-                <i class="fa-solid fa-chart-line"></i>
+            <div class="risco classificacaoRisco">
+                <div class="icone" style="color: #057405;"><i class="fa-solid fa-shield-virus"></i></div>
+                <div class="tituloClassificacao" style="font-size: 1vw; color: #002645;"><p>Classificação de Risco</p></div>
+                <div class="porcentagem" style="font-size: 1.4vw; font-weight: 600; color: #002645;"><p id="valClassificacaoRisco">Médio</p></div>
               </div>
-              <div class="tituloCrescimento">
-                <p>Crescimento Populacional</p>
-              </div>
-              <div class="porcentagem">
-                <p>+7%</p>
               </div>
             </div>
           </div>
@@ -193,39 +233,25 @@
           <div class="main">
             <div class="container">
               <div class="percentualAcesso">
-                <div class="infosJuntas">
-                  <div>
-                    <p><span id="tabPorcentagem">23%</span></p>
-                  </div>
-                  <div class="totalHabitantes">
-                    <p><span id="tabHabitantes">44.876</span> habitantes</p>
-                  </div>
-                </div>
-                <div class="semAcesso">
-                  <p id="tabDescricao">Sem acesso à água potável</p>
-                </div>
-              </div>
-              <div class="evolucaoAnual">
-                <div class="tituloEvolucao">
-                  <p>Evolução Anual</p>
-                </div>
-                <div class="percentual">
-                  <img class="crescimento" src="Icones_Dashboard/Crescimento.svg" alt="">
-                  <div class="aumento">
-                    <p id="tabEvolucao">+9.5%</p>
-                  </div>
-                </div>
-              </div>
+                <p class="kpiTitulo" id="tabDescricao">Sem acesso à água potável</p>
+                <p class="kpiPorcentagem"><span id="tabPorcentagem">8,3%</span></p>
+                <p class="kpiPessoas"><span id="tabHabitantes">162.789</span> pessoas sem acesso</p>
+            </div>
+            <div class="populacaoAtendida">
+                <p class="kpiTitulo" id="tabAtendidoDescricao">População atendida</p>
+                <p class="kpiPorcentagem"><span id="tabAtendidoPorcentagem">91,7%</span></p>
+                <p class="kpiPessoas"><span id="tabAtendidoHabitantes">1.800.937</span> habitantes</p>
             </div>
 
+            </div>
             <div class="grafico">
               <p class="evolucao" id="tabTituloGrafico">Evolução - Distribuição de Água Potável</p>
-              <div>
-                <canvas id="myChart" style="max-width: 100%; max-height: 100%;"></canvas>
+              <div style="height: calc(100% - 2vw);">
+                  <canvas id="myChart"></canvas>
               </div>
-            </div>
           </div>
-
+          </div>
+        </div>
         </div>
       </section>
     </main>

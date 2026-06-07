@@ -5,10 +5,6 @@ body {
     font-family: 'DM Sans', sans-serif;
 }
 
-main #infoSaneamentoGeral .containerCategoria .header .tabBtn.ativo p {
-    color: #f1f1f1;
-    text-decoration: underline;
-}
 
 .nomeCargo {
     display: flex;
@@ -78,25 +74,23 @@ main #tituloFiltros .titulo {
   text-align: center;     
 }
 
-.btn-baixar-relatorio {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  padding: 0.5vw 1.2vw;
-  background-color: #002645;
-  color: #f1f1f1;
-  font-size: 0.9vw;
-  font-family: 'DM Sans', sans-serif;
-  border: none;
-  border-radius: 0.6vw;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background-color 0.3s ease;
+.btn-filtrar {
+    background-color: #002645;
+    color: #f1f1f1;
+    font-size: 0.8vw;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5vw;
+    padding: 0.6vw 1.2vw;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s ease;
+    align-self: flex-end;
+    margin-left: 0.5vw;
 }
 
-.btn-baixar-relatorio:hover {
-  background-color: #00466E;
+.btn-filtrar:hover {
+    background-color: #00466E;
 }
 
 main #tituloFiltros .filtros {
@@ -104,8 +98,70 @@ main #tituloFiltros .filtros {
     align-items: center;
     justify-content: center;
     gap: 1vw;
-    margin-top: 1vw;
-    margin-bottom: 1vw;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+}
+
+.toggle-slack {
+    position: absolute;
+    right: 8vw;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3vw;
+}
+
+.toggle-label {
+    font-size: 0.8vw;
+    color: #002645;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 3vw;
+    height: 1.5vw;
+    cursor: pointer;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    inset: 0;
+    background-color: #C4C4C4;
+    border-radius: 1.5vw;
+    transition: background-color 0.3s ease;
+}
+
+.toggle-slider::before {
+    content: "";
+    position: absolute;
+    height: 1.1vw;
+    width: 1.1vw;
+    left: 0.2vw;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background-color: #002645;
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateY(-50%) translateX(1.5vw);
 }
 
 main #tituloFiltros .filtros select {
@@ -129,8 +185,8 @@ main #tituloFiltros .filtros .filtro p {
 main #infosCidades {
     display: flex;
     justify-content: center;
-    margin-top: 2vw;
-    gap: 2vw;
+    margin-top: 1vw;
+    gap: 1vw;
 }
 
 main #infosCidades .scoreCidade {
@@ -144,7 +200,7 @@ main #infosCidades .scoreCidade {
     align-items: center;
     justify-content: center;
     gap: 1vw;
-    height: 11vw;
+    height: 9vw;
 }
 
 main #infosCidades .scoreCidade .notaCidade {
@@ -198,6 +254,17 @@ main #infosCidades .scoreCidade .notaCidade .notaBarra p {
     font-size: 0.8vw;
 }
 
+main #infosCidades .scoreCidade .tituloScore {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+}
+
+main #infosCidades .scoreCidade .tituloScore h2 {
+    margin: 0;
+    white-space: nowrap;
+}
+
 main #infosCidades .notaCidade .potencialCidade .potencial p {
     color: #002645;
     font-size: 1vw;
@@ -212,29 +279,110 @@ main #infosCidades .notaCidade .potencialCidade .areasPotenciais ul li {
     font-size: 0.8vw;
 }
 
+.tooltip-trigger {
+    position: relative;
+    cursor: help;
+    font-size: 1.2vw;
+    color: #002645;
+    margin-left: 0.5vw;
+    display: inline-block;
+}
+
+.tooltip-content {
+    display: none;
+    position: absolute;
+    background: #002645;
+    color: #fff;
+    font-size: 0.9vw;
+    border-radius: 0.5vw;
+    padding: 0.8vw;
+    width: 18vw;
+    top: 0.5vw;
+    left: 100%;
+    margin-left: 0.6vw; 
+    transform: none;
+    z-index: 10;
+    box-shadow: 0 0.5vw 1vw rgba(0,0,0,0.2);
+    text-align: left;
+    line-height: 1.4;
+    white-space: normal;
+}
+
+.tooltip-trigger:hover .tooltip-content {
+  display: block;
+}
+
+.populacaoCidade {
+    background-color: #FBFBFD;
+    border: 1px solid #002645;
+    border-radius: 1vw;
+    width: 25%;
+    height: 9vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.4vw;
+}
+
+.populacaoCidade h2 {
+    color: #002645;
+    font-size: 1.2vw;
+}
+
+.numeroPopulacao p {
+    font-size: 1.6vw;
+    font-weight: 700;
+    color: #002645;
+}
+
+.numeroPopulacao span {
+    font-size: 0.9vw;
+    color: #666;
+    display: block;
+    text-align: center;
+}
+
+.detalhePopulacao {
+    display: flex;
+    gap: 3vw;
+}
+
+.detalhePopulacao strong {
+    font-size: 1.2vw;
+    color: #002645;
+}
+
+.detalhePopulacao p {
+    font-size: 0.8vw;
+    text-align: center;
+}
+
+
 main #infosCidades .fatoresCriticos {
     border: 1px solid #002645;
     border-radius: 1vw;
-    width: 30%;
+    width: 28%;
     padding: 0.7vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-color: #EBE7E9;
-    height: 11vw;
+    height: 9vw;
 }
 
 main #infosCidades .fatoresCriticos .tituloFatores p {
     color: #002645;
     font-size: 1.2vw;
     font-weight: 600;
+    margin-bottom: 0.3vw;
 }
 
 main #infosCidades .fatoresCriticos .listaFatores {
     display: flex;
     flex-direction: column;
-    gap: 1vw;
+    gap: 0.4vw;
 }
 
 main #infosCidades .fatoresCriticos .listaFatores .icone {
@@ -272,13 +420,43 @@ main #titulo {
     margin-top: 2vw;
 }
 
+.container {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8vw;
+    height: 100%;
+    justify-content: center;
+}
+
+.percentualAcesso,
+.populacaoAtendida {
+    background-color: #E7F2FC;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4vw;
+    border-radius: 1vw;
+    color: #002645;
+    padding: 0.8vw 0.7vw;
+    border: 1px solid #010101;
+    box-sizing: border-box;
+    flex: 1;
+    max-height: 45%;
+}
+
+
 main #infoSaneamentoGeral {
     border: 1px solid #010101;
     width: 80%;
     margin-left: 8vw;
-    height: 22vw;
+    height: 45vh;
     border-radius: 1vw;
     display: flex;
+    overflow: hidden;
 }
 
 main #infoSaneamentoGeral .containerCategoria {
@@ -308,6 +486,7 @@ main #infoSaneamentoGeral .containerCategoria .header .tabBtn {
 }
 
 main #infoSaneamentoGeral .containerCategoria .header .aguaPotavel {
+    background-color: #f0f7ff;
     border-radius: 1vw 0 0 0;
 }
 
@@ -380,32 +559,12 @@ main #infoSaneamentoGeral .containerCategoria .main {
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    height: 20vw;
+    height: calc(45vh - 3vw);
+    padding: 1vh 1vw;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso {
-    background-color: #E7F2FC;
-    height: 8vw;
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.9vw;
-    border-radius: 1vw;
-    color: #002645;
-    padding: 0.5vw;
-    border: 1px solid #010101;
-}
-
-main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso p {
-    text-align: center;
-    font-size: 1vw;
-}
-
-main #infoSaneamentoGeral .containerCategoria .main .percentualAcesso span {
-    font-weight: 600;
-    font-size: 1.5vw;
-}
 
 main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual {
     border: 1px solid #002645;
@@ -449,14 +608,37 @@ main #infoSaneamentoGeral .containerCategoria .main .evolucaoAnual .percentual .
 }
 
 main #infoSaneamentoGeral .containerCategoria .main .grafico {
-    width: 50%;
-    height: 80%;
+    width: 65%;
+    height: 100%;
     position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5vw 0;
 }
 
 main #infoSaneamentoGeral .containerCategoria .main .grafico canvas {
-    width: 30vw;
-    height: 15vw;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.kpiTitulo {
+    font-weight: 700;
+    font-size: 1vw;
+    text-align: center;
+    color: #002645;
+}
+
+.kpiPorcentagem span {
+    font-weight: 700;
+    font-size: 1.8vw;
+    color: #002645;
+}
+
+.kpiPessoas {
+    font-size: 0.85vw;
+    text-align: center;
+    color: #002645;
 }
 
 .risco {
@@ -466,20 +648,6 @@ main #infoSaneamentoGeral .containerCategoria .main .grafico canvas {
     justify-content: space-between;
 }
 
-.infosJuntas {
-    display: flex;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-}
-
-.container {
-    width: 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1vw;
-}
 
 #evolucao {
     text-align: center;
@@ -515,8 +683,8 @@ main #infoSaneamentoGeral .containerCategoria .main .grafico canvas {
     font-size: 1.4vw;
     color: #002645;
     font-weight: 600;
-    margin-top: 1.3vw;
-    margin-bottom: 0.5vw;
+    margin-top: 0.8vw;
+    margin-bottom: 0.3vw;
 }
 
 #crescimento {

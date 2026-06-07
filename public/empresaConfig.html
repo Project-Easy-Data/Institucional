@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="css/empresaConfig.css" />
+    <link rel="stylesheet" href="css/reset.css" />
+    <title>Empresas</title>
+    <link rel="icon" href="logos/favicon_easydata.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>Empresa</h2>
+      <div class="card">
+        <div class="container2">
+          <div class="addUsuario">
+            <button onclick="addFunc()"><p>+ Adicionar Empresa</p></button>
+          </div>
+          <div class="listaUsuarios">
+            <div class="cabecalho">
+              <p>Razão Social</p>
+              <p>CNPJ</p>
+              <p>Status</p>
+              <p></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sobrepor" id="sobrepor">
+      <div class="cardCadastro">
+        <div class="cardTitulo"><p>Adicionar Empresa</p></div>
+        <div class="campoCadastro">
+          <label for="inputRazao">Razão Social</label>
+          <input type="text" id="inputRazao" placeholder="Ex: EasyData Ltda" />
+          <p class="erro" id="erroRazao" style="display: none">Informe a razão social.</p>
+        </div>
+        <div class="campoCadastro">
+          <label for="inputCnpj">CNPJ</label>
+          <input type="text" id="inputCnpj" placeholder="Ex: 00000000000100" />
+          <p class="erro" id="erroCnpj" style="display: none">Informe o CNPJ.</p>
+        </div>
+        <div class="campoCadastro">
+          <label for="selectStatus">Status</label>
+          <select id="selectStatus">
+            <option value="">Selecionar...</option>
+            <option value="ATIVO">Ativo</option>
+            <option value="INATIVO">Inativo</option>
+            <option value="PENDENTE">Pendente</option>
+          </select>
+          <p class="erro" id="erroStatus" style="display: none">Selecione o status.</p>
+        </div>
+        <div id="acoes">
+          <button class="btnCancelar" onclick="fecharModal()">Cancelar</button>
+          <button class="btnConfirmar" onclick="confirmar()">Adicionar</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/empresaConfig.js"></script>
+  </body>
+</html>

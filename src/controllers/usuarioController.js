@@ -69,7 +69,23 @@ function cadastrar(req, res) {
     }
 }
 
+function atualizar(req, res) {
+    var id = req.body.idServer;
+    var nome = req.body.nomeServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+
+    if (!id) { return res.status(400).send("ID undefined!"); }
+    if (!nome) { return res.status(400).send("Nome undefined!"); }
+    if (!email) { return res.status(400).send("Email undefined!"); }
+
+    usuarioModel.atualizar(id, nome, email, senha)
+        .then(function(resultado) { res.json(resultado); })
+        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+}
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizar
 }
