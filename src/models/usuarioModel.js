@@ -25,7 +25,26 @@ function cadastrar(empresa, email, cnpj) {
     return database.executar(instrucaoSql);
 }
 
+function atualizar(id, nome, email, senha) {
+    var instrucaoSql;
+    if (senha) {
+        instrucaoSql = `
+            UPDATE Usuario SET nome = '${nome}', email = '${email}', senha = '${senha}'
+            WHERE id_funcionario = ${id};
+        `;
+    } else {
+        instrucaoSql = `
+            UPDATE Usuario SET nome = '${nome}', email = '${email}'
+            WHERE id_funcionario = ${id};
+        `;
+    }
+    return database.executar(instrucaoSql);
+}
+
+module.exports = { autenticar, atualizar };
+
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizar
 };
