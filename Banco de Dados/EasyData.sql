@@ -1,73 +1,115 @@
-CREATE DATABASE EasyData;
-
+CREATE DATABASE IF NOT EXISTS EasyData;
 USE EasyData;
 
-CREATE TABLE empresa (
-    id_empresa INT AUTO_INCREMENT,
-    nome_empresa VARCHAR(255) NOT NULL,
-    email_empresa VARCHAR(255) NOT NULL UNIQUE,
-    cnpj_empresa CHAR(14) NOT NULL UNIQUE,
-    status TINYINT NOT NULL,
-    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
-    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,-- O on update atualiza automaticamente com a data/hora atual sempre que o registro for alterado.
-    CONSTRAINT pk_empresa PRIMARY KEY (id_empresa), -- serve para dar um nome a chave primaria para caso de erro saber onde o erro ocorreu
-    CONSTRAINT chk_status_empresa CHECK (status IN (0,1)) -- 0 para inativo e 1 para ativo
-);
-
-CREATE TABLE funcionario (
-    id_funcionario INT AUTO_INCREMENT,
-    nome_funcionario VARCHAR(255) NOT NULL,
-    email_funcionario VARCHAR(255) NOT NULL UNIQUE,
-    senha_funcionario VARCHAR(255) NOT NULL,
-    cargo_funcionario VARCHAR(255) NOT NULL,
-    status TINYINT NOT NULL,
-    permissao INT NOT NULL,
+CREATE TABLE Empresa (
+    id_Empresa INT AUTO_INCREMENT,
+    razao_social VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    cnpj VARCHAR(14) NOT NULL UNIQUE,
     data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    empresa_id_empresa INT NOT NULL,
-    CONSTRAINT pk_funcionario PRIMARY KEY (id_funcionario),
-    CONSTRAINT fk_funcionario_empresa 
-        FOREIGN KEY (empresa_id_empresa) 
-        REFERENCES empresa(id_empresa)
-        ON DELETE CASCADE -- O ON DELETE CASCADE apaga automaticamente os registros relacionados quando o registro pai for deletado.
-        ON UPDATE CASCADE,-- O ON UPDATE CASCADE atualiza automaticamente as chaves estrangeiras quando a chave primária for alterada.
-    CONSTRAINT chk_permissao CHECK (permissao IN (1,2,3)), -- Nivel de permissão que o funcionario tem dentro da empresa
-    CONSTRAINT chk_status_funcionario CHECK (status IN (0,1)) -- 0 para inativo e 1 para ativo
+    status ENUM('ATIVO', 'INATIVO', 'PENDENTE') NOT NULL,
+    CONSTRAINT pk_empresa PRIMARY KEY (id_Empresa)
 );
 
-CREATE TABLE estados (
-    id_estados INT AUTO_INCREMENT,
-    sigla_estado CHAR(2) NOT NULL,
-    nome_estado VARCHAR(45) NOT NULL,
-    CONSTRAINT pk_estados PRIMARY KEY (id_estados)
+CREATE TABLE Cargo (
+    idCargo INT AUTO_INCREMENT,
+    cargo VARCHAR(45) NOT NULL,
+    CONSTRAINT pk_cargo PRIMARY KEY (idCargo),
+    CONSTRAINT uk_cargo UNIQUE (cargo)
 );
 
-CREATE TABLE dados_saneamento (
-    id_dado_saneamento INT AUTO_INCREMENT,
-    populacao_atendida_esgoto INT NOT NULL,
-    populacao_urbana_residente_esgoto INT NOT NULL,
-    populacao_urbana_atendida_esgoto INT NOT NULL,
-    populacao_urbana_residente_esgoto_ibge INT NOT NULL,
-    extensao_rede_esgoto INT NOT NULL,
-    estados_id_estados INT NOT NULL,
-    CONSTRAINT pk_dados_saneamento PRIMARY KEY (id_dado_saneamento),
-    CONSTRAINT fk_dados_estado 
-        FOREIGN KEY (estados_id_estados) 
-        REFERENCES estados(id_estados)
+CREATE TABLE Usuario (
+    id_funcionario INT AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    senha VARCHAR(255) NOT NULL,
+    permissao INT NOT NULL,
+    status ENUM('ATIVO', 'INATIVO', 'PENDENTE') NOT NULL,
+    data_criacao DATETIME DEFAULT CURRENT_TIMESTAMP,
+    data_atualizacao DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    fk_Empresa INT NOT NULL,
+    fk_Cargo INT NOT NULL,
+
+    CONSTRAINT pk_usuario PRIMARY KEY (id_funcionario),
+
+    CONSTRAINT fk_usuario_empresa
+        FOREIGN KEY (fk_Empresa)
+        REFERENCES Empresa(id_Empresa)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_usuario_cargo
+        FOREIGN KEY (fk_Cargo)
+        REFERENCES Cargo(idCargo)
+        ON DELETE RESTRICT
+        ON UPDATE CASCADE,
+
+    CONSTRAINT chk_permissao_usuario CHECK (permissao IN (1, 2, 3))
+);
+
+CREATE TABLE Unidade_Federativa (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo INT,
+    nome VARCHAR(100) NOT NULL,
+    sigla VARCHAR(2) NOT NULL UNIQUE
+);
+
+
+CREATE TABLE Municipio (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo_ibge INT NOT NULL UNIQUE,
+    nome VARCHAR(150) NOT NULL,
+    sigla_uf VARCHAR(2) NOT NULL,
+    populacao_total  INT,
+    populacao_urbana INT,
+    populacao_rural  INT,
+    regiao VARCHAR(50),
+    FOREIGN KEY (sigla_uf) REFERENCES Unidade_Federativa(sigla)
+);
+
+CREATE TABLE Dados_Saneamento (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_municipio INT NOT NULL UNIQUE,
+    agua_urbana INT,
+    agua_rural INT,
+    esgoto_urbano INT,
+    esgoto_rural INT,
+    residuos_urbano INT,
+    residuos_rural INT,
+    cobertura_redes_pluviais DOUBLE,
+    cobertura_pavimentacao DOUBLE,
+    parcela_domicilios_risco DOUBLE,
+    eventos_inundacao INT,
+    sistema_alerta BOOLEAN,
+    indice_drenagem DOUBLE,
+    FOREIGN KEY (id_municipio) REFERENCES Municipio(id)
+);
+
+CREATE TABLE Log (
+    id INT AUTO_INCREMENT,
+    data DATETIME DEFAULT NOW(),
+    tipo VARCHAR(45),
+    motivo VARCHAR(255),
+    CONSTRAINT pk_log PRIMARY KEY (id)
+);
+
+CREATE TABLE Notificacao_Slack (
+    idNotificacao INT AUTO_INCREMENT,
+    mensagem VARCHAR(255) NOT NULL,
+    data DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fk_Log INT NOT NULL,
+
+    CONSTRAINT pk_notificacao_slack PRIMARY KEY (idNotificacao),
+    CONSTRAINT fk_notificacao_slack_log
+        FOREIGN KEY (fk_Log)
+        REFERENCES Log(id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
-CREATE TABLE log (
-    id_log INT AUTO_INCREMENT,
-    data_log DATETIME DEFAULT CURRENT_TIMESTAMP,
-    motivo_log VARCHAR(255) NOT NULL,
-    tipo_log VARCHAR(45) NOT NULL,
-    funcionario_id_funcionario INT NOT NULL,
-    CONSTRAINT pk_log PRIMARY KEY (id_log),
-    CONSTRAINT fk_log_funcionario 
-        FOREIGN KEY (funcionario_id_funcionario) 
-        REFERENCES funcionario(id_funcionario)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE
-);
+CREATE USER IF NOT EXISTS 'Easy'@'%' IDENTIFIED BY 'Easydata@2026';
+
+GRANT ALL PRIVILEGES ON EasyData.* TO 'Easy'@'%';
+
+FLUSH PRIVILEGES;
