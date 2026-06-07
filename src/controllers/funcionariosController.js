@@ -37,6 +37,18 @@ function cadastrar(req, res) {
     }
 }
 
+function listar(req, res) {
+    funcionariosModel.listar(1)
+        .then(function(resultado) {
+            res.json(resultado);
+        })
+        .catch(function(erro) {
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+module.exports = { cadastrar, excluir, listar };
+
 function excluir(req, res) {
     var id = req.params.id;
     funcionariosModel.excluir(id)
