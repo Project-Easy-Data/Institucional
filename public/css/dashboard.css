@@ -330,6 +330,10 @@ main #infosCidades .notaCidade .potencialCidade .areasPotenciais ul li {
     font-size: 1.2vw;
 }
 
+.numeroPopulacao {
+    text-align: center;
+}
+
 .numeroPopulacao p {
     font-size: 1.6vw;
     font-weight: 700;

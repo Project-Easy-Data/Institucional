@@ -83,18 +83,14 @@
           <div class="filtro estado">
             <p>Estado</p>
             <select name="estado" id="filtroEstado">
-              <option value="parana" selected>Paraná</option>
-              <option value="saoPaulo">São Paulo</option>
-              <option value="rioDeJaneiro">Rio de Janeiro</option>
+              <option value="" selected>Selecione um Estado</option>
             </select>
           </div>
 
           <div class="filtro cidade">
             <p>Cidade</p>
             <select name="cidade" id="filtroCidade">
-              <option value="guarulhos" selected>Guarulhos</option>
-              <option value="macae">Macaé</option>
-              <option value="ouroPreto">Ouro Preto</option>
+              <option value="" selected>Selecione um Cidade</option>
             </select>
           </div>
 
@@ -153,18 +149,18 @@
           <h2>População</h2>
 
           <div class="numeroPopulacao">
-            <p>1.963.726</p>
+            <p id="populacaoTotal">-</p>
             <span>habitantes</span>
           </div>
 
           <div class="detalhePopulacao">
             <div>
-              <strong>99,4%</strong>
+              <strong id="populacaoUrbana">-%</strong>
               <p>Urbana</p>
             </div>
 
             <div>
-              <strong>0,6%</strong>
+              <strong id="populacaoRural">-%</strong>
               <p>Rural</p>
             </div>
           </div>

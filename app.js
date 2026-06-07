@@ -21,6 +21,7 @@ var funcionariosRouter = require("./src/routes/funcionarios");
 var deletarRouter = require("./src/routes/deletar");
 var ragRouter = require("./src/routes/rag");
 var empresasRouter = require("./src/routes/empresas");
+var dadosRouter = require("./src/routes/dados")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,6 +35,7 @@ app.use("/usuarios", usuariosRouter);
 app.use("/funcionarios", funcionariosRouter);
 app.use("/deletar", deletarRouter);
 app.use("/empresas", empresasRouter);
+app.use("/dados", dadosRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

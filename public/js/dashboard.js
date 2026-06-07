@@ -4,6 +4,172 @@ const cargo = sessionStorage.getItem('cargo');
 document.getElementById("nome").innerHTML = nome;
 document.getElementById("cargo").innerHTML = cargo;
 
+function carregarEstados() {
+    fetch("/dados/estados", { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (estados) {
+                    var selectEstado = document.getElementById("filtroEstado");
+                    selectEstado.innerHTML = '<option value="">Selecione um Estado</option>';
+                    estados.forEach(function (estado) {
+                        selectEstado.innerHTML += `<option value="${estado.sigla}">${estado.nome}</option>`;
+                    });
+                });
+            } else {
+                console.error("Erro ao buscar estados");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro ao buscar estados: ${error.message}`);
+        });
+}
+
+function carregarMunicipios() {
+    var uf = document.getElementById("filtroEstado").value;
+    var selectMunicipio = document.getElementById("filtroCidade");
+
+    selectMunicipio.innerHTML = '<option value="">Carregando...</option>';
+
+    if (uf === "") {
+        selectMunicipio.innerHTML = '<option value="">Selecione uma Cidade</option>';
+        return;
+    }
+
+    fetch(`/dados/municipios?uf=${uf}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (municipios) {
+                    selectMunicipio.innerHTML = '<option value="">Selecione uma Cidade</option>';
+                    municipios.forEach(function (municipio) {
+                        selectMunicipio.innerHTML += `<option value="${municipio.id}">${municipio.nome}</option>`;
+                    });
+                });
+            } else {
+                console.error("Erro ao buscar municípios");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro ao buscar municípios: ${error.message}`);
+        });
+}
+
+document.getElementById("filtroEstado").addEventListener("change", carregarMunicipios);
+
+carregarEstados();
+
+var tabAtiva = "agua";
+
+function aplicarFiltro() {
+    var idMunicipio = document.getElementById("filtroCidade").value;
+
+    if (idMunicipio === "") {
+        alert("Selecione um Estado e uma Cidade!");
+        return;
+    }
+
+    fetch(`/dados/municipio/${idMunicipio}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (municipio) {
+                    var total = municipio.populacao_total;
+                    var urbana = municipio.populacao_urbana;
+                    var rural = municipio.populacao_rural;
+
+                    var percUrbana = ((urbana / total) * 100).toFixed(1).replace(".", ",");
+                    var percRural = ((rural / total) * 100).toFixed(1).replace(".", ",");
+
+                    document.getElementById("populacaoTotal").textContent = total.toLocaleString("pt-BR");
+                    document.getElementById("populacaoUrbana").textContent = percUrbana + "%";
+                    document.getElementById("populacaoRural").textContent = percRural + "%";
+                });
+            } else {
+                console.error("Erro ao buscar município");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro ao buscar município: ${error.message}`);
+        });
+
+    fetch(`/dados/saneamento/${idMunicipio}`, { cache: 'no-store' })
+        .then(function (response) {
+            if (response.ok) {
+                response.json().then(function (dados) {
+                    dadosSaneamentoAtuais = dados;
+                    atualizarKPIs(dados, tabAtiva);
+                });
+            } else {
+                console.error("Erro ao buscar dados de saneamento");
+            }
+        })
+        .catch(function (error) {
+            console.error(`Erro ao buscar dados de saneamento: ${error.message}`);
+        });
+}
+
+function atualizarKPIs(dados, tab) {
+    var total = dados.populacao_total;
+    var urbTotal = dados.populacao_urbana;
+    var ruralTotal = dados.populacao_rural;
+    var semAcesso = 0;
+    var comAcesso = 0;
+    var tituloGrafico = "";
+    var descricaoSemAcesso = "";
+    var descricaoComAcesso = "";
+    var percUrbano = 0;
+    var percRural = 0;
+
+    if (tab === "agua") {
+        comAcesso = dados.agua_urbana + dados.agua_rural;
+        semAcesso = total - comAcesso;
+        tituloGrafico = "População atendida (%)";
+        descricaoSemAcesso = "Sem acesso à água potável";
+        descricaoComAcesso = "População atendida";
+        percUrbano = urbTotal > 0 ? ((dados.agua_urbana / urbTotal) * 100).toFixed(1) : 0;
+        percRural = ruralTotal > 0 ? ((dados.agua_rural / ruralTotal) * 100).toFixed(1) : 0;
+    } else if (tab === "esgoto") {
+        comAcesso = dados.esgoto_urbano + dados.esgoto_rural;
+        semAcesso = total - comAcesso;
+        tituloGrafico = "População atendida (%)";
+        descricaoSemAcesso = "Sem acesso ao tratamento de Esgoto";
+        descricaoComAcesso = "População atendida";
+        percUrbano = urbTotal > 0 ? ((dados.residuos_urbano / urbTotal) * 100).toFixed(1) : 0;
+        percRural = ruralTotal > 0 ? ((dados.residuos_rural / ruralTotal) * 100).toFixed(1) : 0;
+    } else if (tab === "residuos") {
+        comAcesso = dados.residuos_urbano + dados.residuos_rural;
+        semAcesso = total - comAcesso;
+        tituloGrafico = "População atendida (%)";
+        descricaoSemAcesso = "Sem coleta de Resíduos";
+        descricaoComAcesso = "População atendida";
+    } else if (tab === "drenagem") {
+        comAcesso = Math.round(total * dados.indice_drenagem / 100);
+        semAcesso = total - comAcesso;
+        tituloGrafico = "Cobertura de drenagem (%)";
+        descricaoSemAcesso = "Sem cobertura de drenagem";
+        descricaoComAcesso = "Cobertura de drenagem";
+        percUrbano = dados.indice_drenagem;
+        percRural = dados.indice_drenagem;
+    }
+
+    var percSemAcesso = ((semAcesso / total) * 100).toFixed(1).replace(".", ",");
+    var percComAcesso = ((comAcesso / total) * 100).toFixed(1).replace(".", ",");
+
+    document.getElementById("tabDescricao").textContent = descricaoSemAcesso;
+    document.getElementById("tabPorcentagem").textContent = percSemAcesso + "%";
+    document.getElementById("tabHabitantes").textContent = semAcesso.toLocaleString("pt-BR");
+
+    document.getElementById("tabAtendidoDescricao").textContent = descricaoComAcesso;
+    document.getElementById("tabAtendidoPorcentagem").textContent = percComAcesso + "%";
+    document.getElementById("tabAtendidoHabitantes").textContent = comAcesso.toLocaleString("pt-BR");
+
+    document.getElementById("tabTituloGrafico").textContent = tituloGrafico;
+
+    chartInstance.data.datasets[0].data = [Number(percUrbano), Number(percUrbano)];
+    chartInstance.data.datasets[1].data = [Number(percRural), Number(percRural)];
+    chartInstance.update();
+}
+
+document.getElementById("btnFiltrar").addEventListener("click", aplicarFiltro);
+
 const tabData = {
         agua: {
           porcentagem: "8,3%",
@@ -126,7 +292,10 @@ const tabData = {
         plugins: [labelAcimaBarras]
     });
 
+      var dadosSaneamentoAtuais = null;
+
       function trocarTab(tab) {
+        tabAtiva = tab;
         const d = tabData[tab];
         if (!d) return;
         
@@ -147,14 +316,18 @@ const tabData = {
 
         chartInstance.update();
 
-        document.getElementById("tabPorcentagem").textContent = d.porcentagem;
-        document.getElementById("tabHabitantes").textContent = d.habitantes;
-        document.getElementById("tabDescricao").textContent = d.descricao;
-        document.getElementById("tabAtendidoPorcentagem").textContent = d.atendidoPorcentagem;
-        document.getElementById("tabAtendidoHabitantes").textContent = d.atendidoHabitantes;
-        document.getElementById("tabAtendidoDescricao").textContent = d.atendidoDescricao;
-        document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
-
+        if (dadosSaneamentoAtuais) {
+          atualizarKPIs(dadosSaneamentoAtuais, tab);
+        } else {
+          chartInstance.update();
+          document.getElementById("tabPorcentagem").textContent = d.porcentagem;
+          document.getElementById("tabHabitantes").textContent = d.habitantes;
+          document.getElementById("tabDescricao").textContent = d.descricao;
+          document.getElementById("tabAtendidoPorcentagem").textContent = d.atendidoPorcentagem;
+          document.getElementById("tabAtendidoHabitantes").textContent = d.atendidoHabitantes;
+          document.getElementById("tabAtendidoDescricao").textContent = d.atendidoDescricao;
+          document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
+        }
 
         document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("ativo"));
         document.querySelector(`.tabBtn[data-tab="${tab}"]`).classList.add("ativo");
@@ -173,5 +346,3 @@ const tabData = {
               link.classList.add('ativo');
           }
       });
-
-      
