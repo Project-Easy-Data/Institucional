@@ -20,7 +20,7 @@ var usuariosRouter = require("./src/routes/usuarios");
 var funcionariosRouter = require("./src/routes/funcionarios");
 var deletarRouter = require("./src/routes/deletar");
 var ragRouter = require("./src/routes/rag");
-var deletarRouter = require/var empresasRouter = require(\"\.\/src\/routes\/empresas\");\nvar deletarRouter = require/" ~/Projeto/Node/Institucional/app.js
+var deletarRouter = require("./src/routes/deletar");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -33,7 +33,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuariosRouter);
 app.use("/funcionarios", funcionariosRouter);
 app.use("/deletar", deletarRouter);
-s/app.use(\"\/deletar\"/app.use(\"\/empresas\", empresasRouter);\napp.use(\"\/deletar\"/" ~/Projeto/Node/Institucional/app.js
+app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
