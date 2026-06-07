@@ -81,7 +81,14 @@ function entrar() {
                 
             }
 
-            if (permissaoUsuario === 1 || permissaoUsuario === 3) {
+            if (permissaoUsuario === 3) {
+                setTimeout(() => {
+                    window.location = "../dashboardSuporte.html";
+                }, 1000);
+                console.log("Gerente ou Suporte");
+            }
+
+            if (permissaoUsuario === 1) {
                 setTimeout(() => {
                     window.location = "../dashboardGerente.html";
                 }, 1000);
