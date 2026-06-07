@@ -5,15 +5,20 @@ let loading = false;
 async function verificar() {
   try {
     const res = await fetch(SERVER + "/", {
-      signal: AbortSignal.timeout(4000)
+      signal: AbortSignal.timeout(10000)
     });
 
     online = res.ok;
-  } catch {
+  } catch (erro) {
     online = false;
   }
 
-  document.getElementById("rag-dot").style.background = online ? "#4caf7d" : "#e74c3c";
+  const dot = document.getElementById("rag-dot");
+  if (dot) {
+    dot.style.background = online ? "#4caf7d" : "#e74c3c";
+  }
+
+  return online;
 }
 
 async function enviar() {
@@ -25,26 +30,33 @@ async function enviar() {
   addMsg(q, "usuario");
   input.value = "";
 
-  if (!online) {
-    addMsg("Servidor offline.", "erro");
-    return;
-  }
-
   loading = true;
   const typing = addMsg("...", "bot");
 
   try {
     const res = await fetch(`${SERVER}/ask?question=${encodeURIComponent(q)}`, {
-      signal: AbortSignal.timeout(180000)
+      signal: AbortSignal.timeout(300000)
     });
 
     const data = await res.json();
+
+    if (!res.ok) {
+      typing.textContent = data.erro || "Erro ao consultar o servidor.";
+      typing.className = "rag-bubble erro";
+      return;
+    }
+
     typing.textContent = data.resposta || data.erro || "Sem resposta.";
-  } catch (e) {
-    typing.textContent = e.name === "TimeoutError" ? "Tempo esgotado." : "Erro: " + e.message;
+  } catch (erro) {
+    typing.textContent =
+      erro.name === "TimeoutError"
+        ? "Tempo esgotado."
+        : "Servidor offline.";
+
     typing.className = "rag-bubble erro";
   } finally {
     loading = false;
+    verificar();
   }
 }
 
@@ -66,11 +78,18 @@ function toggle() {
   p.style.display = p.style.display === "flex" ? "none" : "flex";
 }
 
-document.getElementById("rag-input").addEventListener("keydown", e => {
-  if (e.key === "Enter" && !e.shiftKey) {
-    e.preventDefault();
-    enviar();
-  }
-});
+const input = document.getElementById("rag-input");
 
-window.toggle 
+if (input) {
+  input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      enviar();
+    }
+  });
+}
+
+window.toggle = toggle;
+window.enviar = enviar;
+
+verificar();
