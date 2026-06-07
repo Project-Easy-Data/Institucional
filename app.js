@@ -20,7 +20,7 @@ var usuariosRouter = require("./src/routes/usuarios");
 var funcionariosRouter = require("./src/routes/funcionarios");
 var deletarRouter = require("./src/routes/deletar");
 var ragRouter = require("./src/routes/rag");
-var deletarRouter = require("./src/routes/deletar");
+var empresasRouter = require("./src/routes/empresas");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
