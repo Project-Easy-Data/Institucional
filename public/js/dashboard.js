@@ -4,7 +4,7 @@ const cargo = sessionStorage.getItem('cargo');
 document.getElementById("nome").innerHTML = nome;
 document.getElementById("cargo").innerHTML = cargo;
 
-function carregarEstados() {
+function carregarEstados(callback) {
     fetch("/dados/estados", { cache: 'no-store' })
         .then(function (response) {
             if (response.ok) {
@@ -14,6 +14,7 @@ function carregarEstados() {
                     estados.forEach(function (estado) {
                         selectEstado.innerHTML += `<option value="${estado.sigla}">${estado.nome}</option>`;
                     });
+                    if (callback) callback();
                 });
             } else {
                 console.error("Erro ao buscar estados");
@@ -24,7 +25,7 @@ function carregarEstados() {
         });
 }
 
-function carregarMunicipios() {
+function carregarMunicipios(callback) {
     var uf = document.getElementById("filtroEstado").value;
     var selectMunicipio = document.getElementById("filtroCidade");
 
@@ -43,6 +44,7 @@ function carregarMunicipios() {
                     municipios.forEach(function (municipio) {
                         selectMunicipio.innerHTML += `<option value="${municipio.id}">${municipio.nome}</option>`;
                     });
+                    if (callback) callback(municipios);
                 });
             } else {
                 console.error("Erro ao buscar municípios");
@@ -55,7 +57,16 @@ function carregarMunicipios() {
 
 document.getElementById("filtroEstado").addEventListener("change", carregarMunicipios);
 
-carregarEstados();
+carregarEstados(function () {
+    document.getElementById("filtroEstado").value = "SP";
+    carregarMunicipios(function (municipios) {
+        var sp = municipios.find(function (m) { return m.nome === "São Paulo"; });
+        if (sp) {
+            document.getElementById("filtroCidade").value = sp.id;
+            document.getElementById("btnFiltrar").click();
+        }
+    });
+});
 
 var tabAtiva = "agua";
 

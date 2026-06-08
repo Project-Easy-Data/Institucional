@@ -38,7 +38,7 @@
         </div>
         <div class="username">
           <p id="nome" class="nome">João</p>
-          <p id="cargo" class="cargo">Gerente</p>
+          <p id="cargo" class="cargo">Funcionário</p>
         </div>
       </div>
 
@@ -62,7 +62,13 @@
       <section id="tituloFiltros">
         <div class="titulo">
           <h2>Indicadores de Saneamento</h2>
-          <button class="btn-baixar-relatorio">Baixar Relatório</button>
+          <div class="toggle-slack">
+            <span class="toggle-label">Notificações Slack</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="toggleSlack">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
         </div>
 
         <div class="filtros">
@@ -74,20 +80,20 @@
           <div class="filtro estado">
             <p>Estado</p>
             <select name="estado" id="filtroEstado">
-              <option value="parana" selected>Paraná</option>
-              <option value="saoPaulo">São Paulo</option>
-              <option value="rioDeJaneiro">Rio de Janeiro</option>
+              <option value="" selected>Selecione um Estado</option>
             </select>
           </div>
 
           <div class="filtro cidade">
             <p>Cidade</p>
             <select name="cidade" id="filtroCidade">
-              <option value="guarulhos" selected>Guarulhos</option>
-              <option value="macae">Macaé</option>
-              <option value="ouroPreto">Ouro Preto</option>
+              <option value="" selected>Selecione uma Cidade</option>
             </select>
           </div>
+
+          <button class="btn-filtrar" id="btnFiltrar" type="button">
+            Aplicar Filtro
+          </button>
         </div>
       </section>
 
@@ -95,6 +101,15 @@
         <div class="scoreCidade">
           <div class="tituloScore">
             <h2>Score da Cidade</h2>
+            <span class="tooltip-trigger">
+              <i class="fa-solid fa-circle-question"></i>
+              <div class="tooltip-content">
+                <strong>Como o Score é calculado?</strong><br>
+                <strong>Infraestrutura (0–10):</strong> média das notas de Água Potável, Esgoto, Resíduos e Drenagem.<br>
+                <strong>Risco (0–10):</strong> nota baseada em fatores críticos (déficit, inundação, etc).<br>
+                <strong>Score Total (0–10):</strong> combinação das notas de Infraestrutura e Risco (ex: média ponderada).
+              </div>
+            </span>
           </div>
 
           <div class="notaCidade">
@@ -102,27 +117,26 @@
               <svg width="60" height="60" viewBox="0 0 80 80">
                 <circle cx="40" cy="40" r="30" fill="none" stroke="#e0e0e0" stroke-width="6" />
                 <circle
+                  id="scoreCircle"
                   cx="40" cy="40" r="30"
                   fill="none"
                   stroke="#002645"
                   stroke-width="6"
                   stroke-linecap="round"
                   stroke-dasharray="188.5"
-                  stroke-dashoffset="26.4"
+                  stroke-dashoffset="188.5"
                   transform="rotate(-90 40 40)"
                 />
-                <text x="40" y="45" text-anchor="middle" font-size="18" fill="#002645" font-weight="600">8.5</text>
+                <text id="scoreTexto" x="40" y="45" text-anchor="middle" font-size="18" fill="#002645" font-weight="600">-</text>
               </svg>
-              <p>8.5/10</p>
+              <p id="scoreLabel">- /10</p>
             </div>
             <div class="notaBarra">
               <div class="notaInfra">
-                <p>Infraestrutura: 8/10</p>
-                <p>Risco: 9/10</p>
+                <p>Infraestrutura: <span id="scoreInfra">-/10</span></p>
+                <p>Risco: <span id="scoreRisco">-/10</span></p>
               </div>
             </div>
-
-            
 
           </div>
         </div>
@@ -131,24 +145,22 @@
           <h2>População</h2>
 
           <div class="numeroPopulacao">
-            <p>1.963.726</p>
+            <p id="populacaoTotal">-</p>
             <span>habitantes</span>
           </div>
 
           <div class="detalhePopulacao">
             <div>
-              <strong>99,4%</strong>
+              <strong id="populacaoUrbana">-%</strong>
               <p>Urbana</p>
             </div>
 
             <div>
-              <strong>0,6%</strong>
+              <strong id="populacaoRural">-%</strong>
               <p>Rural</p>
             </div>
           </div>
         </div>
-
-        
 
         <div class="fatoresCriticos">
           <div class="tituloFatores">
@@ -163,7 +175,7 @@
                 <p>Déficit de Saneamento</p>
               </div>
               <div class="porcentagem">
-                <p>37%</p>
+                <p id="valDeficitSaneamento">-</p>
               </div>
             </div>
             <div class="risco riscoInundacao">
@@ -174,13 +186,13 @@
                 <p>Risco de Inundação (Domicílios)</p>
               </div>
               <div class="porcentagem">
-                <p>12%</p>
+                <p id="valRiscoInundacao">-</p>
               </div>
             </div>
             <div class="risco classificacaoRisco">
                 <div class="icone" style="color: #057405;"><i class="fa-solid fa-shield-virus"></i></div>
                 <div class="tituloClassificacao" style="font-size: 1vw; color: #002645;"><p>Classificação de Risco</p></div>
-                <div class="porcentagem" style="font-size: 1.4vw; font-weight: 600; color: #002645;"><p id="valClassificacaoRisco">Médio</p></div>
+                <div class="porcentagem" style="font-size: 1.4vw; font-weight: 600; color: #002645;"><p id="valClassificacaoRisco">-</p></div>
               </div>
               </div>
             </div>
@@ -234,7 +246,6 @@
       </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
 </html>
