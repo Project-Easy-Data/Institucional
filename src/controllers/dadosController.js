@@ -74,9 +74,32 @@ function buscarDadosSaneamento(req, res) {
     }
 }
 
+function buscarDadosSaneamentoPorUf(req, res) {
+    var siglaUf = req.params.siglaUf;
+
+    if (siglaUf == undefined) {
+        res.status(400).send("O parâmetro 'siglaUf' é obrigatório!");
+    } else {
+        dadosModel.buscarDadosSaneamentoPorUf(siglaUf)
+            .then(function (resultado) {
+                if (resultado.length > 0) {
+                    res.json(resultado[0]);
+                } else {
+                    res.status(404).send("Dados de saneamento não encontrados para esta UF!");
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao buscar dados de saneamento por UF! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
+}
+
 module.exports = {
     buscarEstados,
     buscarMunicipios,
     buscarMunicipioPorId,
-    buscarDadosSaneamento
+    buscarDadosSaneamento,
+    buscarDadosSaneamentoPorUf
 };
