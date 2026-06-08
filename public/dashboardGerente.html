@@ -120,23 +120,24 @@
               <svg width="60" height="60" viewBox="0 0 80 80">
                 <circle cx="40" cy="40" r="30" fill="none" stroke="#e0e0e0" stroke-width="6" />
                 <circle
+                  id="scoreCircle"
                   cx="40" cy="40" r="30"
                   fill="none"
                   stroke="#002645"
                   stroke-width="6"
                   stroke-linecap="round"
                   stroke-dasharray="188.5"
-                  stroke-dashoffset="26.4"
+                  stroke-dashoffset="188.5"
                   transform="rotate(-90 40 40)"
                 />
-                <text x="40" y="45" text-anchor="middle" font-size="18" fill="#002645" font-weight="600">8.5</text>
+                <text id="scoreTexto" x="40" y="45" text-anchor="middle" font-size="18" fill="#002645" font-weight="600">-</text>
               </svg>
-              <p>8.5/10</p>
+              <p id="scoreLabel">- /10</p>
             </div>
             <div class="notaBarra">
               <div class="notaInfra">
-                <p>Infraestrutura: 8/10</p>
-                <p>Risco: 9/10</p>
+                <p>Infraestrutura: <span id="scoreInfra">-/10</span></p>
+                <p>Risco: <span id="scoreRisco">-/10</span></p>
               </div>
             </div>
 
@@ -181,7 +182,7 @@
                 <p>Déficit de Saneamento</p>
               </div>
               <div class="porcentagem">
-                <p>37%</p>
+                <p id="valDeficitSaneamento">-</p>
               </div>
             </div>
             <div class="risco riscoInundacao">
@@ -192,7 +193,7 @@
                 <p>Risco de Inundação (Domicílios)</p>
               </div>
               <div class="porcentagem">
-                <p>12%</p>
+                <p id="valRiscoInundacao">-</p>
               </div>
             </div>
             <div class="risco classificacaoRisco">
@@ -252,7 +253,6 @@
       </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="js/dashboard.js"></script>
   </body>
 </html>

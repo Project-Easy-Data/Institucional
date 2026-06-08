@@ -19,4 +19,7 @@ router.get("/saneamento/:idMunicipio", function (req, res) {
     dadosController.buscarDadosSaneamento(req, res);
 });
 
+router.get("/saneamento-uf/:siglaUf", function (req, res) {
+    dadosController.buscarDadosSaneamentoPorUf(req, res);
+});
 module.exports = router;

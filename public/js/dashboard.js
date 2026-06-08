@@ -59,6 +59,72 @@ carregarEstados();
 
 var tabAtiva = "agua";
 
+function calcularScore(dados) {
+    var total = dados.populacao_total;
+    var circunferencia = 188.5;
+
+    var percAgua = total > 0 ? ((dados.agua_urbana + dados.agua_rural) / total) * 100 : 0;
+    var percEsgoto = total > 0 ? ((dados.esgoto_urbano + dados.esgoto_rural) / total) * 100 : 0;
+    var percResiduos = total > 0 ? ((dados.residuos_urbano + dados.residuos_rural) / total) * 100 : 0;
+    var percDrenagem = Number(dados.indice_drenagem) || 0;
+
+    var notaAgua = (percAgua / 100) * 10;
+    var notaEsgoto = (percEsgoto / 100) * 10;
+    var notaResiduos = (percResiduos / 100) * 10;
+    var notaDrenagem = (percDrenagem / 100) * 10;
+
+    var infra = (notaAgua + notaEsgoto + notaResiduos + notaDrenagem) / 4;
+
+    var parcelaRisco = Number(dados.parcela_domicilios_risco) || 0;
+    var risco = Math.max(0, 10 - parcelaRisco);
+
+    var scoreTotal = (infra * 0.7) + (risco * 0.3);
+
+    var dashOffset = circunferencia * (1 - scoreTotal / 10);
+
+    var circle = document.getElementById("scoreCircle");
+    if (circle) circle.setAttribute("stroke-dashoffset", dashOffset);
+
+    var texto = document.getElementById("scoreTexto");
+    if (texto) texto.textContent = scoreTotal.toFixed(1);
+
+    var label = document.getElementById("scoreLabel");
+    if (label) label.textContent = scoreTotal.toFixed(1) + "/10.0";
+
+    var infraEl = document.getElementById("scoreInfra");
+    if (infraEl) infraEl.textContent = infra.toFixed(1) + "/10.0";
+
+    var riscoEl = document.getElementById("scoreRisco");
+    if (riscoEl) riscoEl.textContent = risco.toFixed(1) + "/10.0";
+}
+
+function atualizarFatoresCriticos(dados) {
+    var total = dados.populacao_total;
+
+    var atendAgua = total > 0 ? ((dados.agua_urbana + dados.agua_rural) / total) * 100 : 0;
+    var atendEsgoto = total > 0 ? ((dados.esgoto_urbano + dados.esgoto_rural) / total) * 100 : 0;
+    var atendResiduos = total > 0 ? ((dados.residuos_urbano + dados.residuos_rural) / total) * 100 : 0;
+
+    var deficitAgua = 100 - atendAgua;
+    var deficitEsgoto = 100 - atendEsgoto;
+    var deficitResiduos = 100 - atendResiduos;
+
+    var deficitGeral = (deficitAgua + deficitEsgoto + deficitResiduos) / 3;
+
+    document.getElementById("valDeficitSaneamento").textContent = deficitGeral.toFixed(0) + "%";
+
+    var parcelaRisco = Number(dados.parcela_domicilios_risco) || 0;
+    document.getElementById("valRiscoInundacao").textContent = parcelaRisco.toFixed(0) + "%";
+
+    var classificacao = "Baixo";
+    if (parcelaRisco >= 10) {
+        classificacao = "Alto";
+    } else if (parcelaRisco >= 3) {
+        classificacao = "Médio";
+    }
+    document.getElementById("valClassificacaoRisco").textContent = classificacao;
+}
+
 function aplicarFiltro() {
     var idMunicipio = document.getElementById("filtroCidade").value;
 
@@ -95,6 +161,8 @@ function aplicarFiltro() {
             if (response.ok) {
                 response.json().then(function (dados) {
                     dadosSaneamentoAtuais = dados;
+                    calcularScore(dados);
+                    atualizarFatoresCriticos(dados);
                     atualizarKPIs(dados, tabAtiva);
                 });
             } else {
@@ -108,8 +176,6 @@ function aplicarFiltro() {
 
 function atualizarKPIs(dados, tab) {
     var total = dados.populacao_total;
-    var urbTotal = dados.populacao_urbana;
-    var ruralTotal = dados.populacao_rural;
     var semAcesso = 0;
     var comAcesso = 0;
     var tituloGrafico = "";
@@ -119,27 +185,38 @@ function atualizarKPIs(dados, tab) {
     var percRural = 0;
 
     if (tab === "agua") {
-        comAcesso = dados.agua_urbana + dados.agua_rural;
+        var urbAtendido = dados.agua_urbana;
+        var ruralAtendido = dados.agua_rural;
+        comAcesso = urbAtendido + ruralAtendido;
         semAcesso = total - comAcesso;
         tituloGrafico = "População atendida (%)";
         descricaoSemAcesso = "Sem acesso à água potável";
         descricaoComAcesso = "População atendida";
-        percUrbano = urbTotal > 0 ? ((dados.agua_urbana / urbTotal) * 100).toFixed(1) : 0;
-        percRural = ruralTotal > 0 ? ((dados.agua_rural / ruralTotal) * 100).toFixed(1) : 0;
+        var totalAtendido = urbAtendido + ruralAtendido;
+        percUrbano = totalAtendido > 0 ? ((urbAtendido / totalAtendido) * 100).toFixed(1) : 0;
+        percRural = totalAtendido > 0 ? ((ruralAtendido / totalAtendido) * 100).toFixed(1) : 0;
     } else if (tab === "esgoto") {
-        comAcesso = dados.esgoto_urbano + dados.esgoto_rural;
+        var urbAtendido = dados.esgoto_urbano;
+        var ruralAtendido = dados.esgoto_rural;
+        comAcesso = urbAtendido + ruralAtendido;
         semAcesso = total - comAcesso;
         tituloGrafico = "População atendida (%)";
         descricaoSemAcesso = "Sem acesso ao tratamento de Esgoto";
         descricaoComAcesso = "População atendida";
-        percUrbano = urbTotal > 0 ? ((dados.residuos_urbano / urbTotal) * 100).toFixed(1) : 0;
-        percRural = ruralTotal > 0 ? ((dados.residuos_rural / ruralTotal) * 100).toFixed(1) : 0;
+        var totalAtendido = urbAtendido + ruralAtendido;
+        percUrbano = totalAtendido > 0 ? ((urbAtendido / totalAtendido) * 100).toFixed(1) : 0;
+        percRural = totalAtendido > 0 ? ((ruralAtendido / totalAtendido) * 100).toFixed(1) : 0;
     } else if (tab === "residuos") {
-        comAcesso = dados.residuos_urbano + dados.residuos_rural;
+        var urbAtendido = dados.residuos_urbano;
+        var ruralAtendido = dados.residuos_rural;
+        comAcesso = urbAtendido + ruralAtendido;
         semAcesso = total - comAcesso;
         tituloGrafico = "População atendida (%)";
         descricaoSemAcesso = "Sem coleta de Resíduos";
         descricaoComAcesso = "População atendida";
+        var totalAtendido = urbAtendido + ruralAtendido;
+        percUrbano = totalAtendido > 0 ? ((urbAtendido / totalAtendido) * 100).toFixed(1) : 0;
+        percRural = totalAtendido > 0 ? ((ruralAtendido / totalAtendido) * 100).toFixed(1) : 0;
     } else if (tab === "drenagem") {
         comAcesso = Math.round(total * dados.indice_drenagem / 100);
         semAcesso = total - comAcesso;
@@ -147,7 +224,6 @@ function atualizarKPIs(dados, tab) {
         descricaoSemAcesso = "Sem cobertura de drenagem";
         descricaoComAcesso = "Cobertura de drenagem";
         percUrbano = dados.indice_drenagem;
-        percRural = dados.indice_drenagem;
     }
 
     var percSemAcesso = ((semAcesso / total) * 100).toFixed(1).replace(".", ",");
@@ -163,76 +239,94 @@ function atualizarKPIs(dados, tab) {
 
     document.getElementById("tabTituloGrafico").textContent = tituloGrafico;
 
-    chartInstance.data.datasets[0].data = [Number(percUrbano), Number(percUrbano)];
-    chartInstance.data.datasets[1].data = [Number(percRural), Number(percRural)];
+    if (tab === "drenagem") {
+        chartInstance.data.labels = ["Drenagem"];
+        chartInstance.data.datasets = [{
+            data: [Number(percUrbano)],
+            backgroundColor: ["#002645"],
+            minBarLength: 4,
+        }];
+    } else {
+        chartInstance.data.labels = ["Urbano", "Rural"];
+        chartInstance.data.datasets = [{
+            data: [Number(percUrbano), Number(percRural)],
+            backgroundColor: ["#002645", "#58A8D6"],
+            minBarLength: 4,
+        }];
+    }
     chartInstance.update();
 }
 
 document.getElementById("btnFiltrar").addEventListener("click", aplicarFiltro);
 
 const tabData = {
-        agua: {
-          porcentagem: "8,3%",
-          habitantes: "162.789",
-          descricao: "Sem acesso à água potável",
-          atendidoPorcentagem: "91,7%",
-          atendidoHabitantes: "1.800.937",
-          atendidoDescricao: "População atendida",
-          tituloGrafico: "População atendida (%)",
-          dados: [91.7, 87.3, 83.4]
-        },
-        esgoto: {
-          porcentagem: "23%",
-          habitantes: "44.876",
-          descricao: "Sem acesso ao tratamento de Esgoto",
-          atendidoPorcentagem: "77%",
-          atendidoHabitantes: "1.918.850",
-          atendidoDescricao: "População atendida",
-          tituloGrafico: "População atendida (%)",
-          dados: [50, 60, 70]
-        },
-        residuos: {
-          porcentagem: "8,3%",
-          habitantes: "162.789",
-          descricao: "Sem coleta de Resíduos",
-          atendidoPorcentagem: "91,7%",
-          atendidoHabitantes: "1.800.937",
-          atendidoDescricao: "População atendida",
-          tituloGrafico: "População atendida (%)",
-          dados: [91.7, 87.3, 83.4]
-        },
-        drenagem: {
-          porcentagem: "52,1%",
-          habitantes: "744.521",
-          descricao: "Sem cobertura de drenagem",
-          atendidoPorcentagem: "47,9%",
-          atendidoHabitantes: "680.432",
-          atendidoDescricao: "Cobertura de drenagem",
-          tituloGrafico: "Cobertura de drenagem (%)",
-          dados: [62.3, 47.9],
-        },
-      };
+    agua: {
+        porcentagem: "8,3%",
+        habitantes: "162.789",
+        descricao: "Sem acesso à água potável",
+        atendidoPorcentagem: "91,7%",
+        atendidoHabitantes: "1.800.937",
+        atendidoDescricao: "População atendida",
+        tituloGrafico: "População atendida (%)",
+        dados: [91.7, 87.3]
+    },
+    esgoto: {
+        porcentagem: "23%",
+        habitantes: "44.876",
+        descricao: "Sem acesso ao tratamento de Esgoto",
+        atendidoPorcentagem: "77%",
+        atendidoHabitantes: "1.918.850",
+        atendidoDescricao: "População atendida",
+        tituloGrafico: "População atendida (%)",
+        dados: [50, 60]
+    },
+    residuos: {
+        porcentagem: "8,3%",
+        habitantes: "162.789",
+        descricao: "Sem coleta de Resíduos",
+        atendidoPorcentagem: "91,7%",
+        atendidoHabitantes: "1.800.937",
+        atendidoDescricao: "População atendida",
+        tituloGrafico: "População atendida (%)",
+        dados: [91.7, 87.3]
+    },
+    drenagem: {
+        porcentagem: "52,1%",
+        habitantes: "744.521",
+        descricao: "Sem cobertura de drenagem",
+        atendidoPorcentagem: "47,9%",
+        atendidoHabitantes: "680.432",
+        atendidoDescricao: "Cobertura de drenagem",
+        tituloGrafico: "Cobertura de drenagem (%)",
+        dados: [62.3]
+    },
+};
 
-      const labelAcimaBarras = {
-        id: 'labelAcimaBarras',
-        afterDatasetsDraw(chart) {
-            const { ctx, data, scales: { x, y } } = chart;
-            ctx.save();
+const labelAcimaBarras = {
+    id: 'labelAcimaBarras',
+    afterDatasetsDraw(chart) {
+        const { ctx } = chart;
+        ctx.save();
 
-            data.datasets[0].data.forEach((value, index) => {
-                const xPos = x.getPixelForValue(index);
-                const yPos = y.getPixelForValue(value);
-                const texto = value + "%";
+        chart.data.datasets.forEach(function (dataset, dsIndex) {
+            var meta = chart.getDatasetMeta(dsIndex);
+            meta.data.forEach(function (bar, index) {
+                var value = dataset.data[index];
+                if (value == null) return;
+
+                var xPos = bar.x;
+                var yPos = bar.y;
+                var texto = Number(value).toFixed(1).replace(".", ",") + "%";
 
                 ctx.font = 'bold 12px DM Sans, sans-serif';
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'bottom';
 
-                const padding = { x: 6, y: 4 };
-                const largura = ctx.measureText(texto).width + padding.x * 2;
-                const altura = 18;
-                const rectX = xPos - largura / 2;
-                const rectY = yPos - altura - 4;
+                var padding = { x: 6, y: 4 };
+                var largura = ctx.measureText(texto).width + padding.x * 2;
+                var altura = 18;
+                var rectX = xPos - largura / 2;
+                var rectY = yPos - altura - 4;
 
                 ctx.fillStyle = 'rgba(255,255,255,0.85)';
                 ctx.beginPath();
@@ -242,107 +336,101 @@ const tabData = {
                 ctx.fillStyle = '#002645';
                 ctx.fillText(texto, xPos, yPos - 4);
             });
+        });
 
-            ctx.restore();
-        }
-    };
+        ctx.restore();
+    }
+};
 
-    const chartInstance = new Chart(document.getElementById("myChart"), {
-        type: "bar",
-        data: {
-            labels: ["Estado", "Município"],
-            datasets: [{
-                label: "Urbano",
-                data: [91.7, 87.3],
-                backgroundColor: "#002645",
-            },
-            {
-                label: "Rural",
-                data: [8.3, 12.7],
-                backgroundColor: "#58A8D6",
-            },
-          ],
+const chartInstance = new Chart(document.getElementById("myChart"), {
+    type: "bar",
+    data: {
+        labels: ["Urbano", "Rural"],
+        datasets: [{
+            data: [91.7, 87.3],
+            backgroundColor: ["#002645", "#58A8D6"],
+            minBarLength: 4,
+        }],
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        layout: {
+            padding: { top: 20, bottom: 0 }
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            layout: {
-                padding: { top: 20, bottom: 0}
+        scales: {
+            y: {
+                min: 0,
+                max: 100,
+                display: false
             },
-            scales: {
-                y: {
-                    min: 0,
-                    max: 100,
-                    display: false
-                },
-                x: {
-                  ticks: {
-                    font: { size: 11},
+            x: {
+                ticks: {
+                    font: { size: 11 },
                     color: '#002645'
-                  },
-                  grid: { display: false},
-                  border: {display: false}
-                }
-            },
-            plugins: {
-                legend: { display: true, position: 'bottom', labels: { color: '#002645', font: { size: 11}}},
-                datalabels: { display: false }
+                },
+                grid: { display: false },
+                border: { display: false }
             }
         },
-        plugins: [labelAcimaBarras]
-    });
-
-      var dadosSaneamentoAtuais = null;
-
-      function trocarTab(tab) {
-        tabAtiva = tab;
-        const d = tabData[tab];
-        if (!d) return;
-        
-        chartInstance.data.labels = ["Estado", "Município"];
-
-        if (tab === "drenagem") {
-          chartInstance.data.datasets = [{
-            label: "Índice de Drenagem",
-            data: d.dados,
-            backgroundColor: "#002645",
-          }];
-        } else {
-          chartInstance.data.datasets = [
-            { label: "Urbano", data: d.dados, backgroundColor: "#002645" },
-            { label: "Rural",  data: [8.3, 12.7],  backgroundColor: "#58A8D6" },
-          ];
+        plugins: {
+            legend: { display: false },
+            datalabels: { display: false }
         }
+    },
+    plugins: [labelAcimaBarras]
+});
 
+var dadosSaneamentoAtuais = null;
+
+function trocarTab(tab) {
+    tabAtiva = tab;
+    var d = tabData[tab];
+    if (!d) return;
+
+    if (dadosSaneamentoAtuais) {
+        atualizarKPIs(dadosSaneamentoAtuais, tab);
+    } else {
+        if (tab === "drenagem") {
+            chartInstance.data.labels = ["Drenagem"];
+            chartInstance.data.datasets = [{
+                data: [d.dados[0]],
+                backgroundColor: ["#002645"],
+                minBarLength: 4,
+            }];
+        } else {
+            chartInstance.data.labels = ["Urbano", "Rural"];
+            chartInstance.data.datasets = [{
+                data: [d.dados[0], d.dados[1]],
+                backgroundColor: ["#002645", "#58A8D6"],
+                minBarLength: 4,
+            }];
+        }
         chartInstance.update();
 
-        if (dadosSaneamentoAtuais) {
-          atualizarKPIs(dadosSaneamentoAtuais, tab);
-        } else {
-          chartInstance.update();
-          document.getElementById("tabPorcentagem").textContent = d.porcentagem;
-          document.getElementById("tabHabitantes").textContent = d.habitantes;
-          document.getElementById("tabDescricao").textContent = d.descricao;
-          document.getElementById("tabAtendidoPorcentagem").textContent = d.atendidoPorcentagem;
-          document.getElementById("tabAtendidoHabitantes").textContent = d.atendidoHabitantes;
-          document.getElementById("tabAtendidoDescricao").textContent = d.atendidoDescricao;
-          document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
-        }
+        document.getElementById("tabPorcentagem").textContent = d.porcentagem;
+        document.getElementById("tabHabitantes").textContent = d.habitantes;
+        document.getElementById("tabDescricao").textContent = d.descricao;
+        document.getElementById("tabAtendidoPorcentagem").textContent = d.atendidoPorcentagem;
+        document.getElementById("tabAtendidoHabitantes").textContent = d.atendidoHabitantes;
+        document.getElementById("tabAtendidoDescricao").textContent = d.atendidoDescricao;
+        document.getElementById("tabTituloGrafico").textContent = d.tituloGrafico;
+    }
 
-        document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("ativo"));
-        document.querySelector(`.tabBtn[data-tab="${tab}"]`).classList.add("ativo");
-      }
+    document.querySelectorAll(".tabBtn").forEach(function (btn) { btn.classList.remove("ativo"); });
+    document.querySelector('.tabBtn[data-tab="' + tab + '"]').classList.add("ativo");
+}
 
-      document.querySelectorAll(".tabBtn").forEach(btn => {
-        btn.addEventListener("click", () => trocarTab(btn.dataset.tab));
-      });
+document.querySelectorAll(".tabBtn").forEach(function (btn) {
+    btn.addEventListener("click", function () { trocarTab(btn.dataset.tab); });
+});
 
-      trocarTab("agua");
+trocarTab("agua");
 
-      const links = document.querySelectorAll('aside .btns a');
+var links = document.querySelectorAll('aside .btns a');
 
-      links.forEach(link => {
-          if (link.href === window.location.href) {
-              link.classList.add('ativo');
-          }
-      });
+links.forEach(function (link) {
+    if (link.href === window.location.href) {
+        link.classList.add('ativo');
+    }
+});
