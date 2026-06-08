@@ -104,10 +104,15 @@
             <span class="tooltip-trigger">
               <i class="fa-solid fa-circle-question"></i>
               <div class="tooltip-content">
-                <strong>Como o Score é calculado?</strong><br>
-                <strong>Infraestrutura (0–10):</strong> média das notas de Água Potável, Esgoto, Resíduos e Drenagem.<br>
-                <strong>Risco (0–10):</strong> nota baseada em fatores críticos (déficit, inundação, etc).<br>
-                <strong>Score Total (0–10):</strong> combinação das notas de Infraestrutura e Risco (ex: média ponderada).
+                <strong>Como o Score é calculado?</strong><br><
+                <strong>1. Infraestrutura (0–10):</strong><br>
+                Cada serviço recebe uma nota de 0 a 10 (% atendida ÷ 10).<br>
+                Nota Infraestrutura = média de Água + Esgoto + Resíduos + Drenagem.<br>
+                <strong>2. Risco (0–10):</strong><br>
+                Nota = 10 - (% de domicílios em risco de inundação).<br>
+                Quanto maior o risco, menor a nota.<br>
+                <strong>3. Score Total (0–10):</strong><br>
+                Média ponderada: <strong>70% Infraestrutura + 30% Risco</strong>.<br>
               </div>
             </span>
           </div>
@@ -249,3 +254,48 @@
     <script src="js/dashboard.js"></script>
   </body>
 </html>
+
+<script>
+
+    var toggleSlack = document.getElementById("toggleSlack");
+
+
+    fetch("/slack/status")
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Erro ao buscar status");
+        })
+        .then(function(dados) {
+            toggleSlack.checked = dados.ativo;
+        })
+        .catch(function(error) {
+            console.error("Erro ao carregar status do Slack:", error);
+        });
+
+
+    toggleSlack.addEventListener("change", function() {
+        var ativo = toggleSlack.checked;
+
+        fetch("/slack/status", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ativo: ativo })
+        })
+        .then(function(response) {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error("Erro ao atualizar status");
+        })
+        .then(function(dados) {
+            console.log("Status do Slack atualizado:", dados.ativo ? "Ativado" : "Desativado");
+        })
+        .catch(function(error) {
+            console.error("Erro ao atualizar status do Slack:", error);
+
+            toggleSlack.checked = !ativo;
+        });
+    });
+</script>
