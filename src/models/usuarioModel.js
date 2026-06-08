@@ -25,26 +25,17 @@ function cadastrar(empresa, email, cnpj) {
     return database.executar(instrucaoSql);
 }
 
-function atualizar(id, nome, email, senha) {
-    var instrucaoSql;
-    if (senha) {
-        instrucaoSql = `
-            UPDATE Usuario SET nome = '${nome}', email = '${email}', senha = '${senha}'
-            WHERE id_funcionario = ${id};
-        `;
-    } else {
-        instrucaoSql = `
-            UPDATE Usuario SET nome = '${nome}', email = '${email}'
-            WHERE id_funcionario = ${id};
-        `;
-    }
+function buscarPorEmail(email) {
+    console.log("function buscarPorEmail():", email);
+    var instrucaoSql = `
+        SELECT id_funcionario, nome, email FROM Usuario WHERE email = '${email}' LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
-module.exports = { autenticar, atualizar };
 
 module.exports = {
     autenticar,
     cadastrar,
-    atualizar
+    buscarPorEmail
 };
