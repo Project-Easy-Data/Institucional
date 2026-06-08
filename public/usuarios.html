@@ -41,7 +41,7 @@
           ></i>
         </div>
         <div class="username">
-          <p class="nome">João</p>
+          <p class="nome">Bobby</p>
           <p class="cargo">Gerente</p>
         </div>
       </div>
@@ -73,7 +73,7 @@
       </div>
 
       <div class="sair">
-        <button class="btnSair"><a href="./login.html"> Sair </a></button>
+        <button class="btnSair">Sair</button>
       </div>
     </aside>
     <div class="container">
@@ -159,6 +159,42 @@
       </div>
     </div>
    
+    <div class="sobrepor" id="sobreporSenha">
+      <div class="cardCadastro" style="gap: 0.8vw;">
+        <div class="cardTitulo" style="margin-bottom: 0.3vw;">
+          <p>Usuário cadastrado!</p>
+          <i class="fa-solid fa-circle-check" style="color: #2e7d32; font-size: 1vw;"></i>
+        </div>
+        <p style="font-size: 0.68vw; color: #555; line-height: 1.5;">
+          Compartilhe a senha temporária abaixo com o novo usuário. Ela não ficará disponível novamente.
+        </p>
+        <div style="
+          background: #f1f1f1;
+          border: 1px dashed #00264560;
+          border-radius: 0.4vw;
+          padding: 0.6vw 0.8vw;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 0.5vw;
+        ">
+          <span id="senhaGerada" style="font-size: 0.9vw; font-weight: 700; color: #002645; letter-spacing: 0.1vw;"></span>
+          <button onclick="copiarSenha()" title="Copiar senha" style="
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #002645;
+            font-size: 0.85vw;
+            padding: 0;
+          ">
+            <i class="fa-regular fa-copy" id="iconeCopiar"></i>
+          </button>
+        </div>
+        <div id="acoes" style="margin-top: 0.2vw;">
+          <button class="btnConfirmar" onclick="fecharPopupSenha()">Entendi</button>
+        </div>
+      </div>
+    </div>
 
     <script src="js/usuarios.js"></script>
   </body>
