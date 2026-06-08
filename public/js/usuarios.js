@@ -9,13 +9,13 @@ function confirmar() {
     let cargoId;
 
     if (cargoSelect === 'Gerente') {
-        permissao = 3;
-        cargoId = 1; 
-    } else if (cargoSelect === 'Funcionário') {
         permissao = 1;
+        cargoId = 1;
+    } else if (cargoSelect === 'Funcionário') {
+        permissao = 2;
         cargoId = 2;
     } else {
-        permissao = 2;
+        permissao = 3;
         cargoId = 3;
     }
 
@@ -63,7 +63,6 @@ function confirmar() {
             `;
             listaUsuarios.appendChild(novaLinha);
             fecharModal();
-            exibirPopupSenha(senhaTemporaria);
         });
     } else {
         alert("Erro ao cadastrar funcionário.");
@@ -110,27 +109,6 @@ function gerarSenhaTemporaria(tamanho) {
     return senha;
 }
 
-function exibirPopupSenha(senha) {
-    document.getElementById("senhaGerada").textContent = senha;
-    document.getElementById("sobreporSenha").style.display = "flex";
-}
-
-function fecharPopupSenha() {
-    document.getElementById("sobreporSenha").style.display = "none";
-    document.getElementById("iconeCopiar").className = "fa-regular fa-copy";
-}
-
-function copiarSenha() {
-    const senha = document.getElementById("senhaGerada").textContent;
-    navigator.clipboard.writeText(senha).then(function() {
-        const icone = document.getElementById("iconeCopiar");
-        icone.className = "fa-solid fa-check";
-        setTimeout(function() {
-            icone.className = "fa-regular fa-copy";
-        }, 2000);
-    });
-}
-
     function trocarTab(tab) {
         const d = tabData[tab];
         if (!d) return;
@@ -151,3 +129,24 @@ function copiarSenha() {
               link.classList.add('ativo');
           }
       });
+
+      function carregarUsuarios() {
+    fetch("/funcionarios/listar")
+        .then(res => res.json())
+        .then(function(lista) {
+            const listaUsuarios = document.querySelector(".listaUsuarios");
+            lista.forEach(function(u) {
+                const novaLinha = document.createElement("div");
+                novaLinha.classList.add("linha");
+                novaLinha.innerHTML = `
+                    <p>${u.nome}</p>
+                    <p>${u.email}</p>
+                    <p>${u.cargo}</p>
+                    <button class="excluir" onclick="excluir(this, ${u.id_funcionario})">Excluir</button>
+                `;
+                listaUsuarios.appendChild(novaLinha);
+            });
+        });
+}
+
+document.addEventListener("DOMContentLoaded", carregarUsuarios);

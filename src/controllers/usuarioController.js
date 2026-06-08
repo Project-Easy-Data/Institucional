@@ -69,29 +69,23 @@ function cadastrar(req, res) {
     }
 }
 
-function verificarEmail(req, res) {
+function atualizar(req, res) {
+    var id = req.body.idServer;
+    var nome = req.body.nomeServer;
     var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
 
-    if (email == undefined || email.trim() === "") {
-        return res.status(400).send("Email não informado.");
-    }
+    if (!id) { return res.status(400).send("ID undefined!"); }
+    if (!nome) { return res.status(400).send("Nome undefined!"); }
+    if (!email) { return res.status(400).send("Email undefined!"); }
 
-    usuarioModel.buscarPorEmail(email)
-        .then(function (resultado) {
-            if (resultado.length === 1) {
-                res.status(200).json({ mensagem: "Email encontrado." });
-            } else {
-                res.status(404).send("Email não encontrado.");
-            }
-        })
-        .catch(function (erro) {
-            console.log("Erro ao verificar email:", erro);
-            res.status(500).json(erro.sqlMessage);
-        });
+    usuarioModel.atualizar(id, nome, email, senha)
+        .then(function(resultado) { res.json(resultado); })
+        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
 }
 
 module.exports = {
     autenticar,
     cadastrar,
-    verificarEmail
+    atualizar
 }
