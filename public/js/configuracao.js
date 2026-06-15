@@ -52,3 +52,11 @@ document.querySelector(".botaoSalvar").addEventListener("click", function() {
     })
     .catch(function(erro) { console.error("Erro:", erro); });
 });
+
+const links = document.querySelectorAll("aside .btns a");
+
+links.forEach(function (link) {
+    if (link.href === window.location.href) {
+        link.classList.add("ativo");
+    }
+});
