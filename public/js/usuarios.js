@@ -149,4 +149,17 @@ function gerarSenhaTemporaria(tamanho) {
         });
 }
 
-document.addEventListener("DOMContentLoaded", carregarUsuarios);
+document.addEventListener("DOMContentLoaded", function () {
+    var nome = sessionStorage.getItem("nome");
+    var cargo = sessionStorage.getItem("cargo");
+
+    if (document.getElementById("nomeUsuario")) {
+        document.getElementById("nomeUsuario").textContent = nome || "Usuário";
+    }
+
+    if (document.getElementById("cargoUsuario")) {
+        document.getElementById("cargoUsuario").textContent = cargo || "";
+    }
+
+    carregarUsuarios();
+});
