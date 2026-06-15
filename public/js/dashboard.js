@@ -445,3 +445,50 @@ links.forEach(function (link) {
         link.classList.add('ativo');
     }
 });
+
+var toggleSlack = document.getElementById("toggleSlack");
+
+function carregarStatusSlack() {
+    if (!toggleSlack) return;
+
+    fetch("/slack/status")
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (dados) {
+            toggleSlack.checked = dados.ativo;
+        })
+        .catch(function (erro) {
+            console.error("Erro ao carregar status do Slack:", erro);
+        });
+}
+
+function alterarStatusSlack() {
+    if (!toggleSlack) return;
+
+    fetch("/slack/status", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            ativo: toggleSlack.checked
+        })
+    })
+        .then(function (res) {
+            return res.json();
+        })
+        .then(function (dados) {
+            toggleSlack.checked = dados.ativo;
+            alert(dados.ativo ? "Slack ativado!" : "Slack desativado!");
+        })
+        .catch(function (erro) {
+            console.error("Erro ao alterar status do Slack:", erro);
+            alert("Erro ao alterar status do Slack.");
+        });
+}
+
+if (toggleSlack) {
+    carregarStatusSlack();
+    toggleSlack.addEventListener("change", alterarStatusSlack);
+}
