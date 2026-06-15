@@ -16,4 +16,8 @@ router.post("/verificarEmail", function (req, res) {
     usuarioController.verificarEmail(req, res);
 });
 
+router.put("/atualizar", function (req, res) {
+    usuarioController.atualizar(req, res);
+});
+
 module.exports = router;
