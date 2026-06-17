@@ -11,7 +11,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/1f2f2e86df.js" crossorigin="anonymous"></script>
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    />
 
     <title>Empresas</title>
 </head>
@@ -55,6 +61,7 @@
                     <div class="listaUsuarios">
                         <div class="cabecalho">
                             <p>Razão Social</p>
+                            <p>Email</p>
                             <p>CNPJ</p>
                             <p>Status</p>
                             <p></p>
@@ -69,15 +76,19 @@
         <div class="modal">
             <h3>Adicionar Empresa</h3>
 
-            <label>Razão Social</label>
+            <label for="inputRazao">Razão Social</label>
             <input id="inputRazao" type="text" placeholder="Digite a razão social" />
             <span id="erroRazao" class="erro">Informe a razão social.</span>
 
-            <label>CNPJ</label>
+            <label for="inputEmail">Email</label>
+            <input id="inputEmail" type="email" placeholder="Digite o email da empresa" />
+            <span id="erroEmail" class="erro">Informe o email.</span>
+
+            <label for="inputCnpj">CNPJ</label>
             <input id="inputCnpj" type="text" placeholder="Digite o CNPJ" />
             <span id="erroCnpj" class="erro">Informe o CNPJ.</span>
 
-            <label>Status</label>
+            <label for="selectStatus">Status</label>
             <select id="selectStatus">
                 <option value="">Selecione</option>
                 <option value="ATIVO">ATIVO</option>

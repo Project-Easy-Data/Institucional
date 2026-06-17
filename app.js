@@ -23,6 +23,7 @@ var ragRouter = require("./src/routes/rag");
 var empresasRouter = require("./src/routes/empresas");
 var dadosRouter = require("./src/routes/dados")
 var slackRouter = require("./src/routes/slack");
+var empresasRouter = require("./src/routes/empresas")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,6 +39,7 @@ app.use("/deletar", deletarRouter);
 app.use("/empresas", empresasRouter);
 app.use("/dados", dadosRouter);
 app.use("/slack", slackRouter);
+app.use("/empresas", empresasRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

@@ -1,4 +1,4 @@
-var empresaModel = require("../models/empresaModel");
+var empresasModel = require("../models/empresasModel");
 
 function cadastrar(req, res) {
     var razao = req.body.razaoServer;
@@ -6,35 +6,52 @@ function cadastrar(req, res) {
     var cnpj = req.body.cnpjServer;
     var status = req.body.statusServer;
 
-    if (!razao) { 
-        return res.status(400).send("Razão social indefinida!"); 
+    if (razao == undefined) {
+        res.status(400).send("Razão social indefinida.");
+    } else if (email == undefined) {
+        res.status(400).send("Email indefinido.");
+    } else if (cnpj == undefined) {
+        res.status(400).send("CNPJ indefinido.");
+    } else if (status == undefined) {
+        res.status(400).send("Status indefinido.");
+    } else {
+        empresasModel.cadastrar(razao, email, cnpj, status)
+            .then(function (resultado) {
+                res.json(resultado);
+            })
+            .catch(function (erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            });
     }
-    if (!email) { 
-        return res.status(400).send("Email indefinido!"); 
-    }
-    if (!cnpj) { 
-        return res.status(400).send("CNPJ indefinido!"); 
-    }
-    if (!status) { 
-        return res.status(400).send("Status indefinido!"); 
-    }
-
-    empresaModel.cadastrar(razao, email, cnpj, status)
-        .then(function(resultado) { res.json(resultado); })
-        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
 }
 
 function listar(req, res) {
-    empresaModel.listar()
-        .then(function(resultado) { res.json(resultado); })
-        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+    empresasModel.listar()
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
 function excluir(req, res) {
     var id = req.params.id;
-    empresaModel.excluir(id)
-        .then(function(resultado) { res.json(resultado); })
-        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+
+    empresasModel.excluir(id)
+        .then(function (resultado) {
+            res.json(resultado);
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
 }
 
-module.exports = { cadastrar, listar, excluir };
+module.exports = {
+    cadastrar,
+    listar,
+    excluir
+};
