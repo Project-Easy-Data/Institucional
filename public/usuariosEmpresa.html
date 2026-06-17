@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/usuarios.css" />
+  <link rel="stylesheet" href="css/reset.css" />
+  <title>Usuários da Empresa</title>
+  <link rel="icon" href="logos/favicon_easydata.ico" />
+</head>
+<body>
+  <div class="container">
+    <h2 id="tituloEmpresa">Usuários da Empresa</h2>
+
+    <div class="card">
+      <div class="container2">
+        <div class="addUsuario">
+          <button onclick="window.location='empresaConfig.html'">
+            <p>Voltar</p>
+          </button>
+
+          <button onclick="addFunc()">
+            <p>+ Adicionar Usuário</p>
+          </button>
+        </div>
+
+        <div class="listaUsuarios">
+          <div class="cabecalho">
+            <p>Nome</p>
+            <p>Email</p>
+            <p>Cargo</p>
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sobrepor" id="sobrepor">
+    <div class="cardCadastro">
+      <div class="cardTitulo">
+        <p>Adicionar Usuário</p>
+      </div>
+
+      <div class="campoCadastro">
+        <label for="inputNome">Nome</label>
+        <input type="text" id="inputNome" placeholder="Ex: Rafael Calderon" />
+        <p class="erro" id="erroNome" style="display: none">Informe o nome.</p>
+      </div>
+
+      <div class="campoCadastro">
+        <label for="inputEmail">Email</label>
+        <input type="text" id="inputEmail" placeholder="Ex: usuario@empresa.com" />
+        <p class="erro" id="erroEmail" style="display: none">Informe o email.</p>
+      </div>
+
+      <div class="campoCadastro">
+        <label for="inputCargo">Cargo</label>
+        <select id="selectCargo">
+          <option value="">Selecionar...</option>
+          <option value="Gerente">Gerente</option>
+          <option value="Funcionário">Funcionário</option>
+          <option value="Suporte">Suporte</option>
+        </select>
+        <p class="erro" id="erroCargo" style="display: none">Selecione um cargo.</p>
+      </div>
+
+      <div id="acoes">
+        <button class="btnCancelar" onclick="fecharModal()">Cancelar</button>
+        <button class="btnConfirmar" onclick="confirmar()">Adicionar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/usuariosEmpresa.js"></script>
+</body>
+</html>

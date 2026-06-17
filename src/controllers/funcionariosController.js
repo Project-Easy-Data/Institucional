@@ -6,7 +6,7 @@ function cadastrar(req, res) {
     var senha = req.body.senhaServer;
     var permissao = req.body.permissaoServer;
     var cargo = req.body.cargoServer;
-    var empresaId = 1;
+    var empresaId = req.body.empresaIdServer || 1;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -26,7 +26,7 @@ function cadastrar(req, res) {
 }
 
 function listar(req, res) {
-    funcionariosModel.listar(1)
+    funcionariosModel.listar(empresaId)
         .then(function(resultado) { res.json(resultado); })
         .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
 }

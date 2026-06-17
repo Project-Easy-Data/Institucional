@@ -35,6 +35,7 @@ function entrar() {
         erroMsg.style.color = "#ff4444";
         return;
     }
+
     carregando();
 
     fetch("/usuarios/autenticar", {
@@ -64,27 +65,38 @@ function entrar() {
             erroMsg.textContent = "Login realizado com sucesso!";
             erroMsg.style.color = "#90EE90";
 
-            sessionStorage.setItem('nome', resultado.nome);
-            sessionStorage.setItem('cargo', resultado.cargo);
-            sessionStorage.setItem('ID_USUARIO', resultado.id_funcionario);  
+            sessionStorage.setItem("nome", resultado.nome);
+            sessionStorage.setItem("cargo", resultado.cargo);
+            sessionStorage.setItem("ID_USUARIO", resultado.id_funcionario);
+            sessionStorage.setItem("permissao", resultado.permissao);
 
             console.log(resultado);
-            console.log(sessionStorage.setItem('permissao', resultado.permissao));
 
-            const permissaoUsuario = Number(sessionStorage.getItem('permissao'));
+            if (emailValor.toLowerCase().endsWith("@easydata.com")) {
+                sessionStorage.setItem("ADMIN_EASYDATA", "true");
+
+                setTimeout(() => {
+                    window.location = "../empresaConfig.html";
+                }, 1000);
+
+                return;
+            }
+
+            const permissaoUsuario = Number(sessionStorage.getItem("permissao"));
 
             if (permissaoUsuario === 2) {
                 setTimeout(() => {
                     window.location = "../dashboardFunc.html";
                 }, 1000);
+
                 console.log("Funcionário");
-                
             }
 
             if (permissaoUsuario === 1 || permissaoUsuario === 3) {
                 setTimeout(() => {
                     window.location = "../dashboardGerente.html";
                 }, 1000);
+
                 console.log("Gerente ou Suporte");
             }
         })

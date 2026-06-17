@@ -12,7 +12,11 @@ function confirmar() {
     fetch("/empresas/cadastrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ razaoServer: razao, cnpjServer: cnpj, statusServer: status })
+        body: JSON.stringify({
+            razaoServer: razao,
+            cnpjServer: cnpj,
+            statusServer: status
+        })
     })
     .then(function(resposta) {
         if (resposta.ok) {
@@ -24,33 +28,56 @@ function confirmar() {
             alert("Erro ao cadastrar empresa.");
         }
     })
-    .catch(function(erro) { console.error("Erro:", erro); });
+    .catch(function(erro) {
+        console.error("Erro:", erro);
+    });
 }
 
 function adicionarLinha(id, razao, cnpj, status) {
     const lista = document.querySelector(".listaUsuarios");
     const linha = document.createElement("div");
+
     linha.classList.add("linha");
     linha.innerHTML = `
         <p>${razao}</p>
         <p>${cnpj}</p>
         <p>${status}</p>
-        <button class="excluir" onclick="excluir(this, ${id})">Excluir</button>
+        <div>
+            <button class="excluir" onclick="abrirUsuariosEmpresa(${id}, '${razao}')">Usuários</button>
+            <button class="excluir" onclick="excluir(this, ${id})">Excluir</button>
+        </div>
     `;
+
     lista.appendChild(linha);
+}
+
+function abrirUsuariosEmpresa(idEmpresa, nomeEmpresa) {
+    sessionStorage.setItem("EMPRESA_ID_SELECIONADA", idEmpresa);
+    sessionStorage.setItem("EMPRESA_NOME_SELECIONADA", nomeEmpresa);
+    window.location = "usuariosEmpresa.html";
 }
 
 function excluir(botao, id) {
     fetch("/empresas/excluir/" + id, { method: "DELETE" })
     .then(function(resposta) {
-        if (resposta.ok) { botao.closest(".linha").remove(); }
-        else { alert("Erro ao excluir empresa."); }
+        if (resposta.ok) {
+            botao.closest(".linha").remove();
+        } else {
+            alert("Erro ao excluir empresa.");
+        }
     })
-    .catch(function(erro) { console.error("Erro:", erro); });
+    .catch(function(erro) {
+        console.error("Erro:", erro);
+    });
 }
 
-function addFunc() { sobrepor.style.display = "flex"; }
-function fecharModal() { sobrepor.style.display = "none"; }
+function addFunc() {
+    sobrepor.style.display = "flex";
+}
+
+function fecharModal() {
+    sobrepor.style.display = "none";
+}
 
 sobrepor.addEventListener("click", function(e) {
     if (e.target === sobrepor) fecharModal();
@@ -58,7 +85,9 @@ sobrepor.addEventListener("click", function(e) {
 
 function carregarEmpresas() {
     fetch("/empresas/listar")
-        .then(function(res) { return res.json(); })
+        .then(function(res) {
+            return res.json();
+        })
         .then(function(lista) {
             lista.forEach(function(e) {
                 adicionarLinha(e.id_Empresa, e.razao_social, e.cnpj, e.status);
