@@ -65,39 +65,41 @@ function entrar() {
             erroMsg.textContent = "Login realizado com sucesso!";
             erroMsg.style.color = "#90EE90";
 
-            sessionStorage.setItem("nome", resultado.nome);
-            sessionStorage.setItem("cargo", resultado.cargo);
-            sessionStorage.setItem("ID_USUARIO", resultado.id_funcionario);
-            sessionStorage.setItem("permissao", resultado.permissao);
+            const cargoMap = {
+                1: "Gerente",
+                2: "Funcionário",
+                3: "Suporte"
+            };
 
-            console.log(resultado);
+            const permissaoUsuario = Number(resultado.permissao);
+            const cargoUsuario = resultado.cargo || cargoMap[permissaoUsuario] || "Cargo";
+
+            sessionStorage.setItem("nome", resultado.nome || "Usuário");
+            sessionStorage.setItem("cargo", cargoUsuario);
+            sessionStorage.setItem("ID_USUARIO", resultado.id_funcionario);
+            sessionStorage.setItem("permissao", permissaoUsuario);
+            sessionStorage.setItem("email", emailValor);
 
             if (emailValor.toLowerCase().endsWith("@easydata.com")) {
                 sessionStorage.setItem("ADMIN_EASYDATA", "true");
 
                 setTimeout(() => {
-                    window.location = "empresaConfig.html";
+                    window.location = "../empresaConfig.html";
                 }, 1000);
 
                 return;
             }
 
-            const permissaoUsuario = Number(sessionStorage.getItem("permissao"));
-
             if (permissaoUsuario === 2) {
                 setTimeout(() => {
-                    window.location = "dashboardFunc.html";
+                    window.location = "../dashboardFunc.html";
                 }, 1000);
-
-                console.log("Funcionário");
             }
 
             if (permissaoUsuario === 1 || permissaoUsuario === 3) {
                 setTimeout(() => {
-                    window.location = "dashboardGerente.html";
+                    window.location = "../dashboardGerente.html";
                 }, 1000);
-
-                console.log("Gerente ou Suporte");
             }
         })
         .catch(err => {
