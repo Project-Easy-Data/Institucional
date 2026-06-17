@@ -87,6 +87,7 @@ function confirmar() {
                 `;
                 listaUsuarios.appendChild(novaLinha);
                 fecharModal();
+                exibirPopupSenha(senhaTemporaria);
             });
         } else {
             alert("Erro ao cadastrar funcionário.");
@@ -158,3 +159,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     carregarUsuarios();
 });
+
+function exibirPopupSenha(senha) {
+    document.getElementById("exibirSenha").value = senha;
+    document.getElementById("sobreporSenha").style.display = "flex";
+}
+
+function fecharSenha() {
+    document.getElementById("sobreporSenha").style.display = "none";
+}
+
+function copiarSenha() {
+    const input = document.getElementById("exibirSenha");
+    navigator.clipboard.writeText(input.value);
+}

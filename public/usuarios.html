@@ -149,6 +149,26 @@
         </div>
       </div>
     </div>
+    <div class="sobrepor" id="sobreporSenha">
+    <div class="cardCadastro">
+      <div class="cardTitulo">
+        <p>Usuário criado com sucesso!</p>
+      </div>
+      <div class="campoCadastro" style="gap: 0.4vw;">
+        <label>Senha temporária</label>
+        <div style="display: flex; gap: 0.5vw; align-items: center;">
+          <input type="text" id="exibirSenha" readonly style="flex:1; background:#f4f4f4; cursor:default;" />
+          <button class="btnCopiarSenha" onclick="copiarSenha()" title="Copiar">
+            <i class="fa-regular fa-copy"></i>
+          </button>
+        </div>
+        <p style="font-size:0.65vw; color:#666; margin-top:0.3vw;">Envie esta senha ao novo usuário. Ela não poderá ser recuperada depois.</p>
+      </div>
+      <div id="acoes">
+        <button class="btnConfirmar" onclick="fecharSenha()">Ok, entendi</button>
+      </div>
+    </div>
+  </div>
     <script src="js/usuarios.js"></script>
   </body>
 </html>
