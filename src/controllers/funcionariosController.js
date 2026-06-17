@@ -1,3 +1,5 @@
+var funcionariosModel = require("../models/funcionariosModel");
+
 function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
@@ -32,3 +34,59 @@ function cadastrar(req, res) {
             });
     }
 }
+
+function listar(req, res) {
+    var empresaId = req.params.empresaId;
+
+    if (empresaId == undefined) {
+        res.status(400).send("Empresa não informada!");
+    } else {
+        funcionariosModel.listar(empresaId)
+            .then(function(resultado) {
+                res.json(resultado);
+            })
+            .catch(function(erro) {
+                console.log(erro);
+                res.status(500).send(erro.sqlMessage || "Erro ao listar funcionários.");
+            });
+    }
+}
+
+function excluir(req, res) {
+    var id = req.params.id;
+
+    funcionariosModel.excluir(id)
+        .then(function(resultado) {
+            res.json(resultado);
+        })
+        .catch(function(erro) {
+            console.log(erro);
+            res.status(500).send(erro.sqlMessage || "Erro ao excluir funcionário.");
+        });
+}
+
+function atualizarCargo(req, res) {
+    var id = req.params.id;
+    var cargo = req.body.cargoId;
+    var permissao = req.body.permissao;
+
+    if (!cargo || !permissao) {
+        return res.status(400).send("Cargo ou permissão não informados.");
+    }
+
+    funcionariosModel.atualizarCargo(id, cargo, permissao)
+        .then(function(resultado) {
+            res.json(resultado);
+        })
+        .catch(function(erro) {
+            console.log(erro);
+            res.status(500).send(erro.sqlMessage || "Erro ao atualizar cargo.");
+        });
+}
+
+module.exports = {
+    cadastrar,
+    listar,
+    excluir,
+    atualizarCargo
+};
