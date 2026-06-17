@@ -1,9 +1,9 @@
 const sobrepor = document.getElementById("sobrepor");
 
 const cargoMap = {
-    'Gerente':     { cargoId: 1, permissao: 1 },
-    'Funcionário': { cargoId: 2, permissao: 2 },
-    'Suporte':     { cargoId: 3, permissao: 3 }
+    "Gerente": { cargoId: 1, permissao: 1 },
+    "Funcionário": { cargoId: 2, permissao: 2 },
+    "Suporte": { cargoId: 3, permissao: 3 }
 };
 
 const cargoPorPermissao = {
@@ -11,6 +11,10 @@ const cargoPorPermissao = {
     2: "Funcionário",
     3: "Suporte"
 };
+
+function obterEmpresaId() {
+    return sessionStorage.getItem("EMPRESA_ID_SELECIONADA") || sessionStorage.getItem("EMPRESA_ID") || 1;
+}
 
 function carregarPerfil() {
     const nome = sessionStorage.getItem("nome");
@@ -30,10 +34,27 @@ function carregarPerfil() {
     }
 }
 
+function normalizarCargo(usuario) {
+    if (usuario.cargo) {
+        return usuario.cargo;
+    }
+
+    if (usuario.fk_Cargo) {
+        return cargoPorPermissao[Number(usuario.fk_Cargo)] || "Funcionário";
+    }
+
+    if (usuario.permissao) {
+        return cargoPorPermissao[Number(usuario.permissao)] || "Funcionário";
+    }
+
+    return "Funcionário";
+}
+
 function criarSelectCargo(cargoAtual, idFuncionario) {
-    const opcoes = ['Gerente', 'Funcionário', 'Suporte'].map(c =>
-        `<option value="${c}" ${c === cargoAtual ? 'selected' : ''}>${c}</option>`
-    ).join('');
+    const opcoes = ["Gerente", "Funcionário", "Suporte"].map(c =>
+        `<option value="${c}" ${c === cargoAtual ? "selected" : ""}>${c}</option>`
+    ).join("");
+
     return `<select class="selectCargoLinha" onchange="alterarCargo(this, ${idFuncionario})">${opcoes}</select>`;
 }
 
@@ -42,49 +63,54 @@ function alterarCargo(select, idFuncionario) {
     const { cargoId, permissao } = cargoMap[cargoSelecionado];
 
     fetch(`/funcionarios/atualizarCargo/${idFuncionario}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ cargoId, permissao })
     })
-    .then(function(res) {
-        if (!res.ok) alert("Erro ao atualizar cargo.");
-    })
-    .catch(function(erro) {
-        console.error("Erro:", erro);
-    });
+        .then(function(res) {
+            if (!res.ok) alert("Erro ao atualizar cargo.");
+        })
+        .catch(function(erro) {
+            console.error("Erro:", erro);
+        });
 }
 
 function confirmar() {
-    const nome = document.getElementById("inputNome").value;
-    const email = document.getElementById("inputEmail").value;
+    const nome = document.getElementById("inputNome").value.trim();
+    const email = document.getElementById("inputEmail").value.trim();
     const cargoSelect = document.getElementById("selectCargo").value;
+    const empresaId = obterEmpresaId();
 
     let permissao;
     let cargoId;
 
-    if (cargoSelect === 'Gerente') {
-        permissao = 1; cargoId = 1;
-    } else if (cargoSelect === 'Funcionário') {
-        permissao = 2; cargoId = 2;
+    if (cargoSelect === "Gerente") {
+        permissao = 1;
+        cargoId = 1;
+    } else if (cargoSelect === "Funcionário") {
+        permissao = 2;
+        cargoId = 2;
     } else {
-        permissao = 3; cargoId = 3;
+        permissao = 3;
+        cargoId = 3;
     }
 
-    if (!nome) 
-        { document.getElementById("erroNome").style.display = "block"; return; 
+    if (!nome) {
+        document.getElementById("erroNome").style.display = "block";
+        return;
+    }
 
-        }
-    if (!email) 
-        { document.getElementById("erroEmail").style.display = "block"; return; 
+    if (!email) {
+        document.getElementById("erroEmail").style.display = "block";
+        return;
+    }
 
-        }
-    if (!cargoSelect) 
-        { document.getElementById("erroCargo").style.display = "block"; return; 
-            
-        }
+    if (!cargoSelect) {
+        document.getElementById("erroCargo").style.display = "block";
+        return;
+    }
 
     const senhaTemporaria = gerarSenhaTemporaria(10);
-    sessionStorage.setItem('permissao', permissao);
 
     fetch("/funcionarios/cadastrar", {
         method: "POST",
@@ -94,46 +120,57 @@ function confirmar() {
             emailServer: email,
             cargoServer: cargoId,
             permissaoServer: permissao,
-            senhaServer: senhaTemporaria
+            senhaServer: senhaTemporaria,
+            empresaIdServer: empresaId
         })
     })
-    .then(resposta => {
-        if (resposta.ok) {
-            resposta.json().then(function(dados) {
-                const listaUsuarios = document.querySelector(".listaUsuarios");
-                const novaLinha = document.createElement("div");
-                novaLinha.classList.add("linha");
-                novaLinha.innerHTML = `
-                    <p>${nome}</p>
-                    <p>${email}</p>
-                    ${criarSelectCargo(cargoSelect, dados.insertId)}
-                    <button class="excluir" onclick="excluir(this, ${dados.insertId})">Excluir</button>
-                `;
-                listaUsuarios.appendChild(novaLinha);
-                fecharModal();
-                exibirPopupSenha(senhaTemporaria);
-            });
-        } else {
+        .then(resposta => {
+            if (resposta.ok) {
+                return resposta.json();
+            }
+
+            throw new Error("Erro ao cadastrar funcionário.");
+        })
+        .then(function() {
+            fecharModal();
+            exibirPopupSenha(senhaTemporaria);
+            carregarUsuarios();
+        })
+        .catch(function(erro) {
+            console.error("Erro:", erro);
             alert("Erro ao cadastrar funcionário.");
-        }
-    })
-    .catch(erro => console.error("Erro:", erro));
+        });
 }
 
 function excluir(botao, id) {
     fetch("/deletar/" + id, { method: "DELETE" })
-    .then(function(resposta) {
-        if (resposta.ok) {
-            botao.closest(".linha").remove();
-        } else {
-            alert("Erro ao excluir funcionário.");
-        }
-    })
-    .catch(function(erro) { console.error("Erro:", erro); });
+        .then(function(resposta) {
+            if (resposta.ok) {
+                botao.closest(".linha").remove();
+            } else {
+                alert("Erro ao excluir funcionário.");
+            }
+        })
+        .catch(function(erro) {
+            console.error("Erro:", erro);
+        });
 }
 
-function addFunc() { sobrepor.style.display = "flex"; }
-function fecharModal() { sobrepor.style.display = "none"; }
+function addFunc() {
+    sobrepor.style.display = "flex";
+}
+
+function fecharModal() {
+    sobrepor.style.display = "none";
+
+    document.getElementById("inputNome").value = "";
+    document.getElementById("inputEmail").value = "";
+    document.getElementById("selectCargo").value = "";
+
+    document.getElementById("erroNome").style.display = "none";
+    document.getElementById("erroEmail").style.display = "none";
+    document.getElementById("erroCargo").style.display = "none";
+}
 
 sobrepor.addEventListener("click", function(e) {
     if (e.target === sobrepor) fecharModal();
@@ -142,37 +179,58 @@ sobrepor.addEventListener("click", function(e) {
 function gerarSenhaTemporaria(tamanho) {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let senha = "";
+
     for (let i = 0; i < tamanho; i++) {
         senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
     }
+
     return senha;
 }
 
+function limparListaUsuarios() {
+    document.querySelectorAll(".listaUsuarios .linha").forEach(function(linha) {
+        linha.remove();
+    });
+}
+
 function carregarUsuarios() {
-    fetch("/funcionarios/listar")
+    const empresaId = obterEmpresaId();
+
+    fetch(`/funcionarios/listar/${empresaId}`)
         .then(res => res.json())
         .then(function(lista) {
             const listaUsuarios = document.querySelector(".listaUsuarios");
+
+            limparListaUsuarios();
+
             lista.forEach(function(u) {
+                const cargoUsuario = normalizarCargo(u);
+
                 const novaLinha = document.createElement("div");
                 novaLinha.classList.add("linha");
+
                 novaLinha.innerHTML = `
                     <p>${u.nome}</p>
                     <p>${u.email}</p>
-                    ${criarSelectCargo(u.cargo, u.id_funcionario)}
+                    ${criarSelectCargo(cargoUsuario, u.id_funcionario)}
                     <button class="excluir" onclick="excluir(this, ${u.id_funcionario})">Excluir</button>
                 `;
+
                 listaUsuarios.appendChild(novaLinha);
             });
+        })
+        .catch(function(erro) {
+            console.error("Erro ao carregar usuários:", erro);
         });
 }
 
-const links = document.querySelectorAll('aside .btns a');
+const links = document.querySelectorAll("aside .btns a");
+
 links.forEach(link => {
-    if (link.href === window.location.href) link.classList.add('ativo');
+    if (link.href === window.location.href) link.classList.add("ativo");
 });
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     carregarPerfil();
     carregarUsuarios();
 });

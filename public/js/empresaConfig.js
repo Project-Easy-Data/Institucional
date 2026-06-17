@@ -102,7 +102,7 @@ function abrirUsuariosEmpresa(idEmpresa, nomeEmpresa) {
     sessionStorage.setItem("EMPRESA_ID_SELECIONADA", idEmpresa);
     sessionStorage.setItem("EMPRESA_NOME_SELECIONADA", nomeEmpresa);
 
-    window.location = "usuariosEmpresa.html";
+    window.location = "usuarios.html";
 }
 
 function excluir(botao, id) {

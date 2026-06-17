@@ -6,7 +6,7 @@ function cadastrar(req, res) {
     var senha = req.body.senhaServer;
     var permissao = req.body.permissaoServer;
     var cargo = req.body.cargoServer;
-    var empresaId = req.body.empresaIdServer || 1;
+    var empresaId = req.body.empresaIdServer;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -18,39 +18,35 @@ function cadastrar(req, res) {
         res.status(400).send("Sua permissao está indefinida!");
     } else if (cargo == undefined) {
         res.status(400).send("Seu cargo está indefinido!");
+    } else if (empresaId == undefined) {
+        res.status(400).send("Empresa não informada!");
     } else {
         funcionariosModel.cadastrar(nome, email, senha, cargo, permissao, empresaId)
-            .then(function(resultado) { 
-                res.json(resultado); 
+            .then(function(resultado) {
+                res.json(resultado);
             })
-            .catch(function(erro) { 
-                res.status(500).json(erro.sqlMessage); 
+            .catch(function(erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
             });
     }
 }
 
 function listar(req, res) {
-    var empresaId = req.params.empresaId || 1;
+    var empresaId = req.params.empresaId;
 
-    funcionariosModel.listar(empresaId)
-        .then(function(resultado) { 
-            res.json(resultado); 
-        })
-        .catch(function(erro) { 
-            res.status(500).json(erro.sqlMessage); 
-        });
-}
-
-function excluir(req, res) {
-    var id = req.params.id;
-
-    funcionariosModel.excluir(id)
-        .then(function(resultado) { 
-            res.json(resultado); 
-        })
-        .catch(function(erro) { 
-            res.status(500).json(erro.sqlMessage); 
-        });
+    if (empresaId == undefined) {
+        res.status(400).send("Empresa não informada!");
+    } else {
+        funcionariosModel.listar(empresaId)
+            .then(function(resultado) {
+                res.json(resultado);
+            })
+            .catch(function(erro) {
+                console.log(erro);
+                res.status(500).json(erro.sqlMessage);
+            });
+    }
 }
 
 function atualizarCargo(req, res) {
@@ -63,17 +59,17 @@ function atualizarCargo(req, res) {
     }
 
     funcionariosModel.atualizarCargo(id, cargo, permissao)
-        .then(function(resultado) { 
-            res.json(resultado); 
+        .then(function(resultado) {
+            res.json(resultado);
         })
-        .catch(function(erro) { 
-            res.status(500).json(erro.sqlMessage); 
+        .catch(function(erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
         });
 }
 
-module.exports = { 
-    cadastrar, 
-    excluir, 
-    listar, 
-    atualizarCargo 
+module.exports = {
+    cadastrar,
+    listar,
+    atualizarCargo
 };
