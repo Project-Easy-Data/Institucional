@@ -8,13 +8,20 @@ function cadastrar(nome, email, senha, permissao, cargo, empresaId) {
     return database.executar(instrucaoSql);
 }
 
-function listar(empresaId) {
+function listar() {
     var instrucaoSql = `
-        SELECT u.id_funcionario, u.nome, u.email, c.cargo
+        SELECT
+            u.id_funcionario,
+            u.nome,
+            u.email,
+            c.cargo
         FROM Usuario u
-        INNER JOIN Cargo c ON u.fk_Cargo = c.idCargo
-        WHERE u.fk_Empresa = ${empresaId};
+        LEFT JOIN Cargo c ON c.idCargo = u.fk_Cargo
+        WHERE u.email NOT LIKE '%@easydata.com'
+        ORDER BY u.id_funcionario DESC;
     `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 

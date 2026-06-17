@@ -20,22 +20,37 @@ function cadastrar(req, res) {
         res.status(400).send("Seu cargo está indefinido!");
     } else {
         funcionariosModel.cadastrar(nome, email, senha, cargo, permissao, empresaId)
-            .then(function(resultado) { res.json(resultado); })
-            .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+            .then(function(resultado) { 
+                res.json(resultado); 
+            })
+            .catch(function(erro) { 
+                res.status(500).json(erro.sqlMessage); 
+            });
     }
 }
 
 function listar(req, res) {
+    var empresaId = req.params.empresaId || 1;
+
     funcionariosModel.listar(empresaId)
-        .then(function(resultado) { res.json(resultado); })
-        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+        .then(function(resultado) { 
+            res.json(resultado); 
+        })
+        .catch(function(erro) { 
+            res.status(500).json(erro.sqlMessage); 
+        });
 }
 
 function excluir(req, res) {
     var id = req.params.id;
+
     funcionariosModel.excluir(id)
-        .then(function(resultado) { res.json(resultado); })
-        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+        .then(function(resultado) { 
+            res.json(resultado); 
+        })
+        .catch(function(erro) { 
+            res.status(500).json(erro.sqlMessage); 
+        });
 }
 
 function atualizarCargo(req, res) {
@@ -48,8 +63,17 @@ function atualizarCargo(req, res) {
     }
 
     funcionariosModel.atualizarCargo(id, cargo, permissao)
-        .then(function(resultado) { res.json(resultado); })
-        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+        .then(function(resultado) { 
+            res.json(resultado); 
+        })
+        .catch(function(erro) { 
+            res.status(500).json(erro.sqlMessage); 
+        });
 }
 
-module.exports = { cadastrar, excluir, listar, atualizarCargo };
+module.exports = { 
+    cadastrar, 
+    excluir, 
+    listar, 
+    atualizarCargo 
+};
