@@ -1,232 +1,228 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+    font-family: "Poppins", sans-serif;
+    color: #000;
+}
+
+.sidebarEmpresa {
+    width: 15%;
+    min-width: 205px;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 4rem 1.5rem 2rem;
+    gap: 4rem;
+}
+
+.logo {
+    width: 70%;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.nomeCargo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.perfil {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil i {
+    font-size: 2rem;
+    border: 1px solid #000;
+    border-radius: 50%;
+    padding: 0.8rem;
+}
+
+.username .nome {
+    font-size: 1.2rem;
+    line-height: 1.2;
+}
+
+.username .cargo {
+    font-size: 0.9rem;
+}
+
+.sair {
+    margin-top: auto;
+}
+
+.btnSair {
+    background-color: #002645;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7rem 1.4rem;
+    cursor: pointer;
+}
+
+.btnSair a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.conteudoEmpresa {
+    flex: 1;
+    min-height: 100vh;
+    padding: 2rem 4rem;
+}
+
+.container {
+    width: 100%;
 }
 
 .container h2 {
     text-align: center;
     color: #002645;
-    font-size: 2vw;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    min-height: 100vh;
-    background-color: #f1f1f1;
+    font-size: 1.8rem;
+    margin-bottom: 4rem;
 }
 
 .card {
-    max-height: 40vw;
-    width: 70%;
-    border-radius: 1vw;
-    background-color: #ffffff;;
-    margin-top: 5vw;
-    display: flex;
-    flex-direction: column;
+    width: 75%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 1.3rem 2.5rem;
+}
+
+.addUsuario {
+    margin-bottom: 0.8rem;
+}
+
+.addUsuario button {
+    background-color: #002645;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.7rem 1rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.listaUsuarios {
+    border: 1px solid #9baabd;
+    border-radius: 12px;
     overflow: hidden;
 }
 
-.card .addUsuario {
-    margin-left: 1vw;
-    margin-top: 1vw;
+.cabecalho,
+.linha {
+    display: grid;
+    grid-template-columns: 1.4fr 1.4fr 1fr 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
 }
 
-.card .addUsuario button {
-    padding: 0.3vw;
-    height: 3vw;
-    width: 13vw;
-    background-color: #002645;
-    color: #f1f1f1;
-    border-radius: 0.4vw;
-    border: none;
-    font-size: 1.1vw;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.card .container2 {
-    margin-left: 2vw;
-    margin-top: 0.5vw;
-    margin-right: 2vw;
-}
-
-.card .container2 .listaUsuarios .cabecalho {
-    display: flex;
+.cabecalho {
     background-color: #f1f1f1;
-    justify-content: space-between;
-    padding: 1vw;
-    border-radius: 1vw 1vw 0 0;
-    width: 98%;
-    border: 1px solid #00264554;
-    font-weight: 600;
-    font-size: 1.1vw;
-    box-sizing: border-box;
+    font-weight: 700;
+    border-bottom: 1px solid #9baabd;
 }
 
-.card .container2 .listaUsuarios {
-    border-radius: 1vw;
-    overflow-y: auto;
-    max-height: 28vw;
-    margin-left: 1vw;
-    margin-bottom: 1vw;
-    margin-top: 0.8vw;
+.linha {
+    border-bottom: 1px solid #d8d8d8;
 }
 
-.card .container2 .listaUsuarios .linha {
-    display: flex;
-    justify-content: space-between;
-    padding: 1vw;
-    width: 98%;
-    border: 1px solid #00264554;
-    font-size: 1.1vw;
-    align-items: center;
-    box-sizing: border-box;
+.linha:last-child {
+    border-bottom: none;
 }
 
-.card .container2 .listaUsuarios .linha:last-child {
-    border-radius: 0 0 1vw 1vw;
-}
-
-.card .container2 .listaUsuarios .linha .excluir {
-    background: none;
-    color: #b70a0a;
-    border-radius: 0.5vw;
-    font-size: 0.8vw;
-    border: 1px solid #b70a0a;
-    padding: 0.5vw;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.card .container2 .listaUsuarios .linha #excluir {
-    background: none;
-    color: #b70a0a;
-    border-radius: 0.5vw;
-    font-size: 0.8vw;
-    border: 1px solid #b70a0a;
-    padding: 0.5vw;
-    cursor: pointer;
-    font-weight: 600;
-}
-
-.card .container2 .listaUsuarios .linha #excluir:hover {
-    cursor: pointer;
-    background: #b70a0a1e;;
-    transition: 0.3s ease-in-out;
-}
-
-.card .container2 .listaUsuarios .linha .excluir:hover {
-    cursor: pointer;
-    background: #b70a0a1e;;
-    transition: 0.3s ease-in-out;
-}
-
-.cardCadastro {
-    background: #fff;
-    border-radius: 0.73vw;
-    padding: 1vw;
-    width: 17.7vw;
-    max-width: 95vw;
-    box-shadow: 0 0.42vw 1.67vw rgba(0, 38, 69, 0.18);
-    display: flex;
-    flex-direction: column;
-    gap: 0.52vw;
-}
-
-.cardCadastro .cardTitulo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.cardCadastro .cardTitulo p {
-    color: #002645;
-    font-size: 0.83vw;
-    font-weight: 600;
-}
-
-.cardCadastro label {
-    font-size: 0.65vw;
-    font-weight: 600;
-    color: #002645;
-    display: block;
-    margin-bottom: 0.21vw;
-}
-
-.cardCadastro input {
-    width: 100%;
-    padding: 0.37vw 0.36vw;
-    border: 1px solid #00264530;
-    border-radius: 0.36vw;
-    font-size: 0.68vw;
-    outline: none;
-    font-family: inherit;
-    color: var(--color-text-primary);
-    background: var(--color-background-primary);
-}
-
-.cardCadastro select {
-    width: 100%;
-    padding: 0.37vw 0.36vw;
-    border: 1px solid #00264530;
-    border-radius: 0.36vw;
-    font-size: 0.68vw;
-    outline: none;
-    font-family: inherit;
-    color: var(--color-text-primary);
-    background: var(--color-background-primary);
-}
-
-.cardCadastro .erro {
-    font-size: 0.6vw;
-    color: #b70a0a;
-    display: none;
-    margin-top: 0.1vw;
-}
-
-.cardCadastro #acoes {
+.acoesLinha {
     display: flex;
     justify-content: flex-end;
-    gap: 0.31vw;
-    margin-top: 0.1vw;
+    gap: 0.4rem;
 }
 
-.cardCadastro .btnCancelar {
-    background: none;
-    border: 1px solid #00264530;
-    border-radius: 0.36vw;
-    padding: 0.4vw 0.8vw;
-    font-size: 0.7vw;
+.excluir,
+.usuarios {
+    background-color: #fff;
+    border: 1px solid red;
+    color: red;
+    border-radius: 7px;
+    padding: 0.4rem 0.6rem;
     cursor: pointer;
-    color: #555;
-    font-family: inherit;
-}
-
-.cardCadastro .btnConfirmar {
-    background: #002645;
-    color: #fff;
-    border: none;
-    border-radius: 0.36vw;
-    padding: 0.4vw 0.8vw;
-    font-size: 0.7vw;
     font-weight: 600;
-    cursor: pointer;
-    font-family: inherit;
 }
 
 .sobrepor {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.45);
-    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.45);
     align-items: center;
     justify-content: center;
+    z-index: 10;
 }
 
-#selectStatus {
+.modal {
+    width: 380px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.modal h3 {
+    color: #002645;
+    margin-bottom: 0.8rem;
+}
+
+.modal input,
+.modal select {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid #9baabd;
+    border-radius: 6px;
+}
+
+.erro {
+    display: none;
+    color: red;
+    font-size: 0.8rem;
+}
+
+.acoesModal {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.btnCancelar,
+.btnConfirmar {
     border: none;
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
     cursor: pointer;
+    font-weight: 600;
+}
+
+.btnCancelar {
+    background-color: #d9d9d9;
+}
+
+.btnConfirmar {
+    background-color: #002645;
+    color: #fff;
 }

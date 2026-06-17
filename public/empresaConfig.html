@@ -1,67 +1,98 @@
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="pt-br">
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/empresaConfig.css" />
+
     <link rel="stylesheet" href="css/reset.css" />
-    <title>Empresas</title>
+    <link rel="stylesheet" href="css/empresaConfig.css" />
+
     <link rel="icon" href="logos/favicon_easydata.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
-  </head>
-  <body>
-    <div class="container">
-      <h2>Empresa</h2>
-      <div class="card">
-        <div class="container2">
-          <div class="addUsuario">
-            <button onclick="addFunc()"><p>+ Adicionar Empresa</p></button>
-          </div>
-          <div class="listaUsuarios">
-            <div class="cabecalho">
-              <p>Razão Social</p>
-              <p>CNPJ</p>
-              <p>Status</p>
-              <p></p>
-            </div>
-          </div>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/1f2f2e86df.js" crossorigin="anonymous"></script>
+
+    <title>Empresas</title>
+</head>
+
+<body>
+    <aside class="sidebarEmpresa">
+        <div class="logo">
+            <img src="img/logodata.png" alt="Logo EasyData" />
         </div>
-      </div>
-    </div>
+
+        <div class="nomeCargo">
+            <div class="perfil">
+                <i class="fa-regular fa-user"></i>
+            </div>
+
+            <div class="username">
+                <p id="nomeUsuario" class="nome">Usuário</p>
+                <p id="cargoUsuario" class="cargo">Administrador</p>
+            </div>
+        </div>
+
+        <div class="sair">
+            <button class="btnSair">
+                <a href="./login.html">Sair</a>
+            </button>
+        </div>
+    </aside>
+
+    <main class="conteudoEmpresa">
+        <div class="container">
+            <h2>Empresa</h2>
+
+            <div class="card">
+                <div class="container2">
+                    <div class="addUsuario">
+                        <button onclick="addFunc()">
+                            <p>+ Adicionar Empresa</p>
+                        </button>
+                    </div>
+
+                    <div class="listaUsuarios">
+                        <div class="cabecalho">
+                            <p>Razão Social</p>
+                            <p>CNPJ</p>
+                            <p>Status</p>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
 
     <div class="sobrepor" id="sobrepor">
-      <div class="cardCadastro">
-        <div class="cardTitulo"><p>Adicionar Empresa</p></div>
-        <div class="campoCadastro">
-          <label for="inputRazao">Razão Social</label>
-          <input type="text" id="inputRazao" placeholder="Ex: EasyData Ltda" />
-          <p class="erro" id="erroRazao" style="display: none">Informe a razão social.</p>
+        <div class="modal">
+            <h3>Adicionar Empresa</h3>
+
+            <label>Razão Social</label>
+            <input id="inputRazao" type="text" placeholder="Digite a razão social" />
+            <span id="erroRazao" class="erro">Informe a razão social.</span>
+
+            <label>CNPJ</label>
+            <input id="inputCnpj" type="text" placeholder="Digite o CNPJ" />
+            <span id="erroCnpj" class="erro">Informe o CNPJ.</span>
+
+            <label>Status</label>
+            <select id="selectStatus">
+                <option value="">Selecione</option>
+                <option value="ATIVO">ATIVO</option>
+                <option value="INATIVO">INATIVO</option>
+                <option value="PENDENTE">PENDENTE</option>
+            </select>
+            <span id="erroStatus" class="erro">Selecione o status.</span>
+
+            <div class="acoesModal">
+                <button class="btnCancelar" onclick="fecharModal()">Cancelar</button>
+                <button class="btnConfirmar" onclick="confirmar()">Confirmar</button>
+            </div>
         </div>
-        <div class="campoCadastro">
-          <label for="inputCnpj">CNPJ</label>
-          <input type="text" id="inputCnpj" placeholder="Ex: 00000000000100" />
-          <p class="erro" id="erroCnpj" style="display: none">Informe o CNPJ.</p>
-        </div>
-        <div class="campoCadastro">
-          <label for="selectStatus">Status</label>
-          <select id="selectStatus">
-            <option value="">Selecionar...</option>
-            <option value="ATIVO">Ativo</option>
-            <option value="INATIVO">Inativo</option>
-            <option value="PENDENTE">Pendente</option>
-          </select>
-          <p class="erro" id="erroStatus" style="display: none">Selecione o status.</p>
-        </div>
-        <div id="acoes">
-          <button class="btnCancelar" onclick="fecharModal()">Cancelar</button>
-          <button class="btnConfirmar" onclick="confirmar()">Adicionar</button>
-        </div>
-      </div>
     </div>
 
     <script src="js/empresaConfig.js"></script>
-  </body>
+</body>
 </html>
