@@ -76,7 +76,7 @@ function entrar() {
                 sessionStorage.setItem("ADMIN_EASYDATA", "true");
 
                 setTimeout(() => {
-                    window.location = "../empresaConfig.html";
+                    window.location = "empresaConfig.html";
                 }, 1000);
 
                 return;
@@ -86,7 +86,7 @@ function entrar() {
 
             if (permissaoUsuario === 2) {
                 setTimeout(() => {
-                    window.location = "../dashboardFunc.html";
+                    window.location = "dashboardFunc.html";
                 }, 1000);
 
                 console.log("Funcionário");
@@ -94,7 +94,7 @@ function entrar() {
 
             if (permissaoUsuario === 1 || permissaoUsuario === 3) {
                 setTimeout(() => {
-                    window.location = "../dashboardGerente.html";
+                    window.location = "dashboardGerente.html";
                 }, 1000);
 
                 console.log("Gerente ou Suporte");
