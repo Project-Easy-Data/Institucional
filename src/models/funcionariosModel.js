@@ -46,6 +46,16 @@ function listar(empresaId) {
     return database.executar(instrucaoSql);
 }
 
+function excluir(id) {
+    var instrucaoSql = `
+        DELETE FROM Usuario
+        WHERE id_funcionario = ${id};
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function atualizarCargo(id, cargo, permissao) {
     var instrucaoSql = `
         UPDATE Usuario
@@ -61,5 +71,6 @@ function atualizarCargo(id, cargo, permissao) {
 module.exports = {
     cadastrar,
     listar,
+    excluir,
     atualizarCargo
 };

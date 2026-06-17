@@ -51,16 +51,24 @@ function normalizarCargo(usuario) {
 }
 
 function criarSelectCargo(cargoAtual, idFuncionario) {
-    const opcoes = ["Gerente", "Funcionário", "Suporte"].map(c =>
-        `<option value="${c}" ${c === cargoAtual ? "selected" : ""}>${c}</option>`
-    ).join("");
+    const cargoTexto = {
+        1: "Gerente",
+        2: "Funcionário",
+        3: "Suporte"
+    };
+
+    const cargoIdAtual = Number(cargoAtual);
+
+    const opcoes = [1, 2, 3].map(id => {
+        return `<option value="${id}" ${id === cargoIdAtual ? "selected" : ""}>${cargoTexto[id]}</option>`;
+    }).join("");
 
     return `<select class="selectCargoLinha" onchange="alterarCargo(this, ${idFuncionario})">${opcoes}</select>`;
 }
 
 function alterarCargo(select, idFuncionario) {
-    const cargoSelecionado = select.value;
-    const { cargoId, permissao } = cargoMap[cargoSelecionado];
+    const cargoId = Number(select.value);
+    const permissao = cargoId;
 
     fetch(`/funcionarios/atualizarCargo/${idFuncionario}`, {
         method: "PUT",
@@ -74,26 +82,11 @@ function alterarCargo(select, idFuncionario) {
             console.error("Erro:", erro);
         });
 }
-
 function confirmar() {
     const nome = document.getElementById("inputNome").value.trim();
     const email = document.getElementById("inputEmail").value.trim();
-    const cargoSelect = document.getElementById("selectCargo").value;
+    const cargoId = Number(document.getElementById("selectCargo").value);
     const empresaId = obterEmpresaId();
-
-    let permissao;
-    let cargoId;
-
-    if (cargoSelect === "Gerente") {
-        permissao = 1;
-        cargoId = 1;
-    } else if (cargoSelect === "Funcionário") {
-        permissao = 2;
-        cargoId = 2;
-    } else {
-        permissao = 3;
-        cargoId = 3;
-    }
 
     if (!nome) {
         document.getElementById("erroNome").style.display = "block";
@@ -105,7 +98,7 @@ function confirmar() {
         return;
     }
 
-    if (!cargoSelect) {
+    if (!cargoId) {
         document.getElementById("erroCargo").style.display = "block";
         return;
     }
@@ -119,17 +112,19 @@ function confirmar() {
             nomeServer: nome,
             emailServer: email,
             cargoServer: cargoId,
-            permissaoServer: permissao,
+            permissaoServer: cargoId,
             senhaServer: senhaTemporaria,
             empresaIdServer: empresaId
         })
     })
-        .then(resposta => {
-            if (resposta.ok) {
-                return resposta.json();
+        .then(function(resposta) {
+            if (!resposta.ok) {
+                return resposta.text().then(function(textoErro) {
+                    throw new Error(textoErro || "Erro ao cadastrar funcionário.");
+                });
             }
 
-            throw new Error("Erro ao cadastrar funcionário.");
+            return resposta.json();
         })
         .then(function() {
             fecharModal();
@@ -138,12 +133,14 @@ function confirmar() {
         })
         .catch(function(erro) {
             console.error("Erro:", erro);
-            alert("Erro ao cadastrar funcionário.");
+            alert("Erro ao cadastrar funcionário: " + erro.message);
         });
 }
 
 function excluir(botao, id) {
-    fetch("/deletar/" + id, { method: "DELETE" })
+    fetch("/funcionarios/excluir/" + id, {
+        method: "DELETE"
+    })
         .then(function(resposta) {
             if (resposta.ok) {
                 botao.closest(".linha").remove();

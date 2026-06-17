@@ -136,6 +136,24 @@
                 </div>
             </div>
         </div>
+
+        <div class="sobrepor" id="sobreporSenha">
+            <div class="cardCadastro">
+                <div class="cardTitulo">
+                    <p>Senha temporária</p>
+                </div>
+
+                <div class="campoCadastro">
+                    <label for="exibirSenha">Envie esta senha para o usuário:</label>
+                    <input type="text" id="exibirSenha" readonly />
+                </div>
+
+                <div id="acoes">
+                    <button class="btnCancelar" onclick="fecharSenha()">Fechar</button>
+                    <button class="btnConfirmar" onclick="copiarSenha()">Copiar</button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="js/usuarios.js"></script>

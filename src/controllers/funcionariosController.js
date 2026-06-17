@@ -1,5 +1,3 @@
-var funcionariosModel = require("../models/funcionariosModel");
-
 function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
@@ -23,53 +21,14 @@ function cadastrar(req, res) {
     } else {
         funcionariosModel.cadastrar(nome, email, senha, cargo, permissao, empresaId)
             .then(function(resultado) {
-                res.json(resultado);
+                res.status(201).json({
+                    mensagem: "Funcionário cadastrado com sucesso.",
+                    insertId: resultado.insertId
+                });
             })
             .catch(function(erro) {
                 console.log(erro);
-                res.status(500).json(erro.sqlMessage);
+                res.status(500).send(erro.sqlMessage || "Erro ao cadastrar funcionário.");
             });
     }
 }
-
-function listar(req, res) {
-    var empresaId = req.params.empresaId;
-
-    if (empresaId == undefined) {
-        res.status(400).send("Empresa não informada!");
-    } else {
-        funcionariosModel.listar(empresaId)
-            .then(function(resultado) {
-                res.json(resultado);
-            })
-            .catch(function(erro) {
-                console.log(erro);
-                res.status(500).json(erro.sqlMessage);
-            });
-    }
-}
-
-function atualizarCargo(req, res) {
-    var id = req.params.id;
-    var cargo = req.body.cargoId;
-    var permissao = req.body.permissao;
-
-    if (!cargo || !permissao) {
-        return res.status(400).send("Cargo ou permissão não informados.");
-    }
-
-    funcionariosModel.atualizarCargo(id, cargo, permissao)
-        .then(function(resultado) {
-            res.json(resultado);
-        })
-        .catch(function(erro) {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
-        });
-}
-
-module.exports = {
-    cadastrar,
-    listar,
-    atualizarCargo
-};

@@ -15,4 +15,8 @@ router.put("/atualizarCargo/:id", function(req, res) {
     funcionariosController.atualizarCargo(req, res);
 });
 
+router.delete("/excluir/:id", function(req, res) {
+    funcionariosController.excluir(req, res);
+});
+
 module.exports = router;
