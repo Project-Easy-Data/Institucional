@@ -1,4 +1,4 @@
-var empresasModel = require("../models/empresasModel");
+var empresasModel = require("../models/empresaModel");
 
 function cadastrar(req, res) {
     var razao = req.body.razaoServer;

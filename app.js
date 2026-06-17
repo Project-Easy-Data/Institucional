@@ -23,7 +23,7 @@ var ragRouter = require("./src/routes/rag");
 var empresasRouter = require("./src/routes/empresas");
 var dadosRouter = require("./src/routes/dados")
 var slackRouter = require("./src/routes/slack");
-var empresasRouter = require("./src/routes/empresas")
+var empresasRouter = require("./src/routes/empresas");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
