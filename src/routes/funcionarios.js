@@ -11,4 +11,8 @@ router.get("/listar", function(req, res) {
     funcionariosController.listar(req, res);
 });
 
+router.put("/atualizarCargo/:id", function(req, res) {
+    funcionariosController.atualizarCargo(req, res);
+});
+
 module.exports = router;

@@ -1,5 +1,35 @@
 const sobrepor = document.getElementById("sobrepor");
 
+const cargoMap = {
+    'Gerente':     { cargoId: 1, permissao: 1 },
+    'Funcionário': { cargoId: 2, permissao: 2 },
+    'Suporte':     { cargoId: 3, permissao: 3 }
+};
+
+function criarSelectCargo(cargoAtual, idFuncionario) {
+    const opcoes = ['Gerente', 'Funcionário', 'Suporte'].map(c =>
+        `<option value="${c}" ${c === cargoAtual ? 'selected' : ''}>${c}</option>`
+    ).join('');
+    return `<select class="selectCargoLinha" onchange="alterarCargo(this, ${idFuncionario})">${opcoes}</select>`;
+}
+
+function alterarCargo(select, idFuncionario) {
+    const cargoSelecionado = select.value;
+    const { cargoId, permissao } = cargoMap[cargoSelecionado];
+
+    fetch(`/funcionarios/atualizarCargo/${idFuncionario}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cargoId, permissao })
+    })
+    .then(function(res) {
+        if (!res.ok) alert("Erro ao atualizar cargo.");
+    })
+    .catch(function(erro) {
+        console.error("Erro:", erro);
+    });
+}
+
 function confirmar() {
     const nome = document.getElementById("inputNome").value;
     const email = document.getElementById("inputEmail").value;
@@ -9,68 +39,60 @@ function confirmar() {
     let cargoId;
 
     if (cargoSelect === 'Gerente') {
-        permissao = 1;
-        cargoId = 1;
+        permissao = 1; cargoId = 1;
     } else if (cargoSelect === 'Funcionário') {
-        permissao = 2;
-        cargoId = 2;
+        permissao = 2; cargoId = 2;
     } else {
-        permissao = 3;
-        cargoId = 3;
+        permissao = 3; cargoId = 3;
     }
 
-    if (!nome) {
-        document.getElementById("erroNome").style.display = "block";
-        return;
-    }
+    if (!nome) 
+        { document.getElementById("erroNome").style.display = "block"; return; 
 
-    if (!email) {
-        document.getElementById("erroEmail").style.display = "block";
-        return;
-    }
+        }
+    if (!email) 
+        { document.getElementById("erroEmail").style.display = "block"; return; 
 
-    if (!cargoSelect) {
-        document.getElementById("erroCargo").style.display = "block";
-        return;
-    }
+        }
+    if (!cargoSelect) 
+        { document.getElementById("erroCargo").style.display = "block"; return; 
+            
+        }
 
     const senhaTemporaria = gerarSenhaTemporaria(10);
-
     sessionStorage.setItem('permissao', permissao);
 
     fetch("/funcionarios/cadastrar", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-        nomeServer: nome,
-        emailServer: email,
-        cargoServer: cargoId,   
-        permissaoServer: permissao,
-        senhaServer: senhaTemporaria
-    })
+            nomeServer: nome,
+            emailServer: email,
+            cargoServer: cargoId,
+            permissaoServer: permissao,
+            senhaServer: senhaTemporaria
+        })
     })
     .then(resposta => {
-    if (resposta.ok) {
-        resposta.json().then(function(dados) {
-            const listaUsuarios = document.querySelector(".listaUsuarios");
-            const novaLinha = document.createElement("div");
-            novaLinha.classList.add("linha");
-            novaLinha.innerHTML = `
-                <p>${nome}</p>
-                <p>${email}</p>
-                <p>${cargoSelect}</p>
-                <button class="excluir" onclick="excluir(this, ${dados.insertId})">Excluir</button>
-            `;
-            listaUsuarios.appendChild(novaLinha);
-            fecharModal();
-        });
-    } else {
-        alert("Erro ao cadastrar funcionário.");
-      }
+        if (resposta.ok) {
+            resposta.json().then(function(dados) {
+                const listaUsuarios = document.querySelector(".listaUsuarios");
+                const novaLinha = document.createElement("div");
+                novaLinha.classList.add("linha");
+                novaLinha.innerHTML = `
+                    <p>${nome}</p>
+                    <p>${email}</p>
+                    ${criarSelectCargo(cargoSelect, dados.insertId)}
+                    <button class="excluir" onclick="excluir(this, ${dados.insertId})">Excluir</button>
+                `;
+                listaUsuarios.appendChild(novaLinha);
+                fecharModal();
+            });
+        } else {
+            alert("Erro ao cadastrar funcionário.");
+        }
     })
-    .catch(erro => {
-        console.error("Erro:", erro);
-    });
+    .catch(erro => console.error("Erro:", erro));
 }
 
 function excluir(botao, id) {
@@ -82,18 +104,11 @@ function excluir(botao, id) {
             alert("Erro ao excluir funcionário.");
         }
     })
-    .catch(function(erro) {
-        console.error("Erro:", erro);
-    });
+    .catch(function(erro) { console.error("Erro:", erro); });
 }
 
-function addFunc() {
-    sobrepor.style.display = "flex";
-}
-
-function fecharModal() {
-    sobrepor.style.display = "none";
-}
+function addFunc() { sobrepor.style.display = "flex"; }
+function fecharModal() { sobrepor.style.display = "none"; }
 
 sobrepor.addEventListener("click", function(e) {
     if (e.target === sobrepor) fecharModal();
@@ -102,35 +117,13 @@ sobrepor.addEventListener("click", function(e) {
 function gerarSenhaTemporaria(tamanho) {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     let senha = "";
-    for (let i = 0; i < 10; i++) {
-        const indice = Math.floor(Math.random() * caracteres.length);
-        senha += caracteres.charAt(indice);
+    for (let i = 0; i < tamanho; i++) {
+        senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
     }
     return senha;
 }
 
-    function trocarTab(tab) {
-        const d = tabData[tab];
-        if (!d) return;
-    
-
-        document.querySelectorAll(".tabBtn").forEach(btn => btn.classList.remove("ativo"));
-        document.querySelector(`.tabBtn[data-tab="${tab}"]`).classList.add("ativo");
-      }
-
-      document.querySelectorAll(".tabBtn").forEach(btn => {
-        btn.addEventListener("click", () => trocarTab(btn.dataset.tab));
-      });
-
-      const links = document.querySelectorAll('aside .btns a');
-
-      links.forEach(link => {
-          if (link.href === window.location.href) {
-              link.classList.add('ativo');
-          }
-      });
-
-      function carregarUsuarios() {
+function carregarUsuarios() {
     fetch("/funcionarios/listar")
         .then(res => res.json())
         .then(function(lista) {
@@ -141,7 +134,7 @@ function gerarSenhaTemporaria(tamanho) {
                 novaLinha.innerHTML = `
                     <p>${u.nome}</p>
                     <p>${u.email}</p>
-                    <p>${u.cargo}</p>
+                    ${criarSelectCargo(u.cargo, u.id_funcionario)}
                     <button class="excluir" onclick="excluir(this, ${u.id_funcionario})">Excluir</button>
                 `;
                 listaUsuarios.appendChild(novaLinha);
@@ -149,17 +142,19 @@ function gerarSenhaTemporaria(tamanho) {
         });
 }
 
+const links = document.querySelectorAll('aside .btns a');
+links.forEach(link => {
+    if (link.href === window.location.href) link.classList.add('ativo');
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     var nome = sessionStorage.getItem("nome");
     var cargo = sessionStorage.getItem("cargo");
 
-    if (document.getElementById("nomeUsuario")) {
+    if (document.getElementById("nomeUsuario"))
         document.getElementById("nomeUsuario").textContent = nome || "Usuário";
-    }
-
-    if (document.getElementById("cargoUsuario")) {
+    if (document.getElementById("cargoUsuario"))
         document.getElementById("cargoUsuario").textContent = cargo || "";
-    }
 
     carregarUsuarios();
 });

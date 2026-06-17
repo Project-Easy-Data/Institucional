@@ -23,4 +23,13 @@ function excluir(id) {
     return database.executar(instrucaoSql);
 }
 
-module.exports = { cadastrar, excluir, listar };
+function atualizarCargo(id, cargoId, permissao) {
+    var instrucaoSql = `
+        UPDATE Usuario
+        SET fk_Cargo = ${cargoId}, permissao = ${permissao}
+        WHERE id_funcionario = ${id};
+    `;
+    return database.executar(instrucaoSql);
+}
+
+module.exports = { cadastrar, excluir, listar, atualizarCargo };

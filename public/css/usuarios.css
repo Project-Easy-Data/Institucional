@@ -228,5 +228,23 @@ body {
     justify-content: center;
 }
 
+.selectCargoLinha {
+    font-family: inherit;
+    font-size: 0.75vw;
+    color: #002645;
+    border: 1px solid #00264530;
+    border-radius: 0.3vw;
+    padding: 0.25vw 0.5vw;
+    background: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.selectCargoLinha:hover,
+.selectCargoLinha:focus {
+    border-color: #002645;
+}
+
 
 

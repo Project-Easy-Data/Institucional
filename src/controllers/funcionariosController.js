@@ -38,4 +38,18 @@ function excluir(req, res) {
         .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
 }
 
-module.exports = { cadastrar, excluir, listar };
+function atualizarCargo(req, res) {
+    var id = req.params.id;
+    var cargo = req.body.cargoId;
+    var permissao = req.body.permissao;
+
+    if (!cargo || !permissao) {
+        return res.status(400).send("Cargo ou permissão não informados.");
+    }
+
+    funcionariosModel.atualizarCargo(id, cargo, permissao)
+        .then(function(resultado) { res.json(resultado); })
+        .catch(function(erro) { res.status(500).json(erro.sqlMessage); });
+}
+
+module.exports = { cadastrar, excluir, listar, atualizarCargo };
